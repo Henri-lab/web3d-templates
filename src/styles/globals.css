@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 主色调 */
+  --color-primary-50: #fff9e6;
+  --color-primary-100: #ffedb3;
+  --color-primary-200: #ffe180;
+  --color-primary-300: #ffd54d;
+  --color-primary-400: #ffc91a;
+  --color-primary-500: #e6b000;
+  --color-primary-600: #b38900;
+  --color-primary-700: #806200;
+  --color-primary-800: #4d3b00;
+  --color-primary-900: #1a1400;
+
+  /* 语义色 */
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* 中性色 */
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+  --color-neutral-1000: #000000;
+
+  /* 字体 */
+  --font-primary: "Noto Serif SC", "Songti SC", serif;
+  --font-secondary: "Noto Sans SC", "PingFang SC", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* 动画 */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* 阴影 */
+  --shadow-glow: 0 0 20px rgba(255, 200, 100, 0.5);
+}
+
+/* 暗色模式 */
+[data-theme="dark"] {
+  --color-neutral-0: #18181b;
+  --color-neutral-50: #27272a;
+  --color-neutral-100: #3f3f46;
+  --color-neutral-200: #52525b;
+  --color-neutral-300: #71717a;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #d4d4d8;
+  --color-neutral-600: #e4e4e7;
+  --color-neutral-700: #f4f4f5;
+  --color-neutral-800: #fafafa;
+  --color-neutral-900: #ffffff;
+  --color-neutral-1000: #ffffff;
+}
+
+/* 古代中国主题 */
+[data-theme="ancient-china"] {
+  --color-primary-500: #8B4513;
+  --color-primary-400: #A0522D;
+  --color-primary-600: #6B3410;
+  --color-neutral-0: #F5F5DC;
+  --color-neutral-50: #EEE8D5;
+  --color-neutral-100: #E5DCC3;
+  --color-accent: #8B0000;
+  --font-primary: "Noto Serif SC", "Songti SC", serif;
+}
+
+/* 基础样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-secondary);
+  background-color: var(--color-neutral-0);
+  color: var(--color-neutral-900);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 3D Canvas 容器 */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* UI 叠加层 */
+.ui-overlay {
+  position: relative;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.ui-overlay > * {
+  pointer-events: auto;
+}
+
+/* 加载动画 */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-neutral-900) 0%, var(--color-neutral-800) 100%);
+  z-index: 9999;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-100);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-400);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-neutral-500);
+}
+
+/* 选择文本样式 */
+::selection {
+  background-color: var(--color-primary-200);
+  color: var(--color-neutral-900);
+}
+
+/* 焦点样式 */
+:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 2px;
+}
+
+/* 禁用默认触摸行为（用于 3D 交互） */
+.no-touch {
+  touch-action: none;
+  user-select: none;
+}
+
+/* 响应式工具类 */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .glass-dark {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
