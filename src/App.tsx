@@ -7,6 +7,8 @@ import WelcomePage from '@/pages/WelcomePage'
 import StorySelectionPage from '@/pages/StorySelectionPage'
 import StoryPlayerPage from '@/pages/StoryPlayerPage'
 import ComponentLabPage from '@/pages/ComponentLabPage'
+import EarthLabPage from '@/pages/EarthLabPage'
+import ReactTestPage from '@/pages/ReactTestPage'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -62,6 +64,8 @@ function App() {
             <Route path="/stories" element={<StorySelectionPage />} />
             <Route path="/story/:storyId" element={<StoryPlayerPage />} />
             <Route path="/lab" element={<ComponentLabPage />} />
+            <Route path="/earth" element={<EarthLabPage />} />
+            <Route path="/react-test" element={<ReactTestPage />} />
           </Routes>
         )}
       </AnimatePresence>
