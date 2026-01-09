@@ -25,7 +25,8 @@
       "@styles/*": ["src/styles/*"],
       "@types/*": ["src/types/*"],
       "@dsl/*": ["src/dsl/*"],
-      "@animations/*": ["src/animations/*"]
+      "@animations/*": ["src/animations/*"],
+      "@platform/*": ["src/platform/*"]
     }
   },
   "include": ["src"],
