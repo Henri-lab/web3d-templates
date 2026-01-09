@@ -316,7 +316,12 @@ export class Parser {
 
     // 收集旁白文本
     let text = ''
-    while (!this.isAtEnd() && !this.isMainBlock() && !this.check('SEPARATOR') && !this.check('INTERACTION')) {
+    while (
+      !this.isAtEnd() &&
+      !this.isMainBlock() &&
+      !this.check('SEPARATOR') &&
+      !this.check('INTERACTION')
+    ) {
       if (this.check('TEXT')) {
         text += this.advance().value + '\n'
       } else {

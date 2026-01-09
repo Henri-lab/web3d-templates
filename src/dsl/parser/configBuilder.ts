@@ -40,8 +40,12 @@ export class ConfigBuilder {
       lighting: (node.attributes.lighting as Scene['lighting']) || 'bright',
       modelUrl: node.attributes.model as string,
       position: this.parseVector3(node.attributes.position),
-      cameraPosition: this.parseVector3(node.attributes.camera) || this.parseVector3(node.attributes.cameraPosition),
-      cameraTarget: this.parseVector3(node.attributes.cameraTarget) || this.parseVector3(node.attributes.target),
+      cameraPosition:
+        this.parseVector3(node.attributes.camera) ||
+        this.parseVector3(node.attributes.cameraPosition),
+      cameraTarget:
+        this.parseVector3(node.attributes.cameraTarget) ||
+        this.parseVector3(node.attributes.target),
       narration: node.narration
         ? {
             text: node.narration.text,
@@ -141,7 +145,10 @@ export class ConfigBuilder {
     }
 
     if (typeof value === 'string') {
-      const parts = value.replace(/[\[\]]/g, '').split(',').map(Number)
+      const parts = value
+        .replace(/[\[\]]/g, '')
+        .split(',')
+        .map(Number)
       if (parts.length >= 3 && parts.every((n) => !isNaN(n))) {
         return [parts[0], parts[1], parts[2]]
       }

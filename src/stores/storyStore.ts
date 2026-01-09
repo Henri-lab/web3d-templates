@@ -129,6 +129,6 @@ export const useStoryStore = create<StoryStore>()(
           hoveredObject: null,
         }),
     }),
-    { name: 'story-store' }
-  )
+    { name: 'story-store' },
+  ),
 )

@@ -9,14 +9,12 @@ const buttonVariants = cva(
       variant: {
         primary:
           'bg-primary-500 text-neutral-900 hover:bg-primary-400 focus:ring-primary-500 shadow-md hover:shadow-lg',
-        secondary:
-          'bg-neutral-200 text-neutral-800 hover:bg-neutral-300 focus:ring-neutral-400',
+        secondary: 'bg-neutral-200 text-neutral-800 hover:bg-neutral-300 focus:ring-neutral-400',
         outline:
           'border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-neutral-900',
         ghost: 'text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900',
         danger: 'bg-error text-white hover:bg-red-600 focus:ring-error',
-        glass:
-          'bg-white/10 backdrop-blur-lg border border-white/20 text-white hover:bg-white/20',
+        glass: 'bg-white/10 backdrop-blur-lg border border-white/20 text-white hover:bg-white/20',
       },
       size: {
         sm: 'h-8 px-3 text-sm',
@@ -33,12 +31,11 @@ const buttonVariants = cva(
       variant: 'primary',
       size: 'md',
     },
-  }
+  },
 )
 
 interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+  extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   isLoading?: boolean
   leftIcon?: React.ReactNode
   rightIcon?: React.ReactNode
@@ -58,7 +55,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       ...props
     },
-    ref
+    ref,
   ) => {
     return (
       <button
@@ -69,11 +66,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading ? (
           <>
-            <svg
-              className="animate-spin -ml-1 mr-2 h-4 w-4"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
+            <svg className="animate-spin -ml-1 mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24">
               <circle
                 className="opacity-25"
                 cx="12"
@@ -99,7 +92,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
       </button>
     )
-  }
+  },
 )
 
 Button.displayName = 'Button'

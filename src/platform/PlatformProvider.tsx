@@ -22,11 +22,7 @@ interface PlatformProviderProps {
 /**
  * 平台Provider组件
  */
-export function PlatformProvider({
-  children,
-  onInitialized,
-  onError,
-}: PlatformProviderProps) {
+export function PlatformProvider({ children, onInitialized, onError }: PlatformProviderProps) {
   const [platform, setPlatform] = useState<PlatformInstance | null>(null)
   const [isInitializing, setIsInitializing] = useState(true)
   const [error, setError] = useState<Error | null>(null)
@@ -91,11 +87,7 @@ export function PlatformProvider({
     )
   }
 
-  return (
-    <PlatformContext.Provider value={platform}>
-      {children}
-    </PlatformContext.Provider>
-  )
+  return <PlatformContext.Provider value={platform}>{children}</PlatformContext.Provider>
 }
 
 /**

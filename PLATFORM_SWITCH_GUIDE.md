@@ -44,12 +44,12 @@ tags: [platform, xstate, module-federation, zustand]
 
 为了保证切换时不改业务模块代码，建议模块遵守：
 
-- 页面作为普通 React 组件存在于主仓库（例如 `src/pages/StorySelectionPage.tsx`）。  
+- 页面作为普通 React 组件存在于主仓库（例如 `src/pages/StorySelectionPage.tsx`）。
 - 依赖平台的方式只通过：
   - React Router 路径（`/stories`、`/lab`、`/earth` 等）；
   - 可选：平台提供的 Hook（未来如果启用 `usePlatformAPI` 等）。
 - 模块内部不：
-  - 直接操作 Module Federation 容器（`window[xxx]`、`__webpack_share_scopes__`）；  
+  - 直接操作 Module Federation 容器（`window[xxx]`、`__webpack_share_scopes__`）；
   - 直接依赖 XState 的 `PlatformService` 或 actor 实例。
 
 当前仓库的模块已经按这种方式实现，所以**切换/升级时，无需改这些模块页面代码**。
@@ -58,8 +58,8 @@ tags: [platform, xstate, module-federation, zustand]
 
 只有当你满足以下需求之一时，才需要考虑从本地模块升级为远程模块：
 
-- 不同团队拥有自己的仓库和部署流水线；  
-- 某些模块需要单独灰度、单独回滚、甚至使用不同技术栈；  
+- 不同团队拥有自己的仓库和部署流水线；
+- 某些模块需要单独灰度、单独回滚、甚至使用不同技术栈；
 - 你希望这个中台壳接入外部团队自研的“插件模块”。
 
 在此之前，保持「本地模块 + 单仓」会更简单、更好调试。
@@ -70,13 +70,13 @@ tags: [platform, xstate, module-federation, zustand]
 
 从当前稳健版（Zustand + 本地模块）升级到高级版（XState + Module Federation）时，核心步骤集中在 4 个文件：
 
-1. `src/platform/core/platform.ts`  
+1. `src/platform/core/platform.ts`
    - 决定平台初始化用的是 Zustand 还是 XState。
-2. `src/platform/core/moduleRegistry.ts`  
+2. `src/platform/core/moduleRegistry.ts`
    - 决定是否启用远程模块加载（Module Federation / iframe 等）。
-3. `src/platform/config/platform.config.ts`  
+3. `src/platform/config/platform.config.ts`
    - 决定模块是 `local` 还是 `remote`，以及远程入口 `entry`。
-4. `src/platform/core/platformAPI.ts`（可选）  
+4. `src/platform/core/platformAPI.ts`（可选）
    - 如果你想让模块通过 Platform API 操作状态/路由，在这里挂桥。
 
 业务模块（`src/pages/*`）无需改动，只要它们仍然通过路由路径挂载即可。
@@ -110,16 +110,16 @@ tags: [platform, xstate, module-federation, zustand]
 
 当你需要更复杂的状态图/流程时，可以考虑启用 XState：
 
-1. 打开 `src/platform/core/stateMachine.ts`，确认状态机定义符合你的平台流程需求。  
+1. 打开 `src/platform/core/stateMachine.ts`，确认状态机定义符合你的平台流程需求。
 2. 在 `src/platform/core/platform.ts` 中：
    - 引入并创建 `PlatformService`：
      ```ts
      import { createPlatformService } from './stateMachine'
      ```
    - 在 `initializePlatform()` 中，用 XState service 代替当前的 `usePlatformStore` 状态：
-     - 将注册模块、发事件的逻辑迁移为对状态机的 `send` 操作（例如 `send({ type: 'MODULE_LOADED', moduleId })`）。  
+     - 将注册模块、发事件的逻辑迁移为对状态机的 `send` 操作（例如 `send({ type: 'MODULE_LOADED', moduleId })`）。
 3. 保持 `PlatformInstance.getSnapshot()` 的接口不变：
-   - 让它返回 `stateService.getSnapshot()` 的 `{ value, context }`。  
+   - 让它返回 `stateService.getSnapshot()` 的 `{ value, context }`。
 
 只要 `getSnapshot()` 的返回结构保持一致，`WelcomePage` / `PlatformHomePage` / `ExamplesPage` 就不需要改。
 
@@ -135,7 +135,7 @@ tags: [platform, xstate, module-federation, zustand]
 
 在目标模块的独立仓库中：
 
-1. 使用 Vite + Module Federation 插件（参考 `MIGRATION_GUIDE.md` 的配置示例）。  
+1. 使用 Vite + Module Federation 插件（参考 `MIGRATION_GUIDE.md` 的配置示例）。
 2. 在该模块仓库中暴露页面组件：
 
    ```ts
@@ -213,25 +213,25 @@ switch (instance.config.type) {
 
 ### 验证步骤
 
-1. 启动主应用：`npm run dev`。  
-2. 确认平台首页/导航中仍能看到所有模块卡片。  
+1. 启动主应用：`npm run dev`。
+2. 确认平台首页/导航中仍能看到所有模块卡片。
 3. 手动点击升级为 `remote` 的模块，观察：
-   - 首次加载时是否发起了对 `remoteEntry.js` 的网络请求；  
-   - 控制台是否有 Module Federation 相关错误；  
+   - 首次加载时是否发起了对 `remoteEntry.js` 的网络请求；
+   - 控制台是否有 Module Federation 相关错误；
    - 页面组件是否正常渲染。
 
 如有问题，可以逐项检查：
 
-- `entry` URL 是否正确；  
-- 远程仓库的 `exposes` 名称是否与本地 `routes[*].component` 一致；  
+- `entry` URL 是否正确；
+- 远程仓库的 `exposes` 名称是否与本地 `routes[*].component` 一致；
 - Webpack/Vite 的共享依赖配置是否正确（尤其是 React/ReactDOM）。
 
 ### 回滚方案
 
 如果升级过程中出现难以迅速解决的问题，可以按以下方式回滚到稳健版：
 
-1. 将对应模块的 `type` 从 `'remote'` 改回 `'local'`，移除 `entry` 字段。  
-2. 将 `ModuleRegistry.load()` 中远程加载分支改回“仅本地模块”的实现。  
+1. 将对应模块的 `type` 从 `'remote'` 改回 `'local'`，移除 `entry` 字段。
+2. 将 `ModuleRegistry.load()` 中远程加载分支改回“仅本地模块”的实现。
 3. 如有对 XState 平台状态机的修改，可先退回到 `platformStore + getSnapshot()` 的实现。
 
 由于业务模块页面都还在本仓库内，而且路由结构保持不变，回滚只涉及平台核心和配置文件。
@@ -242,28 +242,27 @@ switch (instance.config.type) {
 
 ### 升级前
 
-- [ ] 所有业务模块页面均通过路由挂载，不依赖 Module Federation / XState 内部实现。  
-- [ ] 平台已在稳健版架构下运行稳定（Zustand + 本地模块）。  
+- [ ] 所有业务模块页面均通过路由挂载，不依赖 Module Federation / XState 内部实现。
+- [ ] 平台已在稳健版架构下运行稳定（Zustand + 本地模块）。
 - [ ] 拟升级为远程模块的功能已从逻辑上划分清晰（例如整个 Story 子系统）。
 
 ### 升级到 XState 时
 
-- [ ] 在 `platform.ts` 中正确创建并启动 `PlatformService`。  
-- [ ] `PlatformInstance.getSnapshot()` 返回 XState 快照 `{ value, context }`，与页面预期一致。  
+- [ ] 在 `platform.ts` 中正确创建并启动 `PlatformService`。
+- [ ] `PlatformInstance.getSnapshot()` 返回 XState 快照 `{ value, context }`，与页面预期一致。
 - [ ] 关键平台事件（模块注册 / 加载 / 错误）通过 XState 事件驱动，而不是直接改 Zustand。
 
 ### 升级到 Module Federation 时
 
-- [ ] 远程模块仓库可以独立启动和构建，并暴露 `remoteEntry.js`。  
-- [ ] 平台 `moduleConfigs` 中正确设置 `type: 'remote'` 和 `entry`。  
-- [ ] `ModuleRegistry` 中恢复了 `loadRemoteModule`，并能在调试时看到正确的加载流程。  
+- [ ] 远程模块仓库可以独立启动和构建，并暴露 `remoteEntry.js`。
+- [ ] 平台 `moduleConfigs` 中正确设置 `type: 'remote'` 和 `entry`。
+- [ ] `ModuleRegistry` 中恢复了 `loadRemoteModule`，并能在调试时看到正确的加载流程。
 - [ ] 升级失败时，能够按「回滚方案」快速回到稳健版。
 
 ---
 
 ## 相关文档
 
-- `PLATFORM_REFACTOR_LOG.md`：当前稳健版重构记录与解读。  
-- `PLATFORM_ARCHITECTURE.md`：整体架构说明（含高级版设计思路）。  
-- `MIGRATION_GUIDE.md`：从单体应用迁移到中台 + 微前端的历史文档（适合作为高级方案参考）。  
-
+- `PLATFORM_REFACTOR_LOG.md`：当前稳健版重构记录与解读。
+- `PLATFORM_ARCHITECTURE.md`：整体架构说明（含高级版设计思路）。
+- `MIGRATION_GUIDE.md`：从单体应用迁移到中台 + 微前端的历史文档（适合作为高级方案参考）。

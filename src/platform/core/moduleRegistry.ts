@@ -8,11 +8,7 @@
  * 4. 错误隔离 - 模块错误不影响其他模块
  */
 
-import type {
-  ModuleConfig,
-  ModuleInstance,
-  ModuleStatus,
-} from '../config/types'
+import type { ModuleConfig, ModuleInstance, ModuleStatus } from '../config/types'
 import { globalEventBus, PlatformEvents } from './eventBus'
 
 /**
@@ -188,9 +184,7 @@ export class ModuleRegistry {
    * 获取已加载的模块
    */
   getLoaded(): ModuleInstance[] {
-    return this.getAll().filter(
-      m => m.status === 'loaded' || m.status === 'mounted'
-    )
+    return this.getAll().filter((m) => m.status === 'loaded' || m.status === 'mounted')
   }
 
   /**
@@ -227,7 +221,6 @@ export class ModuleRegistry {
       throw error
     }
   }
-
 }
 
 /**

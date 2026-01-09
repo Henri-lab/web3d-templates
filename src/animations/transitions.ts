@@ -10,7 +10,7 @@ export const pageTransitions = {
       return gsap.fromTo(
         element,
         { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: 'power2.inOut' }
+        { opacity: 1, duration: 0.5, ease: 'power2.inOut' },
       )
     },
     exit: (element: AnimationTarget) => {
@@ -27,7 +27,7 @@ export const pageTransitions = {
       return gsap.fromTo(
         element,
         { x, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
+        { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
       )
     },
     exit: (element: AnimationTarget, direction: 'left' | 'right' = 'left') => {
@@ -44,7 +44,7 @@ export const pageTransitions = {
       return gsap.fromTo(
         element,
         { scale: 1.2, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6, ease: 'power2.out' }
+        { scale: 1, opacity: 1, duration: 0.6, ease: 'power2.out' },
       )
     },
     exit: (element: AnimationTarget) => {
@@ -175,7 +175,7 @@ export const pageTransitions = {
       return gsap.fromTo(
         element,
         { rotateY: -90, opacity: 0, transformPerspective: 1000 },
-        { rotateY: 0, opacity: 1, duration: 0.8, ease: 'power3.out' }
+        { rotateY: 0, opacity: 1, duration: 0.8, ease: 'power3.out' },
       )
     },
     exit: (element: AnimationTarget) => {
@@ -194,7 +194,12 @@ export const pageTransitions = {
 // 场景内转场
 export const sceneTransitions = {
   // 相机推进
-  dollyIn: (timeline: gsap.core.Timeline, cameraPosition: THREE.Vector3, targetPosition: THREE.Vector3, duration = 1.5) => {
+  dollyIn: (
+    timeline: gsap.core.Timeline,
+    cameraPosition: THREE.Vector3,
+    targetPosition: THREE.Vector3,
+    duration = 1.5,
+  ) => {
     timeline.to(cameraPosition, {
       x: targetPosition.x,
       y: targetPosition.y,
@@ -205,7 +210,12 @@ export const sceneTransitions = {
   },
 
   // 场景淡入淡出
-  crossFade: (timeline: gsap.core.Timeline, fromOpacity: { value: number }, toOpacity: { value: number }, duration = 0.5) => {
+  crossFade: (
+    timeline: gsap.core.Timeline,
+    fromOpacity: { value: number },
+    toOpacity: { value: number },
+    duration = 0.5,
+  ) => {
     timeline.to(fromOpacity, { value: 0, duration })
     timeline.to(toOpacity, { value: 1, duration }, `-=${duration * 0.5}`)
   },

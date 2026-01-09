@@ -39,7 +39,9 @@ export function Timeline({
           <motion.div
             key={event.id}
             className={`relative ${
-              isVertical ? 'flex items-start pl-10 pb-8' : 'flex flex-col items-center px-4 min-w-[120px]'
+              isVertical
+                ? 'flex items-start pl-10 pb-8'
+                : 'flex flex-col items-center px-4 min-w-[120px]'
             }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -52,8 +54,8 @@ export function Timeline({
                 isActive
                   ? 'bg-primary-500 border-primary-500 scale-125'
                   : isPast
-                  ? 'bg-primary-200 border-primary-300'
-                  : 'bg-neutral-0 border-neutral-300 hover:border-primary-400'
+                    ? 'bg-primary-200 border-primary-300'
+                    : 'bg-neutral-0 border-neutral-300 hover:border-primary-400'
               } ${isVertical ? 'absolute left-0' : ''}`}
             >
               {isActive && (
@@ -90,9 +92,7 @@ export function Timeline({
                 {event.title}
               </h4>
               {isVertical && event.description && (
-                <p className="text-xs text-neutral-500 mt-1 max-w-xs">
-                  {event.description}
-                </p>
+                <p className="text-xs text-neutral-500 mt-1 max-w-xs">{event.description}</p>
               )}
             </div>
           </motion.div>
@@ -109,11 +109,7 @@ interface CompactTimelineProps {
   onIndexChange?: (index: number) => void
 }
 
-export function CompactTimeline({
-  events,
-  currentIndex,
-  onIndexChange,
-}: CompactTimelineProps) {
+export function CompactTimeline({ events, currentIndex, onIndexChange }: CompactTimelineProps) {
   return (
     <div className="flex items-center gap-2 p-2 bg-black/30 backdrop-blur-sm rounded-full">
       {events.map((event, index) => (
@@ -124,8 +120,8 @@ export function CompactTimeline({
             index === currentIndex
               ? 'bg-primary-500 w-6'
               : index < currentIndex
-              ? 'bg-primary-300'
-              : 'bg-white/30 hover:bg-white/50'
+                ? 'bg-primary-300'
+                : 'bg-white/30 hover:bg-white/50'
           }`}
           title={event.title}
         />

@@ -131,13 +131,16 @@ export default function StorySelectionPage() {
               className="flex items-center gap-2 text-white hover:text-primary-400 transition-colors"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
               返回首页
             </button>
-
             <h1 className="text-xl font-semibold text-white">选择故事</h1>
-
             <div className="w-24" /> {/* 占位 */}
           </div>
         </div>

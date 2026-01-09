@@ -19,18 +19,54 @@ export function BasicGeometries() {
   })
 
   const geometries = [
-    { position: [-3, 0, 0] as [number, number, number], geometry: <boxGeometry args={[1, 1, 1]} />, name: 'Box' },
-    { position: [-1.5, 0, 0] as [number, number, number], geometry: <sphereGeometry args={[0.6, 32, 32]} />, name: 'Sphere' },
-    { position: [0, 0, 0] as [number, number, number], geometry: <cylinderGeometry args={[0.5, 0.5, 1, 32]} />, name: 'Cylinder' },
-    { position: [1.5, 0, 0] as [number, number, number], geometry: <coneGeometry args={[0.6, 1, 32]} />, name: 'Cone' },
-    { position: [3, 0, 0] as [number, number, number], geometry: <torusGeometry args={[0.4, 0.2, 16, 32]} />, name: 'Torus' },
+    {
+      position: [-3, 0, 0] as [number, number, number],
+      geometry: <boxGeometry args={[1, 1, 1]} />,
+      name: 'Box',
+    },
+    {
+      position: [-1.5, 0, 0] as [number, number, number],
+      geometry: <sphereGeometry args={[0.6, 32, 32]} />,
+      name: 'Sphere',
+    },
+    {
+      position: [0, 0, 0] as [number, number, number],
+      geometry: <cylinderGeometry args={[0.5, 0.5, 1, 32]} />,
+      name: 'Cylinder',
+    },
+    {
+      position: [1.5, 0, 0] as [number, number, number],
+      geometry: <coneGeometry args={[0.6, 1, 32]} />,
+      name: 'Cone',
+    },
+    {
+      position: [3, 0, 0] as [number, number, number],
+      geometry: <torusGeometry args={[0.4, 0.2, 16, 32]} />,
+      name: 'Torus',
+    },
   ]
 
   const secondRow = [
-    { position: [-2.25, 0, 2] as [number, number, number], geometry: <dodecahedronGeometry args={[0.6]} />, name: 'Dodecahedron' },
-    { position: [-0.75, 0, 2] as [number, number, number], geometry: <icosahedronGeometry args={[0.6]} />, name: 'Icosahedron' },
-    { position: [0.75, 0, 2] as [number, number, number], geometry: <octahedronGeometry args={[0.6]} />, name: 'Octahedron' },
-    { position: [2.25, 0, 2] as [number, number, number], geometry: <tetrahedronGeometry args={[0.6]} />, name: 'Tetrahedron' },
+    {
+      position: [-2.25, 0, 2] as [number, number, number],
+      geometry: <dodecahedronGeometry args={[0.6]} />,
+      name: 'Dodecahedron',
+    },
+    {
+      position: [-0.75, 0, 2] as [number, number, number],
+      geometry: <icosahedronGeometry args={[0.6]} />,
+      name: 'Icosahedron',
+    },
+    {
+      position: [0.75, 0, 2] as [number, number, number],
+      geometry: <octahedronGeometry args={[0.6]} />,
+      name: 'Octahedron',
+    },
+    {
+      position: [2.25, 0, 2] as [number, number, number],
+      geometry: <tetrahedronGeometry args={[0.6]} />,
+      name: 'Tetrahedron',
+    },
   ]
 
   return (

@@ -119,13 +119,13 @@ flowchart LR
 
 ### Figma 插件推荐
 
-| 插件 | 用途 |
-|------|------|
-| Design Tokens | 导出设计变量 |
-| Figma to Code | 生成 CSS/React 代码 |
-| SVGO Compressor | SVG 压缩 |
-| TinyImage Compressor | 图片压缩 |
-| Anima | 导出动画代码 |
+| 插件                 | 用途                |
+| -------------------- | ------------------- |
+| Design Tokens        | 导出设计变量        |
+| Figma to Code        | 生成 CSS/React 代码 |
+| SVGO Compressor      | SVG 压缩            |
+| TinyImage Compressor | 图片压缩            |
+| Anima                | 导出动画代码        |
 
 ---
 
@@ -175,12 +175,12 @@ export const tokens = {
     },
     // 历史主题色
     historical: {
-      qin: '#8B4513',      // 秦朝 - 青铜色
-      han: '#DC143C',      // 汉朝 - 朱红色
-      tang: '#FFD700',     // 唐朝 - 金色
-      song: '#4682B4',     // 宋朝 - 青瓷蓝
-      ming: '#006400',     // 明朝 - 翠绿色
-      qing: '#4B0082',     // 清朝 - 靛青色
+      qin: '#8B4513', // 秦朝 - 青铜色
+      han: '#DC143C', // 汉朝 - 朱红色
+      tang: '#FFD700', // 唐朝 - 金色
+      song: '#4682B4', // 宋朝 - 青瓷蓝
+      ming: '#006400', // 明朝 - 翠绿色
+      qing: '#4B0082', // 清朝 - 靛青色
     },
   },
 
@@ -192,16 +192,16 @@ export const tokens = {
       mono: '"JetBrains Mono", monospace',
     },
     fontSize: {
-      xs: '0.75rem',     // 12px
-      sm: '0.875rem',    // 14px
-      base: '1rem',      // 16px
-      lg: '1.125rem',    // 18px
-      xl: '1.25rem',     // 20px
-      '2xl': '1.5rem',   // 24px
+      xs: '0.75rem', // 12px
+      sm: '0.875rem', // 14px
+      base: '1rem', // 16px
+      lg: '1.125rem', // 18px
+      xl: '1.25rem', // 20px
+      '2xl': '1.5rem', // 24px
       '3xl': '1.875rem', // 30px
-      '4xl': '2.25rem',  // 36px
-      '5xl': '3rem',     // 48px
-      '6xl': '3.75rem',  // 60px
+      '4xl': '2.25rem', // 36px
+      '5xl': '3rem', // 48px
+      '6xl': '3.75rem', // 60px
     },
     fontWeight: {
       normal: 400,
@@ -219,18 +219,18 @@ export const tokens = {
   // 间距 Token
   spacing: {
     0: '0',
-    1: '0.25rem',   // 4px
-    2: '0.5rem',    // 8px
-    3: '0.75rem',   // 12px
-    4: '1rem',      // 16px
-    5: '1.25rem',   // 20px
-    6: '1.5rem',    // 24px
-    8: '2rem',      // 32px
-    10: '2.5rem',   // 40px
-    12: '3rem',     // 48px
-    16: '4rem',     // 64px
-    20: '5rem',     // 80px
-    24: '6rem',     // 96px
+    1: '0.25rem', // 4px
+    2: '0.5rem', // 8px
+    3: '0.75rem', // 12px
+    4: '1rem', // 16px
+    5: '1.25rem', // 20px
+    6: '1.5rem', // 24px
+    8: '2rem', // 32px
+    10: '2.5rem', // 40px
+    12: '3rem', // 48px
+    16: '4rem', // 64px
+    20: '5rem', // 80px
+    24: '6rem', // 96px
   },
 
   // 圆角 Token
@@ -318,9 +318,9 @@ export const tokens = {
   --color-neutral-1000: #000000;
 
   /* 字体 */
-  --font-primary: "Noto Serif SC", "Songti SC", serif;
-  --font-secondary: "Noto Sans SC", "PingFang SC", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-primary: 'Noto Serif SC', 'Songti SC', serif;
+  --font-secondary: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
   /* 字号 */
   --font-size-xs: 0.75rem;
@@ -365,7 +365,7 @@ export const tokens = {
 }
 
 /* 暗色模式 */
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-neutral-0: #18181b;
   --color-neutral-50: #27272a;
   --color-neutral-100: #3f3f46;
@@ -818,22 +818,22 @@ export const useTheme = () => {
 
 ```css
 /* themes/ancient-china.css */
-[data-theme="ancient-china"] {
+[data-theme='ancient-china'] {
   /* 主色调 - 古铜金 */
-  --color-primary-500: #8B4513;
-  --color-primary-400: #A0522D;
-  --color-primary-600: #6B3410;
+  --color-primary-500: #8b4513;
+  --color-primary-400: #a0522d;
+  --color-primary-600: #6b3410;
 
   /* 背景 - 宣纸色 */
-  --color-neutral-0: #F5F5DC;
-  --color-neutral-50: #EEE8D5;
-  --color-neutral-100: #E5DCC3;
+  --color-neutral-0: #f5f5dc;
+  --color-neutral-50: #eee8d5;
+  --color-neutral-100: #e5dcc3;
 
   /* 强调色 - 朱砂红 */
-  --color-accent: #8B0000;
+  --color-accent: #8b0000;
 
   /* 字体 - 衬线体 */
-  --font-primary: "Noto Serif SC", "Songti SC", serif;
+  --font-primary: 'Noto Serif SC', 'Songti SC', serif;
 
   /* 装饰元素 */
   --border-ornament: url('/images/chinese-border.svg');
@@ -846,12 +846,14 @@ export const useTheme = () => {
 ## ✅ UI/美术层检查清单
 
 ### Figma 工作流
+
 - [ ] 设计系统页面完成
 - [ ] 组件库建立
 - [ ] 命名规范统一
 - [ ] 导出流程自动化
 
 ### 设计 Token
+
 - [ ] 颜色系统定义
 - [ ] 字体系统定义
 - [ ] 间距系统定义
@@ -860,6 +862,7 @@ export const useTheme = () => {
 - [ ] Tailwind 配置同步
 
 ### 组件规范
+
 - [ ] 按钮组件所有状态
 - [ ] 卡片组件所有变体
 - [ ] 表单组件规范
@@ -867,12 +870,14 @@ export const useTheme = () => {
 - [ ] 弹窗组件规范
 
 ### 响应式
+
 - [ ] 移动端适配
 - [ ] 平板适配
 - [ ] 桌面端适配
 - [ ] 触摸/鼠标交互区分
 
 ### 主题
+
 - [ ] 亮色主题
 - [ ] 暗色主题
 - [ ] 历史主题

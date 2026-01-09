@@ -130,8 +130,8 @@ export const useAppStore = create<AppStore>()(
           error: null,
         }),
     }),
-    { name: 'app-store' }
-  )
+    { name: 'app-store' },
+  ),
 )
 
 // 设置 Store
@@ -175,8 +175,8 @@ export const useSettingsStore = create<SettingsStore>()(
 
         resetSettings: () => set({ settings: defaultSettings }),
       }),
-      { name: 'settings-storage' }
+      { name: 'settings-storage' },
     ),
-    { name: 'settings-store' }
-  )
+    { name: 'settings-store' },
+  ),
 )

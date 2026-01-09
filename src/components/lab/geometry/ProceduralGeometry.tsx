@@ -55,8 +55,8 @@ export function ProceduralGeometry() {
     if (blobRef.current) {
       const geometry = blobRef.current.geometry as THREE.BufferGeometry
       const positions = geometry.attributes.position
-      const originalPositions = (geometry.userData.originalPositions as Float32Array) ||
-        new Float32Array(positions.array)
+      const originalPositions =
+        (geometry.userData.originalPositions as Float32Array) || new Float32Array(positions.array)
 
       if (!geometry.userData.originalPositions) {
         geometry.userData.originalPositions = originalPositions.slice()
@@ -75,7 +75,7 @@ export function ProceduralGeometry() {
           i,
           (ox / length) * length * scale,
           (oy / length) * length * scale,
-          (oz / length) * length * scale
+          (oz / length) * length * scale,
         )
       }
       positions.needsUpdate = true
@@ -90,9 +90,10 @@ export function ProceduralGeometry() {
       for (let i = 0; i < positions.count; i++) {
         const x = positions.getX(i)
         const y = positions.getY(i)
-        const z = Math.sin(x * 2 + time * 2) * 0.15 +
-                  Math.cos(y * 2 + time * 1.5) * 0.15 +
-                  Math.sin((x + y) * 1.5 + time) * 0.1
+        const z =
+          Math.sin(x * 2 + time * 2) * 0.15 +
+          Math.cos(y * 2 + time * 1.5) * 0.15 +
+          Math.sin((x + y) * 1.5 + time) * 0.1
         positions.setZ(i, z)
       }
       positions.needsUpdate = true
@@ -111,26 +112,12 @@ export function ProceduralGeometry() {
         castShadow
         receiveShadow
       >
-        <meshStandardMaterial
-          color="#22c55e"
-          metalness={0.1}
-          roughness={0.8}
-          flatShading
-        />
+        <meshStandardMaterial color="#22c55e" metalness={0.1} roughness={0.8} flatShading />
       </mesh>
 
       {/* 噪声变形球体 */}
-      <mesh
-        ref={blobRef}
-        geometry={blobGeometry}
-        position={[0, 0.5, 0]}
-        castShadow
-      >
-        <meshStandardMaterial
-          color="#f472b6"
-          metalness={0.4}
-          roughness={0.3}
-        />
+      <mesh ref={blobRef} geometry={blobGeometry} position={[0, 0.5, 0]} castShadow>
+        <meshStandardMaterial color="#f472b6" metalness={0.4} roughness={0.3} />
       </mesh>
 
       {/* 动态波浪网格 */}

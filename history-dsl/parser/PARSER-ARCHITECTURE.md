@@ -78,13 +78,13 @@ interface Token {
 }
 
 enum TokenType {
-  TAG = 'TAG',              // #story, #scene, etc.
-  ATTRIBUTE = 'ATTRIBUTE',  // @id, @position, etc.
+  TAG = 'TAG', // #story, #scene, etc.
+  ATTRIBUTE = 'ATTRIBUTE', // @id, @position, etc.
   TEXT = 'TEXT',
   HEADING = 'HEADING',
   LIST = 'LIST',
   CODE_BLOCK = 'CODE_BLOCK',
-  SEPARATOR = 'SEPARATOR',  // ---
+  SEPARATOR = 'SEPARATOR', // ---
 }
 
 class Tokenizer {
@@ -101,7 +101,7 @@ class Tokenizer {
           type: TokenType.TAG,
           value: 'story',
           line: i,
-          column: 0
+          column: 0,
         })
         continue
       }
@@ -114,7 +114,7 @@ class Tokenizer {
             type: TokenType.ATTRIBUTE,
             value: JSON.stringify({ key: match[1], value: match[2] }),
             line: i,
-            column: 0
+            column: 0,
           })
         }
         continue
@@ -160,7 +160,7 @@ class Parser {
     const ast: ASTNode = {
       type: 'root',
       attributes: {},
-      children: []
+      children: [],
     }
 
     let current = 0
@@ -195,7 +195,7 @@ class Parser {
     const node: ASTNode = {
       type: tag,
       attributes: {},
-      children: []
+      children: [],
     }
 
     // 解析标记内容...
@@ -207,12 +207,12 @@ class Parser {
     // 解析属性值
     // 支持: string, number, array, object, Vector3Tuple
     if (value.startsWith('[') && value.endsWith(']')) {
-      return JSON.parse(value)  // Array
+      return JSON.parse(value) // Array
     }
     if (!isNaN(Number(value))) {
-      return Number(value)  // Number
+      return Number(value) // Number
     }
-    return value  // String
+    return value // String
   }
 }
 ```
@@ -235,20 +235,20 @@ const storyRules: ValidationRule[] = [
   {
     field: 'id',
     type: 'required',
-    message: 'Story must have an ID'
+    message: 'Story must have an ID',
   },
   {
     field: 'id',
     type: 'pattern',
     params: /^[a-z0-9-]+$/,
-    message: 'ID must be kebab-case'
+    message: 'ID must be kebab-case',
   },
   {
     field: 'difficulty',
     type: 'type',
     params: ['easy', 'medium', 'hard'],
-    message: 'Difficulty must be easy, medium, or hard'
-  }
+    message: 'Difficulty must be easy, medium, or hard',
+  },
 ]
 
 class Validator {
@@ -263,7 +263,7 @@ class Validator {
 
     return {
       valid: errors.length === 0,
-      errors
+      errors,
     }
   }
 }
@@ -289,33 +289,33 @@ class ConfigBuilder {
       materials: this.buildMaterials(ast),
       animations: this.buildAnimations(ast),
       postProcessing: this.buildPostProcessing(ast),
-      interactions: this.buildInteractions(ast)
+      interactions: this.buildInteractions(ast),
     }
   }
 
   private buildMeta(ast: StoryAST) {
     return {
       name: ast.attributes.title,
-      version: "1.0.0",
+      version: '1.0.0',
       description: ast.content,
       author: ast.attributes.author,
-      createdAt: new Date().toISOString()
+      createdAt: new Date().toISOString(),
     }
   }
 
   private buildScene(ast: StoryAST): SceneSettings {
-    const sceneNode = ast.children.find(n => n.type === 'scene')
+    const sceneNode = ast.children.find((n) => n.type === 'scene')
     if (!sceneNode) {
       return this.getDefaultScene()
     }
 
     return {
       background: {
-        type: "color",
-        value: sceneNode.attributes.background || "#1a1a1a"
+        type: 'color',
+        value: sceneNode.attributes.background || '#1a1a1a',
       },
       environment: sceneNode.attributes.environment,
-      fog: sceneNode.attributes.fog
+      fog: sceneNode.attributes.fog,
     }
   }
 
@@ -323,7 +323,7 @@ class ConfigBuilder {
     const objects: ObjectConfig[] = []
 
     // 从 AST 提取 characters
-    const characters = ast.children.filter(n => n.type === 'character')
+    const characters = ast.children.filter((n) => n.type === 'character')
     for (const char of characters) {
       objects.push({
         id: char.attributes.id,
@@ -332,26 +332,26 @@ class ConfigBuilder {
         transform: {
           position: char.attributes.position || [0, 0, 0],
           rotation: [0, 0, 0],
-          scale: [1, 1, 1]
+          scale: [1, 1, 1],
         },
         properties: {
           castShadow: true,
-          receiveShadow: true
-        }
+          receiveShadow: true,
+        },
       })
     }
 
     // 从 AST 提取 artifacts
-    const artifacts = ast.children.filter(n => n.type === 'artifact')
+    const artifacts = ast.children.filter((n) => n.type === 'artifact')
     for (const art of artifacts) {
       objects.push({
         id: art.attributes.id,
         type: 'gltf',
         url: art.attributes.model,
         transform: {
-          position: art.attributes.position || [0, 0, 0]
+          position: art.attributes.position || [0, 0, 0],
         },
-        interactive: art.attributes.interactive
+        interactive: art.attributes.interactive,
       })
     }
 
@@ -359,7 +359,7 @@ class ConfigBuilder {
   }
 
   private buildAnimations(ast: StoryAST): AnimationConfig {
-    const timeline = ast.children.find(n => n.type === 'timeline')
+    const timeline = ast.children.find((n) => n.type === 'timeline')
     if (!timeline) return {}
 
     // 将时间轴转换为 GSAP 动画配置
@@ -481,12 +481,16 @@ class AnimationController {
     for (const step of config.intro.timeline) {
       const target = this.resolveTarget(step.target)
 
-      tl.to(target, {
-        ...step.properties,
-        duration: step.duration,
-        delay: step.delay,
-        ease: step.ease
-      }, step.delay ? `-=${step.delay}` : undefined)
+      tl.to(
+        target,
+        {
+          ...step.properties,
+          duration: step.duration,
+          delay: step.delay,
+          ease: step.ease,
+        },
+        step.delay ? `-=${step.delay}` : undefined,
+      )
     }
 
     this.timelines.set('intro', tl)
@@ -650,7 +654,7 @@ const VRPlugin: Plugin = {
   install(engine) {
     engine.enableVR()
     engine.addVRControllers()
-  }
+  },
 }
 ```
 

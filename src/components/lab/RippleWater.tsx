@@ -150,12 +150,7 @@ export function RippleWater({
   })
 
   return (
-    <mesh
-      ref={meshRef}
-      position={position}
-      rotation={[-Math.PI / 2, 0, 0]}
-      receiveShadow
-    >
+    <mesh ref={meshRef} position={position} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
       <planeGeometry args={[size, size, segments, segments]} />
       <primitive object={shaderMaterial} attach="material" />
     </mesh>

@@ -164,25 +164,33 @@ unification/                    # 故事包目录
 @id: qin-unification
 
 ## 场景引用
+
 @scenes:
-  - ./scenes/palace.scene.md
-  - ./scenes/battlefield.scene.md
-  - ./scenes/city.scene.md
+
+- ./scenes/palace.scene.md
+- ./scenes/battlefield.scene.md
+- ./scenes/city.scene.md
 
 ## 人物引用
+
 @characters:
-  - ./characters/qin-emperor.char.md
-  - ./characters/li-si.char.md
+
+- ./characters/qin-emperor.char.md
+- ./characters/li-si.char.md
 
 ## 文物引用
+
 @artifacts:
-  - ./artifacts/terracotta-warriors.art.md
-  - ./artifacts/bronze-sword.art.md
+
+- ./artifacts/terracotta-warriors.art.md
+- ./artifacts/bronze-sword.art.md
 
 ## 时间轴引用
+
 @timeline: ./timeline.md
 
 ## 测验引用
+
 @quiz: ./quiz.md
 ```
 
@@ -190,26 +198,33 @@ unification/                    # 故事包目录
 
 ```markdown
 ## 相关故事
+
 @related:
-  - ../../han/silk-road/story.md
-  - ../../tang/prosperity/story.md
+
+- ../../han/silk-road/story.md
+- ../../tang/prosperity/story.md
 
 ## 前置知识
+
 @prerequisites:
-  - ../reforms/story.md (商鞅变法)
+
+- ../reforms/story.md (商鞅变法)
 ```
 
 ### 资源引用
 
 ```markdown
 ## 3D 模型
+
 @model: /assets/models/characters/qin-emperor.glb
 
 ## 音频
+
 @voice: /assets/audio/narration/qin-speech-01.mp3
 @music: /assets/audio/music/ancient-palace.mp3
 
 ## 图片
+
 @image: /assets/images/qin/empire-map.jpg
 ```
 
@@ -225,18 +240,22 @@ unification/                    # 故事包目录
 ## 古代史
 
 ### 秦朝 (公元前221年 - 公元前206年)
+
 - [秦始皇统一六国](./stories/ancient/qin/unification/story.md) ⭐⭐⭐⭐⭐
 - [长城修建](./stories/ancient/qin/great-wall/story.md) ⭐⭐⭐⭐
 - [焚书坑儒](./stories/ancient/qin/book-burning/story.md) ⭐⭐⭐
 
 ### 汉朝 (公元前206年 - 公元220年)
+
 - [丝绸之路](./stories/ancient/han/silk-road/story.md)
 - [张骞出使西域](./stories/ancient/han/zhang-qian/story.md)
 
 ## 近现代史
+
 ...
 
 ## 世界史
+
 ...
 ```
 
@@ -303,26 +322,32 @@ unification/                    # 故事包目录
 @id: qin-unification
 
 ## 推荐关联
+
 @recommendations:
-  # 同时期故事
-  - type: same-period
-    items: [qin-reforms, qin-legalism]
-    weight: 0.8
 
-  # 相似主题
-  - type: similar-theme
-    items: [han-unification, sui-unification]
-    weight: 0.6
+# 同时期故事
 
-  # 后续发展
-  - type: continuation
-    items: [qin-fall, chu-han-contention]
-    weight: 0.9
+- type: same-period
+  items: [qin-reforms, qin-legalism]
+  weight: 0.8
 
-  # 对比学习
-  - type: comparison
-    items: [roman-empire-expansion]
-    weight: 0.4
+# 相似主题
+
+- type: similar-theme
+  items: [han-unification, sui-unification]
+  weight: 0.6
+
+# 后续发展
+
+- type: continuation
+  items: [qin-fall, chu-han-contention]
+  weight: 0.9
+
+# 对比学习
+
+- type: comparison
+  items: [roman-empire-expansion]
+  weight: 0.4
 ```
 
 ---
@@ -348,18 +373,22 @@ unification/                    # 故事包目录
 ## [1.2.0] - 2024-01-15
 
 ### Added
+
 - 新增李斯人物模型
 - 添加秦简文物交互
 
 ### Changed
+
 - 优化宫殿场景灯光
 - 更新时间轴动画效果
 
 ### Fixed
+
 - 修复旁白音频同步问题
 - 修正历史年份错误
 
 ## [1.1.0] - 2024-01-10
+
 ...
 ```
 
@@ -383,8 +412,9 @@ unification/
 #story 秦始皇统一六国
 @lang: zh-CN
 @translations:
-  - en-US: ./story.en-US.md
-  - ja-JP: ./story.ja-JP.md
+
+- en-US: ./story.en-US.md
+- ja-JP: ./story.ja-JP.md
 ```
 
 ---
@@ -433,6 +463,7 @@ unification/
 ## ✅ 内容质量检查清单
 
 ### 必需内容
+
 - [ ] story.md 主文件存在
 - [ ] meta.json 元数据完整
 - [ ] 至少 1 个场景定义
@@ -440,18 +471,21 @@ unification/
 - [ ] 学习目标明确
 
 ### 资源检查
+
 - [ ] 所有引用的模型文件存在
 - [ ] 音频文件格式正确
 - [ ] 图片分辨率适当
 - [ ] 资源总大小 < 100MB
 
 ### 内容质量
+
 - [ ] 历史事实准确
 - [ ] 语言表述清晰
 - [ ] 交互设计合理
 - [ ] 学习目标可达成
 
 ### 技术规范
+
 - [ ] 文件命名符合规范
 - [ ] 引用路径正确
 - [ ] DSL 语法无错误

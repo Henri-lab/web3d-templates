@@ -90,12 +90,7 @@ export function PBRMaterials() {
       {physicalMaterials.map((item, i) => (
         <mesh key={`physical-${i}`} position={item.position} castShadow>
           <sphereGeometry args={[0.6, 64, 64]} />
-          <meshPhysicalMaterial
-            color={item.color}
-            roughness={0.1}
-            metalness={0}
-            {...item.props}
-          />
+          <meshPhysicalMaterial color={item.color} roughness={0.1} metalness={0} {...item.props} />
         </mesh>
       ))}
 

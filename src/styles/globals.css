@@ -36,9 +36,9 @@
   --color-neutral-1000: #000000;
 
   /* 字体 */
-  --font-primary: "Noto Serif SC", "Songti SC", serif;
-  --font-secondary: "Noto Sans SC", "PingFang SC", sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-primary: 'Noto Serif SC', 'Songti SC', serif;
+  --font-secondary: 'Noto Sans SC', 'PingFang SC', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
   /* 动画 */
   --duration-fast: 150ms;
@@ -52,7 +52,7 @@
 }
 
 /* 暗色模式 */
-[data-theme="dark"] {
+[data-theme='dark'] {
   --color-neutral-0: #18181b;
   --color-neutral-50: #27272a;
   --color-neutral-100: #3f3f46;
@@ -68,15 +68,15 @@
 }
 
 /* 古代中国主题 */
-[data-theme="ancient-china"] {
-  --color-primary-500: #8B4513;
-  --color-primary-400: #A0522D;
-  --color-primary-600: #6B3410;
-  --color-neutral-0: #F5F5DC;
-  --color-neutral-50: #EEE8D5;
-  --color-neutral-100: #E5DCC3;
-  --color-accent: #8B0000;
-  --font-primary: "Noto Serif SC", "Songti SC", serif;
+[data-theme='ancient-china'] {
+  --color-primary-500: #8b4513;
+  --color-primary-400: #a0522d;
+  --color-primary-600: #6b3410;
+  --color-neutral-0: #f5f5dc;
+  --color-neutral-50: #eee8d5;
+  --color-neutral-100: #e5dcc3;
+  --color-accent: #8b0000;
+  --font-primary: 'Noto Serif SC', 'Songti SC', serif;
 }
 
 /* 基础样式 */

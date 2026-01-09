@@ -19,7 +19,7 @@ import type { ModuleRegistry } from './moduleRegistry'
  */
 export function createPlatformAPI(
   getContext: () => Record<string, any>,
-  moduleRegistry: ModuleRegistry
+  moduleRegistry: ModuleRegistry,
 ): PlatformAPI {
   return {
     // 事件总线
@@ -209,11 +209,7 @@ export function useEventBus() {
 /**
  * React Hook: 监听事件
  */
-export function useEventListener(
-  eventType: string,
-  handler: EventHandler,
-  deps: any[] = []
-) {
+export function useEventListener(eventType: string, handler: EventHandler, deps: any[] = []) {
   const eventBus = useEventBus()
 
   React.useEffect(() => {
@@ -300,14 +296,13 @@ export function usePlatformState<T = any>(namespace: string, initialState?: T) {
 
   const updateState = React.useCallback(
     (newState: T | ((prev: T) => T)) => {
-      const nextState = typeof newState === 'function'
-        ? (newState as (prev: T) => T)(state)
-        : newState
+      const nextState =
+        typeof newState === 'function' ? (newState as (prev: T) => T)(state) : newState
 
       api.stateManager.setState(namespace, nextState)
       setState(nextState)
     },
-    [namespace, state]
+    [namespace, state],
   )
 
   return [state, updateState] as const

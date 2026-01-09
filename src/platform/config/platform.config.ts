@@ -254,14 +254,14 @@ platformConfig.modules = moduleConfigs
  * 获取模块配置
  */
 export function getModuleConfig(moduleId: string): ModuleConfig | undefined {
-  return moduleConfigs.find(m => m.id === moduleId)
+  return moduleConfigs.find((m) => m.id === moduleId)
 }
 
 /**
  * 获取所有路由
  */
 export function getAllRoutes() {
-  return moduleConfigs.flatMap(m => m.routes)
+  return moduleConfigs.flatMap((m) => m.routes)
 }
 
 /**
@@ -269,9 +269,9 @@ export function getAllRoutes() {
  */
 export function getNavigationMenu() {
   return moduleConfigs
-    .filter(m => m.menu.visible)
+    .filter((m) => m.menu.visible)
     .sort((a, b) => a.menu.order - b.menu.order)
-    .map(m => ({
+    .map((m) => ({
       id: m.id,
       title: m.menu.title,
       icon: m.menu.icon,

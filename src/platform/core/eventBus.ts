@@ -130,7 +130,7 @@ export class EventBus {
       console.log(
         `[EventBus] ${event.type}`,
         event.source ? `from ${event.source}` : '',
-        event.payload || ''
+        event.payload || '',
       )
     }
   }

@@ -69,9 +69,7 @@ export function LoadingScreen({
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.2 }}
       >
-        <h1 className="text-4xl font-bold text-white mb-2 font-primary">
-          历史故事学习平台
-        </h1>
+        <h1 className="text-4xl font-bold text-white mb-2 font-primary">历史故事学习平台</h1>
         <p className="text-neutral-400">沉浸式3D历史学习体验</p>
       </motion.div>
 
@@ -131,24 +129,9 @@ export function LoadingSpinner({ size = 'md', color = 'currentColor' }: LoadingS
   }
 
   return (
-    <svg
-      className={`animate-spin ${sizeMap[size]}`}
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke={color}
-        strokeWidth="4"
-      />
-      <path
-        className="opacity-75"
-        fill={color}
-        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-      />
+    <svg className={`animate-spin ${sizeMap[size]}`} fill="none" viewBox="0 0 24 24">
+      <circle className="opacity-25" cx="12" cy="12" r="10" stroke={color} strokeWidth="4" />
+      <path className="opacity-75" fill={color} d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
     </svg>
   )
 }

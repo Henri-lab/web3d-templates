@@ -63,23 +63,13 @@ function CharacterModel({ position }: { position: [number, number, number] }) {
         {/* 身体 */}
         <mesh position={[0, 0, 0]} castShadow>
           <capsuleGeometry args={[0.3, 0.8, 16, 32]} />
-          <meshPhysicalMaterial
-            color="#2c3e50"
-            metalness={0.8}
-            roughness={0.2}
-            clearcoat={0.5}
-          />
+          <meshPhysicalMaterial color="#2c3e50" metalness={0.8} roughness={0.2} clearcoat={0.5} />
         </mesh>
 
         {/* 头部 */}
         <mesh position={[0, 0.8, 0]} castShadow>
           <sphereGeometry args={[0.25, 32, 32]} />
-          <meshPhysicalMaterial
-            color="#34495e"
-            metalness={0.9}
-            roughness={0.1}
-            clearcoat={1}
-          />
+          <meshPhysicalMaterial color="#34495e" metalness={0.9} roughness={0.1} clearcoat={1} />
         </mesh>
 
         {/* 眼睛发光 */}
@@ -95,19 +85,11 @@ function CharacterModel({ position }: { position: [number, number, number] }) {
         {/* 肩甲 */}
         <mesh position={[0.4, 0.3, 0]} castShadow>
           <sphereGeometry args={[0.15, 16, 16]} />
-          <meshPhysicalMaterial
-            color="#e74c3c"
-            metalness={1}
-            roughness={0.1}
-          />
+          <meshPhysicalMaterial color="#e74c3c" metalness={1} roughness={0.1} />
         </mesh>
         <mesh position={[-0.4, 0.3, 0]} castShadow>
           <sphereGeometry args={[0.15, 16, 16]} />
-          <meshPhysicalMaterial
-            color="#e74c3c"
-            metalness={1}
-            roughness={0.1}
-          />
+          <meshPhysicalMaterial color="#e74c3c" metalness={1} roughness={0.1} />
         </mesh>
       </group>
     </Float>
@@ -194,13 +176,7 @@ export function AAARendering() {
       <GlowingSphere position={[0, 2, -1]} color="#ffe66d" intensity={3} />
 
       {/* 粒子效果 */}
-      <Sparkles
-        count={200}
-        scale={10}
-        size={2}
-        speed={0.5}
-        color="#00ffff"
-      />
+      <Sparkles count={200} scale={10} size={2} speed={0.5} color="#00ffff" />
 
       {/* 环境光 */}
       <ambientLight intensity={0.1} />
@@ -219,9 +195,7 @@ export function AAARendering() {
       <Html position={[0, 3.5, 0]} center>
         <div className="text-sm text-white bg-black/70 px-4 py-2 rounded-lg max-w-xs text-center">
           <div className="font-bold mb-1">AAA 级渲染效果</div>
-          <div className="text-xs text-gray-300">
-            反射地板、体积光、粒子系统、动态光照
-          </div>
+          <div className="text-xs text-gray-300">反射地板、体积光、粒子系统、动态光照</div>
         </div>
       </Html>
     </group>

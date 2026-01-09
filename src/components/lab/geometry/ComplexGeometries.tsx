@@ -24,7 +24,8 @@ export function ComplexGeometries() {
   // 创建心形曲线用于挤出
   const heartShape = useMemo(() => {
     const shape = new THREE.Shape()
-    const x = 0, y = 0
+    const x = 0,
+      y = 0
     shape.moveTo(x + 0.25, y + 0.25)
     shape.bezierCurveTo(x + 0.25, y + 0.25, x + 0.2, y, x, y)
     shape.bezierCurveTo(x - 0.3, y, x - 0.3, y + 0.35, x - 0.3, y + 0.35)
@@ -55,11 +56,7 @@ export function ComplexGeometries() {
     for (let i = 0; i <= 100; i++) {
       const t = i / 100
       const angle = t * Math.PI * 4
-      points.push(new THREE.Vector3(
-        Math.cos(angle) * 0.5,
-        t * 1.5 - 0.75,
-        Math.sin(angle) * 0.5
-      ))
+      points.push(new THREE.Vector3(Math.cos(angle) * 0.5, t * 1.5 - 0.75, Math.sin(angle) * 0.5))
     }
     return new THREE.CatmullRomCurve3(points)
   }, [])
@@ -70,11 +67,9 @@ export function ComplexGeometries() {
     for (let i = 0; i <= 100; i++) {
       const t = (i / 100) * Math.PI * 2
       const r = 0.5 + 0.3 * Math.cos(3 * t)
-      points.push(new THREE.Vector3(
-        r * Math.cos(2 * t),
-        0.3 * Math.sin(3 * t),
-        r * Math.sin(2 * t)
-      ))
+      points.push(
+        new THREE.Vector3(r * Math.cos(2 * t), 0.3 * Math.sin(3 * t), r * Math.sin(2 * t)),
+      )
     }
     return new THREE.CatmullRomCurve3(points, true)
   }, [])

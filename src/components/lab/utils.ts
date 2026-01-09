@@ -14,7 +14,7 @@ import * as THREE from 'three'
 export function createGradientTexture(
   colors: string[],
   size: number = 256,
-  direction: 'horizontal' | 'vertical' = 'vertical'
+  direction: 'horizontal' | 'vertical' = 'vertical',
 ): THREE.CanvasTexture {
   const canvas = document.createElement('canvas')
   canvas.width = direction === 'horizontal' ? size : 1
@@ -70,11 +70,7 @@ export const easing = {
   // 弹性效果
   elastic: (t: number) => {
     const c4 = (2 * Math.PI) / 3
-    return t === 0
-      ? 0
-      : t === 1
-      ? 1
-      : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1
+    return t === 0 ? 0 : t === 1 ? 1 : Math.pow(2, -10 * t) * Math.sin((t * 10 - 0.75) * c4) + 1
   },
 
   // 回弹效果
@@ -139,7 +135,7 @@ export function mapRange(
   inMin: number,
   inMax: number,
   outMin: number,
-  outMax: number
+  outMax: number,
 ): number {
   return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
 }
@@ -160,22 +156,18 @@ export function randomVector3(
   minY: number,
   maxY: number,
   minZ: number,
-  maxZ: number
+  maxZ: number,
 ): THREE.Vector3 {
   return new THREE.Vector3(
     randomRange(minX, maxX),
     randomRange(minY, maxY),
-    randomRange(minZ, maxZ)
+    randomRange(minZ, maxZ),
   )
 }
 
 /**
  * 创建简单的颜色渐变
  */
-export function lerpColor(
-  color1: THREE.Color,
-  color2: THREE.Color,
-  t: number
-): THREE.Color {
+export function lerpColor(color1: THREE.Color, color2: THREE.Color, t: number): THREE.Color {
   return new THREE.Color().lerpColors(color1, color2, t)
 }

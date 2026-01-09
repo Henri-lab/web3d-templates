@@ -56,6 +56,7 @@ npm run dev
 ### 3. 查看示例
 
 访问示例页面查看如何使用平台功能：
+
 - 平台API使用
 - 事件总线通信
 - 模块管理
@@ -176,19 +177,24 @@ npm run dev  # 端口 5175
 ## 📖 文档索引
 
 ### 架构文档
+
 - [PLATFORM_ARCHITECTURE.md](./PLATFORM_ARCHITECTURE.md) - 完整的架构设计和API文档
 
 ### 迁移指南
+
 - [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md) - 从旧架构迁移到新架构的详细步骤
 
 ### 代码示例
+
 - [ExamplesPage.tsx](./src/platform/examples/ExamplesPage.tsx) - 5个实用示例
 
 ### 配置文件
+
 - [platform.config.ts](./src/platform/config/platform.config.ts) - 平台和模块配置
 - [types.ts](./src/platform/config/types.ts) - TypeScript类型定义
 
 ### 核心代码
+
 - [platform.ts](./src/platform/core/platform.ts) - 平台初始化
 - [stateMachine.ts](./src/platform/core/stateMachine.ts) - XState状态机
 - [eventBus.ts](./src/platform/core/eventBus.ts) - 事件总线
@@ -218,26 +224,31 @@ npm run lint             # ESLint检查
 ## 🎨 架构优势
 
 ### 1. 配置优先
+
 - ✅ 所有模块通过配置注册
 - ✅ 无需修改代码即可添加/删除模块
 - ✅ 配置即文档
 
 ### 2. 状态机驱动
+
 - ✅ 可视化状态流转
 - ✅ 可预测的状态管理
 - ✅ 易于测试和调试
 
 ### 3. 事件解耦
+
 - ✅ 模块间零依赖
 - ✅ 灵活的通信方式
 - ✅ 易于扩展
 
 ### 4. 微前端
+
 - ✅ 独立开发和部署
 - ✅ 技术栈无关
 - ✅ 团队协作友好
 
 ### 5. 类型安全
+
 - ✅ 完整的TypeScript类型
 - ✅ 编译时错误检查
 - ✅ 智能代码提示
@@ -247,6 +258,7 @@ npm run lint             # ESLint检查
 ## 🌟 核心特性
 
 ### 配置驱动
+
 ```typescript
 // 添加新模块只需配置
 moduleConfigs.push({
@@ -259,6 +271,7 @@ moduleConfigs.push({
 ```
 
 ### 状态机
+
 ```typescript
 // 可视化状态管理
 const [state, send] = useMachine(platformMachine)
@@ -266,6 +279,7 @@ send({ type: 'LOAD_MODULE', moduleId: 'story' })
 ```
 
 ### 事件总线
+
 ```typescript
 // 解耦的模块通信
 eventBus.emit('module:event', { data: '...' })
@@ -273,6 +287,7 @@ eventBus.on('module:event', handler)
 ```
 
 ### 平台API
+
 ```typescript
 // 统一的平台能力
 const api = usePlatformAPI()

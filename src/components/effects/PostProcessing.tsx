@@ -58,10 +58,7 @@ export function PostProcessing({
           />
         ) as any)}
 
-      {vignette &&
-        ((
-          <Vignette offset={vignetteOffset} darkness={vignetteDarkness} />
-        ) as any)}
+      {vignette && ((<Vignette offset={vignetteOffset} darkness={vignetteDarkness} />) as any)}
 
       {chromaticAberration &&
         ((

@@ -99,10 +99,7 @@ export const platformMachine = createMachine({
         MODULE_LOADED: {
           target: 'ready',
           actions: assign({
-            loadedModules: ({ context, event }) => [
-              ...context.loadedModules,
-              event.moduleId,
-            ],
+            loadedModules: ({ context, event }) => [...context.loadedModules, event.moduleId],
             loadingProgress: 100,
           }),
         },

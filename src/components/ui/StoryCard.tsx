@@ -9,12 +9,7 @@ interface StoryCardProps {
   onClick?: () => void
 }
 
-export function StoryCard({
-  story,
-  progress = 0,
-  isLocked = false,
-  onClick,
-}: StoryCardProps) {
+export function StoryCard({ story, progress = 0, isLocked = false, onClick }: StoryCardProps) {
   return (
     <motion.div
       whileHover={{ scale: isLocked ? 1 : 1.03 }}
@@ -50,8 +45,8 @@ export function StoryCard({
               story.difficulty === 'easy'
                 ? 'bg-success/90 text-white'
                 : story.difficulty === 'medium'
-                ? 'bg-warning/90 text-white'
-                : 'bg-error/90 text-white'
+                  ? 'bg-warning/90 text-white'
+                  : 'bg-error/90 text-white'
             }`}
           >
             {story.difficulty === 'easy' ? '简单' : story.difficulty === 'medium' ? '中等' : '困难'}
@@ -60,11 +55,7 @@ export function StoryCard({
           {/* 锁定图标 */}
           {isLocked && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-              <svg
-                className="w-12 h-12 text-white/80"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
+              <svg className="w-12 h-12 text-white/80" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 1a5 5 0 00-5 5v4H5a2 2 0 00-2 2v10a2 2 0 002 2h14a2 2 0 002-2V12a2 2 0 00-2-2h-2V6a5 5 0 00-5-5zm3 9H9V6a3 3 0 116 0v4z" />
               </svg>
             </div>

@@ -160,11 +160,14 @@ export function ParticleFlame({
   }, [])
 
   // 颜色对象（用于更新）
-  const colorObjects = useMemo(() => ({
-    color1: new THREE.Color(colors[0]),
-    color2: new THREE.Color(colors[1]),
-    color3: new THREE.Color(colors[2]),
-  }), [colors])
+  const colorObjects = useMemo(
+    () => ({
+      color1: new THREE.Color(colors[0]),
+      color2: new THREE.Color(colors[1]),
+      color3: new THREE.Color(colors[2]),
+    }),
+    [colors],
+  )
 
   // 每帧更新粒子
   useFrame((_, delta) => {
@@ -210,7 +213,11 @@ export function ParticleFlame({
       if (t < 0.5) {
         color = new THREE.Color().lerpColors(colorObjects.color1, colorObjects.color2, t * 2)
       } else {
-        color = new THREE.Color().lerpColors(colorObjects.color2, colorObjects.color3, (t - 0.5) * 2)
+        color = new THREE.Color().lerpColors(
+          colorObjects.color2,
+          colorObjects.color3,
+          (t - 0.5) * 2,
+        )
       }
       customColors[i * 3] = color.r
       customColors[i * 3 + 1] = color.g
@@ -222,9 +229,7 @@ export function ParticleFlame({
     geometry.attributes.customColor.needsUpdate = true
   })
 
-  return (
-    <points ref={pointsRef} position={position} geometry={geometry} material={material} />
-  )
+  return <points ref={pointsRef} position={position} geometry={geometry} material={material} />
 }
 
 /**

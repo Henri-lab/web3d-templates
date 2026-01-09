@@ -78,11 +78,7 @@ export function FloatingRock({
       vertex.fromBufferAttribute(positions, i)
 
       // 计算噪声值
-      const noiseValue = noise3D(
-        vertex.x * 2,
-        vertex.y * 2,
-        vertex.z * 2
-      )
+      const noiseValue = noise3D(vertex.x * 2, vertex.y * 2, vertex.z * 2)
 
       // 沿法线方向变形
       const normal = vertex.clone().normalize()
@@ -137,26 +133,12 @@ export function FloatingRock({
 
   return (
     <group ref={groupRef} position={position}>
-      <mesh
-        ref={meshRef}
-        geometry={geometry}
-        material={material}
-        castShadow
-        receiveShadow
-      />
+      <mesh ref={meshRef} geometry={geometry} material={material} castShadow receiveShadow />
 
       {/* 底部阴影指示器 - 帮助感知高度 */}
-      <mesh
-        position={[0, -position[1] + 0.01, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-        receiveShadow
-      >
+      <mesh position={[0, -position[1] + 0.01, 0]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
         <circleGeometry args={[size * 0.8, 32]} />
-        <meshBasicMaterial
-          color="#000000"
-          transparent
-          opacity={0.2}
-        />
+        <meshBasicMaterial color="#000000" transparent opacity={0.2} />
       </mesh>
     </group>
   )

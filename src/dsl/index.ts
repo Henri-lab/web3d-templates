@@ -55,5 +55,12 @@ export function validateDSL(content: string): { valid: boolean; errors: string[]
 
 // 导出所有模块
 export { tokenize } from './tokenizer'
-export { parse, Parser, type StoryNode, type SceneNode, type CharacterNode, type ArtifactNode } from './parser'
+export {
+  parse,
+  Parser,
+  type StoryNode,
+  type SceneNode,
+  type CharacterNode,
+  type ArtifactNode,
+} from './parser'
 export { buildConfig, ConfigBuilder } from './parser/configBuilder'

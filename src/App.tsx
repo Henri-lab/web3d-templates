@@ -55,10 +55,10 @@ function App() {
                 loadingProgress < 30
                   ? '初始化应用...'
                   : loadingProgress < 60
-                  ? '加载核心资源...'
-                  : loadingProgress < 90
-                  ? '准备 3D 场景...'
-                  : '即将完成...'
+                    ? '加载核心资源...'
+                    : loadingProgress < 90
+                      ? '准备 3D 场景...'
+                      : '即将完成...'
               }
               onComplete={handleLoadingComplete}
             />

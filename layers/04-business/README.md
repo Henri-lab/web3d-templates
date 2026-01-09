@@ -67,15 +67,15 @@ stateDiagram-v2
 ```typescript
 // src/types/state.types.ts
 export type PageState =
-  | 'loading'           // 初始加载
-  | 'welcome'           // 欢迎页
-  | 'story-selection'   // 故事选择
-  | 'story-loading'     // 故事加载
-  | 'story-playing'     // 故事播放
-  | 'scene-transition'  // 场景切换
-  | 'quiz-mode'         // 测验模式
-  | 'story-complete'    // 故事完成
-  | 'achievement'       // 成就展示
+  | 'loading' // 初始加载
+  | 'welcome' // 欢迎页
+  | 'story-selection' // 故事选择
+  | 'story-loading' // 故事加载
+  | 'story-playing' // 故事播放
+  | 'scene-transition' // 场景切换
+  | 'quiz-mode' // 测验模式
+  | 'story-complete' // 故事完成
+  | 'achievement' // 成就展示
 
 export interface PageStateContext {
   currentState: PageState
@@ -463,9 +463,7 @@ export const useProgressStore = create<ProgressState>()(
               ...state.storyProgress,
               [storyId]: existing,
             },
-            totalQuizzesPassed: passed
-              ? state.totalQuizzesPassed + 1
-              : state.totalQuizzesPassed,
+            totalQuizzesPassed: passed ? state.totalQuizzesPassed + 1 : state.totalQuizzesPassed,
           }
         })
       },
@@ -506,8 +504,8 @@ export const useProgressStore = create<ProgressState>()(
         return get().storyProgress[storyId]
       },
     }),
-    { name: 'learning-progress' }
-  )
+    { name: 'learning-progress' },
+  ),
 )
 ```
 
@@ -639,8 +637,8 @@ export const useAchievementStore = create<AchievementState>()(
         return achievements.filter((a) => !unlockedIds.includes(a.id))
       },
     }),
-    { name: 'achievements' }
-  )
+    { name: 'achievements' },
+  ),
 )
 ```
 
@@ -649,24 +647,28 @@ export const useAchievementStore = create<AchievementState>()(
 ## ✅ 业务逻辑层检查清单
 
 ### 状态机
+
 - [ ] 定义所有页面状态
 - [ ] 定义状态转换规则
 - [ ] 实现状态机 Store
 - [ ] 添加状态变化日志
 
 ### 用户流程
+
 - [ ] 绘制完整用户旅程图
 - [ ] 定义每个节点的交互
 - [ ] 设计异常流程处理
 - [ ] 优化关键路径
 
 ### 进度系统
+
 - [ ] 实现进度持久化
 - [ ] 场景完成追踪
 - [ ] 测验成绩记录
 - [ ] 学习时间统计
 
 ### 成就系统
+
 - [ ] 设计成就列表
 - [ ] 实现解锁条件检测
 - [ ] 成就展示动画

@@ -127,7 +127,9 @@ export const platformConfig: PlatformConfig = {
     port: 5173,
     basePath: '/',
     title: '历史3D学习平台',
-    shared: { /* 共享依赖 */ },
+    shared: {
+      /* 共享依赖 */
+    },
   },
 
   // 模块注册表

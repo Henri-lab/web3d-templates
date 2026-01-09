@@ -99,10 +99,10 @@ function ToonModelWithOutline({
 }) {
   const gradientMap = useMemo(() => {
     const colors = new Uint8Array(4)
-    colors[0] = 50   // 暗
-    colors[1] = 100  // 中暗
-    colors[2] = 180  // 中亮
-    colors[3] = 255  // 亮
+    colors[0] = 50 // 暗
+    colors[1] = 100 // 中暗
+    colors[2] = 180 // 中亮
+    colors[3] = 255 // 亮
     const texture = new THREE.DataTexture(colors, 4, 1, THREE.RedFormat)
     texture.needsUpdate = true
     return texture

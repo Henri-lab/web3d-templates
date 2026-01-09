@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import AutoImport from 'unplugin-auto-import/vite'
+import glsl from 'vite-plugin-glsl'
 import { resolve } from 'path'
 
 /**
@@ -14,12 +16,30 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [
+      // React 支持（JSX、Fast Refresh）
       react({
         babel: {
           babelrc: false,
           configFile: false,
           plugins: [],
         },
+      }),
+
+      // 自动导入常用 API（减少手写 import）
+      AutoImport({
+        // 可以按需再扩展，比如 zustand / react-router-dom 等
+        imports: ['react'],
+        dts: 'src/auto-imports.d.ts',
+        eslintrc: {
+          enabled: true,
+          filepath: './.eslintrc-auto-import.json',
+          globalsPropValue: true,
+        },
+      }),
+
+      // GLSL 导入支持：允许直接 import *.glsl / *.vert / *.frag 等着色器文件
+      glsl({
+        include: ['**/*.glsl', '**/*.wgsl', '**/*.vert', '**/*.frag'],
       }),
     ],
 

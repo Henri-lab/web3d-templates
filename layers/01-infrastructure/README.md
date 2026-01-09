@@ -134,7 +134,7 @@ export default defineConfig({
         manualChunks: {
           'three-vendor': ['three'],
           'react-three': ['@react-three/fiber', '@react-three/drei'],
-          'animation': ['gsap'],
+          animation: ['gsap'],
         },
       },
     },
@@ -180,21 +180,15 @@ VITE_ENABLE_DEVTOOLS=false
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "framework": "vite",
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
   "headers": [
     {
       "source": "/models/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
       "source": "/textures/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]
 }
@@ -355,7 +349,7 @@ export function PerformanceMonitor({ onStats }: { onStats?: (stats: Stats) => vo
     if (now - lastTime >= 1000) {
       const info = gl.info
       const newStats: Stats = {
-        fps: Math.round(frameCount * 1000 / (now - lastTime)),
+        fps: Math.round((frameCount * 1000) / (now - lastTime)),
         drawCalls: info.render.calls,
         triangles: info.render.triangles,
         memory: info.memory.geometries + info.memory.textures,
@@ -430,24 +424,28 @@ export function PerformanceMonitor({ onStats }: { onStats?: (stats: Stats) => vo
 ## ✅ 基础设施层检查清单
 
 ### 项目初始化
+
 - [ ] Vite + React + TypeScript 项目创建
 - [ ] 核心依赖安装 (Three.js, R3F, GSAP, Zustand)
 - [ ] 路径别名配置
 - [ ] 环境变量配置
 
 ### 构建优化
+
 - [ ] 代码分割配置
 - [ ] 资源压缩配置
 - [ ] 缓存策略配置
 - [ ] 构建分析
 
 ### 部署配置
+
 - [ ] Vercel/Docker 配置
 - [ ] CI/CD 流程
 - [ ] CDN 配置
 - [ ] SSL 证书
 
 ### 监控集成
+
 - [ ] Web Vitals 监控
 - [ ] Three.js 性能监控
 - [ ] 错误追踪

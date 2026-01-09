@@ -237,11 +237,9 @@ export function SpecialMaterials() {
       // 模拟周期性撞击
       if (Math.floor(time) % 3 === 0 && time % 1 < 0.1) {
         shieldRef.current.uniforms.impactTime.value = time
-        shieldRef.current.uniforms.impactPoint.value.set(
-          Math.random() - 0.5,
-          Math.random() - 0.5,
-          1
-        ).normalize()
+        shieldRef.current.uniforms.impactPoint.value
+          .set(Math.random() - 0.5, Math.random() - 0.5, 1)
+          .normalize()
       }
     }
     if (dissolveRef.current) {

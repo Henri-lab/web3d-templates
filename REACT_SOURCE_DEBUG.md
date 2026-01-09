@@ -11,6 +11,7 @@
    - Firefox: https://addons.mozilla.org/en-US/firefox/addon/react-devtools/
 
 2. **启动开发服务器**
+
    ```bash
    npm run dev
    ```
@@ -23,11 +24,13 @@
    - 使用 F11 单步进入 React 源码
 
 ### 优点
+
 - ✅ 无需额外配置
 - ✅ 可以看到调用栈和运行时状态
 - ✅ 虽然是编译后的代码（var），但逻辑完全相同
 
 ### 缺点
+
 - ❌ 代码使用 var 而非 const/let
 - ❌ 变量名可能被混淆
 
@@ -77,7 +80,7 @@ export default defineConfig({
       // ... 其他别名
 
       // 使用本地构建的 React 源码
-      'react': resolve(__dirname, 'react-source/build/node_modules/react'),
+      react: resolve(__dirname, 'react-source/build/node_modules/react'),
       'react-dom': resolve(__dirname, 'react-source/build/node_modules/react-dom'),
     },
   },
@@ -92,11 +95,13 @@ npm run dev
 ```
 
 ### 优点
+
 - ✅ 可以看到更接近原始的代码
 - ✅ 可以修改 React 源码并实时看到效果
 - ✅ 完整的调试体验
 
 ### 缺点
+
 - ❌ 需要额外的磁盘空间（~500MB）
 - ❌ 构建时间较长（5-10分钟）
 - ❌ 即使是开发版本，也会经过 Babel 编译
@@ -142,17 +147,18 @@ npm run dev
 
 ### 关键源码文件
 
-| 文件 | 说明 | GitHub 链接 |
-|------|------|------------|
-| ReactHooks.js | Hooks API 入口 | [查看](https://github.com/facebook/react/blob/main/packages/react/src/ReactHooks.js) |
-| ReactFiberHooks.js | Hooks 实现核心 | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactFiberHooks.js) |
-| ReactFiberWorkLoop.js | Fiber 工作循环 | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactFiberWorkLoop.js) |
-| ReactFiberBeginWork.js | Fiber 节点处理 | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactFiberBeginWork.js) |
-| ReactFiberCommitWork.js | Commit 阶段 | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactFiberCommitWork.js) |
-| ReactChildFiber.js | Diff 算法 | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactChildFiber.js) |
-| Scheduler.js | 调度器 | [查看](https://github.com/facebook/react/blob/main/packages/scheduler/src/forks/Scheduler.js) |
+| 文件                    | 说明           | GitHub 链接                                                                                               |
+| ----------------------- | -------------- | --------------------------------------------------------------------------------------------------------- |
+| ReactHooks.js           | Hooks API 入口 | [查看](https://github.com/facebook/react/blob/main/packages/react/src/ReactHooks.js)                      |
+| ReactFiberHooks.js      | Hooks 实现核心 | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactFiberHooks.js)      |
+| ReactFiberWorkLoop.js   | Fiber 工作循环 | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactFiberWorkLoop.js)   |
+| ReactFiberBeginWork.js  | Fiber 节点处理 | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactFiberBeginWork.js)  |
+| ReactFiberCommitWork.js | Commit 阶段    | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactFiberCommitWork.js) |
+| ReactChildFiber.js      | Diff 算法      | [查看](https://github.com/facebook/react/blob/main/packages/react-reconciler/src/ReactChildFiber.js)      |
+| Scheduler.js            | 调度器         | [查看](https://github.com/facebook/react/blob/main/packages/scheduler/src/forks/Scheduler.js)             |
 
 ### 优点
+
 - ✅ 最高效的学习方式
 - ✅ 无需额外配置
 - ✅ 同时获得源码可读性和运行时调试能力
@@ -179,10 +185,10 @@ fiber.type.name === 'ReactDebugDemo'
 在 Watch 面板添加表达式：
 
 ```javascript
-fiber.memoizedState        // Hook 状态链表
-fiber.updateQueue          // 更新队列
-workInProgress             // 当前工作的 Fiber
-currentHook                // 当前 Hook
+fiber.memoizedState // Hook 状态链表
+fiber.updateQueue // 更新队列
+workInProgress // 当前工作的 Fiber
+currentHook // 当前 Hook
 ```
 
 ### 3. 查看调用栈
@@ -209,7 +215,7 @@ renderWithHooks           ← 渲染 Hooks
 const debugUseState = () => {
   console.log('=== useState 调试开始 ===')
   debugger
-  setCount(c => {
+  setCount((c) => {
     console.log('当前值:', c, '→ 新值:', c + 1)
     return c + 1
   })
@@ -225,12 +231,14 @@ const debugUseState = () => {
 **目标**：理解 useState、useEffect 的底层机制
 
 **关键概念**：
+
 - Hook 链表结构
 - memoizedState 存储
 - 更新队列（updateQueue）
 - 依赖比较算法
 
 **关键函数**：
+
 - `mountState` / `updateState`
 - `mountEffect` / `updateEffect`
 - `pushEffect`
@@ -241,12 +249,14 @@ const debugUseState = () => {
 **目标**：掌握 Fiber 节点结构和遍历算法
 
 **关键概念**：
+
 - Fiber 数据结构
 - 双缓冲技术（current / workInProgress）
 - 深度优先遍历
 - beginWork / completeWork
 
 **关键函数**：
+
 - `createFiber`
 - `beginWork`
 - `completeWork`
@@ -257,12 +267,14 @@ const debugUseState = () => {
 **目标**：学习优先级调度和时间切片
 
 **关键概念**：
+
 - Lane 模型（优先级系统）
 - 时间切片（Time Slicing）
 - 任务调度
 - 可中断渲染
 
 **关键函数**：
+
 - `scheduleUpdateOnFiber`
 - `ensureRootIsScheduled`
 - `performConcurrentWorkOnRoot`
@@ -273,12 +285,14 @@ const debugUseState = () => {
 **目标**：深入理解 reconcileChildren 的优化策略
 
 **关键概念**：
+
 - 单节点 Diff
 - 多节点 Diff
 - key 的作用
 - 复用策略
 
 **关键函数**：
+
 - `reconcileChildFibers`
 - `reconcileSingleElement`
 - `reconcileChildrenArray`
@@ -295,6 +309,7 @@ const debugUseState = () => {
 ### Q: 如何找到对应的源码位置？
 
 **A**:
+
 1. 在 debugger 断点处查看 Call Stack
 2. 记下函数名（如 `updateState`）
 3. 在 GitHub 搜索该函数名
@@ -303,6 +318,7 @@ const debugUseState = () => {
 ### Q: 变量名被混淆了怎么办？
 
 **A**:
+
 1. 使用我们配置的开发模式（已禁用压缩）
 2. 查看 Call Stack 中的函数名
 3. 在 GitHub 源码中找到对应函数
@@ -311,6 +327,7 @@ const debugUseState = () => {
 ### Q: 如何验证我的理解是否正确？
 
 **A**:
+
 1. 修改调试代码，观察行为变化
 2. 在 Console 打印关键变量
 3. 使用 Watch 面板监视表达式
@@ -321,16 +338,19 @@ const debugUseState = () => {
 ## 推荐资源
 
 ### 官方资源
+
 - [React 源码仓库](https://github.com/facebook/react)
 - [React 官方博客](https://react.dev/blog)
 - [React 18 工作组讨论](https://github.com/reactwg/react-18/discussions)
 
 ### 社区资源
+
 - [React 技术揭秘](https://react.iamkasong.com/)
 - [图解 React 原理系列](https://7km.top/)
 - [Build your own React](https://pomb.us/build-your-own-react/)
 
 ### 视频教程
+
 - [React Fiber 架构解析](https://www.youtube.com/watch?v=ZCuYPiUIONs)
 - [Deep Dive into React Hooks](https://www.youtube.com/watch?v=dpw9EHDh2bM)
 

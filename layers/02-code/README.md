@@ -88,41 +88,41 @@ updated: 2024-01-05
 
 ### 1. Canvas 核心组件
 
-| 组件 | 职责 | 文件 |
-|------|------|------|
-| `Scene` | 主场景容器 | `Scene.tsx` |
-| `Camera` | 相机控制 | `Camera.tsx` |
-| `Lights` | 灯光系统 | `Lights.tsx` |
-| `Controls` | 交互控制 | `Controls.tsx` |
-| `Environment` | 环境设置 | `Environment.tsx` |
+| 组件          | 职责       | 文件              |
+| ------------- | ---------- | ----------------- |
+| `Scene`       | 主场景容器 | `Scene.tsx`       |
+| `Camera`      | 相机控制   | `Camera.tsx`      |
+| `Lights`      | 灯光系统   | `Lights.tsx`      |
+| `Controls`    | 交互控制   | `Controls.tsx`    |
+| `Environment` | 环境设置   | `Environment.tsx` |
 
 ### 2. 3D 对象组件
 
-| 组件 | 职责 | 文件 |
-|------|------|------|
+| 组件        | 职责          | 文件            |
+| ----------- | ------------- | --------------- |
 | `GLTFModel` | GLTF 模型加载 | `GLTFModel.tsx` |
-| `Character` | 历史人物 | `Character.tsx` |
-| `Artifact` | 文物展示 | `Artifact.tsx` |
-| `Building` | 建筑场景 | `Building.tsx` |
-| `Particles` | 粒子效果 | `Particles.tsx` |
+| `Character` | 历史人物      | `Character.tsx` |
+| `Artifact`  | 文物展示      | `Artifact.tsx`  |
+| `Building`  | 建筑场景      | `Building.tsx`  |
+| `Particles` | 粒子效果      | `Particles.tsx` |
 
 ### 3. UI 组件
 
-| 组件 | 职责 | 文件 |
-|------|------|------|
-| `HUD` | 抬头显示 | `HUD.tsx` |
-| `Timeline` | 时间轴 | `Timeline.tsx` |
+| 组件       | 职责     | 文件           |
+| ---------- | -------- | -------------- |
+| `HUD`      | 抬头显示 | `HUD.tsx`      |
+| `Timeline` | 时间轴   | `Timeline.tsx` |
 | `InfoCard` | 信息卡片 | `InfoCard.tsx` |
-| `Dialog` | 对话框 | `Dialog.tsx` |
-| `Quiz` | 测验组件 | `Quiz.tsx` |
+| `Dialog`   | 对话框   | `Dialog.tsx`   |
+| `Quiz`     | 测验组件 | `Quiz.tsx`     |
 
 ### 4. 布局组件
 
-| 组件 | 职责 | 文件 |
-|------|------|------|
-| `SplitView` | 分屏布局 | `SplitView.tsx` |
-| `Overlay` | 覆盖层 | `Overlay.tsx` |
-| `Sidebar` | 侧边栏 | `Sidebar.tsx` |
+| 组件               | 职责     | 文件                   |
+| ------------------ | -------- | ---------------------- |
+| `SplitView`        | 分屏布局 | `SplitView.tsx`        |
+| `Overlay`          | 覆盖层   | `Overlay.tsx`          |
+| `Sidebar`          | 侧边栏   | `Sidebar.tsx`          |
 | `FullscreenCanvas` | 全屏画布 | `FullscreenCanvas.tsx` |
 
 ---
@@ -298,7 +298,7 @@ export function Timeline({ events, onEventSelect }: TimelineProps) {
     })
 
     return () => {
-      ScrollTrigger.getAll().forEach(t => t.kill())
+      ScrollTrigger.getAll().forEach((t) => t.kill())
     }
   }, [events])
 
@@ -308,18 +308,13 @@ export function Timeline({ events, onEventSelect }: TimelineProps) {
       {events.map((event, index) => (
         <div
           key={event.id}
-          className={`timeline-item ${
-            currentEventId === event.id ? 'active' : ''
-          }`}
+          className={`timeline-item ${currentEventId === event.id ? 'active' : ''}`}
           onClick={() => {
             setCurrentEvent(event.id)
             onEventSelect?.(event)
           }}
         >
-          <div
-            className="timeline-dot"
-            style={{ backgroundColor: event.color }}
-          />
+          <div className="timeline-dot" style={{ backgroundColor: event.color }} />
           <div className="timeline-content">
             <span className="timeline-year">
               {event.year < 0 ? `公元前${Math.abs(event.year)}年` : `${event.year}年`}
@@ -402,8 +397,8 @@ export const useSceneStore = create<SceneState>()(
       selectObject: (id) => set({ selectedObjectId: id }),
       hoverObject: (id) => set({ hoveredObjectId: id }),
     }),
-    { name: 'scene-store' }
-  )
+    { name: 'scene-store' },
+  ),
 )
 ```
 
@@ -443,9 +438,7 @@ export const useStoryStore = create<StoryState>()(
       updateProgress: (storyId, progress) => {
         const { storyList } = get()
         set({
-          storyList: storyList.map(s =>
-            s.id === storyId ? { ...s, progress } : s
-          ),
+          storyList: storyList.map((s) => (s.id === storyId ? { ...s, progress } : s)),
         })
       },
 
@@ -455,8 +448,8 @@ export const useStoryStore = create<StoryState>()(
         set({ storyList: stories })
       },
     }),
-    { name: 'story-store' }
-  )
+    { name: 'story-store' },
+  ),
 )
 ```
 
@@ -480,10 +473,7 @@ interface AnimationConfig {
   onComplete?: () => void
 }
 
-export function useGSAPAnimation<T extends HTMLElement>(
-  config: AnimationConfig,
-  deps: any[] = []
-) {
+export function useGSAPAnimation<T extends HTMLElement>(config: AnimationConfig, deps: any[] = []) {
   const ref = useRef<T>(null)
   const tweenRef = useRef<gsap.core.Tween | null>(null)
 
@@ -558,7 +548,7 @@ export function useThreeAnimation(config: ThreeAnimationConfig) {
           duration: config.duration ?? 1,
           ease: config.ease ?? 'power2.inOut',
         },
-        0
+        0,
       )
     }
 
@@ -573,7 +563,7 @@ export function useThreeAnimation(config: ThreeAnimationConfig) {
           duration: config.duration ?? 1,
           ease: config.ease ?? 'power2.inOut',
         },
-        0
+        0,
       )
     }
 
@@ -588,7 +578,7 @@ export function useThreeAnimation(config: ThreeAnimationConfig) {
           duration: config.duration ?? 1,
           ease: config.ease ?? 'power2.inOut',
         },
-        0
+        0,
       )
     }
 
@@ -631,9 +621,7 @@ export function useResourceLoader(config: ResourceConfig) {
 
   useEffect(() => {
     const totalResources =
-      (config.models?.length ?? 0) +
-      (config.textures?.length ?? 0) +
-      (config.audio?.length ?? 0)
+      (config.models?.length ?? 0) + (config.textures?.length ?? 0) + (config.audio?.length ?? 0)
 
     if (totalResources === 0) {
       setState({ isLoading: false, progress: 100, error: null })
@@ -645,34 +633,34 @@ export function useResourceLoader(config: ResourceConfig) {
     const updateProgress = () => {
       loadedCount++
       const progress = (loadedCount / totalResources) * 100
-      setState(prev => ({ ...prev, progress }))
+      setState((prev) => ({ ...prev, progress }))
 
       if (loadedCount === totalResources) {
-        setState(prev => ({ ...prev, isLoading: false }))
+        setState((prev) => ({ ...prev, isLoading: false }))
       }
     }
 
     // 预加载模型
-    config.models?.forEach(url => {
+    config.models?.forEach((url) => {
       useGLTF.preload(url)
       updateProgress()
     })
 
     // 预加载纹理
-    config.textures?.forEach(url => {
+    config.textures?.forEach((url) => {
       useTexture.preload(url)
       updateProgress()
     })
 
     // 预加载音频
-    config.audio?.forEach(url => {
+    config.audio?.forEach((url) => {
       const audio = new Audio()
       audio.src = url
       audio.oncanplaythrough = updateProgress
       audio.onerror = () => {
-        setState(prev => ({
+        setState((prev) => ({
           ...prev,
-          error: new Error(`Failed to load audio: ${url}`)
+          error: new Error(`Failed to load audio: ${url}`),
         }))
       }
     })
@@ -802,6 +790,7 @@ export interface Quiz {
 ## ✅ 代码层检查清单
 
 ### 组件完整性
+
 - [ ] Scene 主场景组件
 - [ ] Camera 相机控制组件
 - [ ] Lights 灯光系统组件
@@ -811,6 +800,7 @@ export interface Quiz {
 - [ ] Quiz 测验组件
 
 ### 状态管理
+
 - [ ] SceneStore 场景状态
 - [ ] StoryStore 故事状态
 - [ ] TimelineStore 时间轴状态
@@ -818,6 +808,7 @@ export interface Quiz {
 - [ ] UIStore UI 状态
 
 ### Hooks
+
 - [ ] useGSAPAnimation
 - [ ] useThreeAnimation
 - [ ] useResourceLoader
@@ -825,6 +816,7 @@ export interface Quiz {
 - [ ] useInteraction
 
 ### 类型定义
+
 - [ ] scene.types.ts
 - [ ] story.types.ts
 - [ ] animation.types.ts

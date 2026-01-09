@@ -46,19 +46,19 @@ updated: 2024-01-05
 
 ### 核心标记符
 
-| 标记 | 用途 | 示例 |
-|------|------|------|
-| `#story` | 定义故事 | `#story 秦始皇统一六国` |
-| `#scene` | 定义场景 | `#scene 咸阳宫` |
-| `#timeline` | 时间轴 | `#timeline 统一进程` |
-| `#character` | 历史人物 | `#character 秦始皇` |
-| `#artifact` | 文物物品 | `#artifact 传国玉玺` |
-| `#location` | 地点建筑 | `#location 长城` |
-| `#narration` | 旁白解说 | `#narration 开场白` |
-| `#interaction` | 交互点 | `#interaction 点击查看` |
-| `#transition` | 转场效果 | `#transition fade-in` |
-| `#quiz` | 知识测验 | `#quiz 统一时间` |
-| `#media` | 多媒体 | `#media 背景音乐` |
+| 标记           | 用途     | 示例                    |
+| -------------- | -------- | ----------------------- |
+| `#story`       | 定义故事 | `#story 秦始皇统一六国` |
+| `#scene`       | 定义场景 | `#scene 咸阳宫`         |
+| `#timeline`    | 时间轴   | `#timeline 统一进程`    |
+| `#character`   | 历史人物 | `#character 秦始皇`     |
+| `#artifact`    | 文物物品 | `#artifact 传国玉玺`    |
+| `#location`    | 地点建筑 | `#location 长城`        |
+| `#narration`   | 旁白解说 | `#narration 开场白`     |
+| `#interaction` | 交互点   | `#interaction 点击查看` |
+| `#transition`  | 转场效果 | `#transition fade-in`   |
+| `#quiz`        | 知识测验 | `#quiz 统一时间`        |
+| `#media`       | 多媒体   | `#media 背景音乐`       |
 
 ### 完整故事示例
 
@@ -97,21 +97,22 @@ updated: 2024-01-05
 
 @model: /models/xianyang-palace.glb
 @camera:
-  position: [10, 5, 10]
-  target: [0, 2, 0]
-  fov: 50
+position: [10, 5, 10]
+target: [0, 2, 0]
+fov: 50
 
 @objects:
-  - id: throne
-    model: /models/throne.glb
-    position: [0, 0, 0]
-    interactive: true
-    tooltip: "秦王宝座"
 
-  - id: bronze-lamp
-    model: /models/bronze-lamp.glb
-    position: [3, 0, 2]
-    animation: flicker
+- id: throne
+  model: /models/throne.glb
+  position: [0, 0, 0]
+  interactive: true
+  tooltip: "秦王宝座"
+
+- id: bronze-lamp
+  model: /models/bronze-lamp.glb
+  position: [3, 0, 2]
+  animation: flicker
 
 ---
 
@@ -123,12 +124,12 @@ updated: 2024-01-05
 
 ## 基本信息
 
-| 属性 | 内容 |
-|------|------|
-| 姓名 | 嬴政 |
+| 属性 | 内容            |
+| ---- | --------------- |
+| 姓名 | 嬴政            |
 | 生卒 | 前259年-前210年 |
 | 在位 | 前247年-前210年 |
-| 称号 | 始皇帝 |
+| 称号 | 始皇帝          |
 
 ## 人物介绍
 
@@ -138,13 +139,14 @@ updated: 2024-01-05
 ## 对话
 
 @dialog:
-  - trigger: click
-    text: "六国纷争，百姓苦不堪言。朕必统一天下，使四海升平！"
-    voice: /audio/dialogs/qinshi-1.mp3
-    animation: speak
 
-  - trigger: hover
-    text: "天下大势，分久必合。"
+- trigger: click
+  text: "六国纷争，百姓苦不堪言。朕必统一天下，使四海升平！"
+  voice: /audio/dialogs/qinshi-1.mp3
+  animation: speak
+
+- trigger: hover
+  text: "天下大势，分久必合。"
 
 ---
 
@@ -154,37 +156,38 @@ updated: 2024-01-05
 
 ## 时间节点
 
-| 年份 | 事件 | 重要性 |
-|------|------|--------|
-| 前230年 | 灭韩 | high |
-| 前228年 | 灭赵 | high |
+| 年份    | 事件 | 重要性 |
+| ------- | ---- | ------ |
+| 前230年 | 灭韩 | high   |
+| 前228年 | 灭赵 | high   |
 | 前225年 | 灭魏 | medium |
-| 前223年 | 灭楚 | high |
+| 前223年 | 灭楚 | high   |
 | 前222年 | 灭燕 | medium |
-| 前221年 | 灭齐 | high |
+| 前221年 | 灭齐 | high   |
 
 @events:
-  - year: -230
-    title: 灭韩
-    description: 秦军攻破韩国都城新郑，韩王安投降
-    icon: sword
-    color: "#e63946"
-    scene_id: korea-conquest
 
-  - year: -228
-    title: 灭赵
-    description: 秦军攻克邯郸，赵王迁被俘
-    icon: castle
-    color: "#f4a261"
-    scene_id: zhao-conquest
+- year: -230
+  title: 灭韩
+  description: 秦军攻破韩国都城新郑，韩王安投降
+  icon: sword
+  color: "#e63946"
+  scene_id: korea-conquest
 
-  - year: -221
-    title: 灭齐，天下一统
-    description: 秦军进入临淄，齐王建投降，六国统一完成
-    icon: crown
-    color: "#ffd700"
-    scene_id: qi-conquest
-    highlight: true
+- year: -228
+  title: 灭赵
+  description: 秦军攻克邯郸，赵王迁被俘
+  icon: castle
+  color: "#f4a261"
+  scene_id: zhao-conquest
+
+- year: -221
+  title: 灭齐，天下一统
+  description: 秦军进入临淄，齐王建投降，六国统一完成
+  icon: crown
+  color: "#ffd700"
+  scene_id: qi-conquest
+  highlight: true
 
 ---
 
@@ -196,12 +199,12 @@ updated: 2024-01-05
 
 ## 文物信息
 
-| 属性 | 内容 |
-|------|------|
-| 名称 | 传国玉玺 |
-| 材质 | 和氏璧 |
+| 属性 | 内容                 |
+| ---- | -------------------- |
+| 名称 | 传国玉玺             |
+| 材质 | 和氏璧               |
 | 篆文 | "受命于天，既寿永昌" |
-| 意义 | 皇权正统象征 |
+| 意义 | 皇权正统象征         |
 
 ## 详细描述
 
@@ -209,17 +212,18 @@ updated: 2024-01-05
 上刻"受命于天，既寿永昌"八个篆字，成为历代皇权的象征。
 
 @interaction:
-  - type: click
-    action: show_detail
-    camera_move:
-      position: [0.5, 1.5, 0.5]
-      target: [2, 1.2, 0]
-      duration: 1.5
 
-  - type: hover
-    action: highlight
-    effect: glow
-    color: "#ffd700"
+- type: click
+  action: show_detail
+  camera_move:
+  position: [0.5, 1.5, 0.5]
+  target: [2, 1.2, 0]
+  duration: 1.5
+
+- type: hover
+  action: highlight
+  effect: glow
+  color: "#ffd700"
 
 ---
 
@@ -239,9 +243,10 @@ updated: 2024-01-05
 > 年轻的秦王嬴政，即将开启一段改变中国历史的伟大征程...
 
 @animation:
-  - type: text_reveal
-    duration: 3
-    style: typewriter
+
+- type: text_reveal
+  duration: 3
+  style: typewriter
 
 ---
 
@@ -287,8 +292,8 @@ updated: 2024-01-05
 
 将以下国家与其灭亡年份匹配：
 
-| 国家 | 年份 |
-|------|------|
+| 国家 | 年份    |
+| ---- | ------- |
 | 韩国 | 前230年 |
 | 赵国 | 前228年 |
 | 楚国 | 前223年 |
@@ -398,13 +403,13 @@ stories/
 
 ### 资源优化规范
 
-| 资源类型 | 格式要求 | 大小限制 | 优化方式 |
-|----------|----------|----------|----------|
-| 3D 模型 | .glb (Draco) | < 5MB/个 | Draco 压缩 |
-| 纹理 | .webp / .ktx2 | < 1MB/张 | 压缩 + Mipmap |
-| 音频 | .mp3 / .ogg | < 2MB/个 | 128kbps |
-| 图片 | .webp | < 500KB/张 | 压缩 + 响应式 |
-| 故事包总计 | - | < 50MB | 按需加载 |
+| 资源类型   | 格式要求      | 大小限制   | 优化方式      |
+| ---------- | ------------- | ---------- | ------------- |
+| 3D 模型    | .glb (Draco)  | < 5MB/个   | Draco 压缩    |
+| 纹理       | .webp / .ktx2 | < 1MB/张   | 压缩 + Mipmap |
+| 音频       | .mp3 / .ogg   | < 2MB/个   | 128kbps       |
+| 图片       | .webp         | < 500KB/张 | 压缩 + 响应式 |
+| 故事包总计 | -             | < 50MB     | 按需加载      |
 
 ### 资源加载器
 
@@ -423,7 +428,7 @@ export class StoryResourceLoader {
   private loading: Map<string, Promise<any>> = new Map()
 
   async loadStory(storyId: string): Promise<StoryResources> {
-    const meta = await fetch(`/stories/${storyId}/meta.json`).then(r => r.json())
+    const meta = await fetch(`/stories/${storyId}/meta.json`).then((r) => r.json())
 
     // 并行预加载关键资源
     const preloadPromises = [
@@ -454,7 +459,7 @@ export class StoryResourceLoader {
   }
 
   private async preloadAudio(urls: string[]) {
-    const audioPromises = urls.map(url => {
+    const audioPromises = urls.map((url) => {
       return new Promise((resolve, reject) => {
         const audio = new Audio()
         audio.src = url
@@ -473,7 +478,7 @@ export class StoryResourceLoader {
     for (const url of urls) {
       await this.loadResource(url)
       loaded++
-      onProgress?.(loaded / total * 100)
+      onProgress?.((loaded / total) * 100)
     }
   }
 
@@ -481,7 +486,10 @@ export class StoryResourceLoader {
     if (this.loaded.has(url)) return this.loaded.get(url)
 
     if (!this.loading.has(url)) {
-      this.loading.set(url, fetch(url).then(r => r.blob()))
+      this.loading.set(
+        url,
+        fetch(url).then((r) => r.blob()),
+      )
     }
 
     const resource = await this.loading.get(url)
@@ -530,10 +538,7 @@ export class StoryResourceLoader {
   "quiz": {
     "q1": {
       "question": "秦始皇统一六国的顺序是？",
-      "options": [
-        "韩、赵、魏、楚、燕、齐",
-        "赵、韩、魏、燕、楚、齐"
-      ]
+      "options": ["韩、赵、魏、楚、燕、齐", "赵、韩、魏、燕、楚、齐"]
     }
   },
   "ui": {
@@ -561,16 +566,12 @@ export function useStoryLocale(storyId: string) {
     async function loadLocale() {
       setIsLoading(true)
       try {
-        const response = await fetch(
-          `/stories/${storyId}/locales/${currentLocale}.json`
-        )
+        const response = await fetch(`/stories/${storyId}/locales/${currentLocale}.json`)
         const data = await response.json()
         setTranslations(data)
       } catch (error) {
         // 回退到默认语言
-        const fallback = await fetch(
-          `/stories/${storyId}/locales/zh-CN.json`
-        )
+        const fallback = await fetch(`/stories/${storyId}/locales/zh-CN.json`)
         setTranslations(await fallback.json())
       }
       setIsLoading(false)
@@ -603,24 +604,28 @@ export function useStoryLocale(storyId: string) {
 ## ✅ 内容层检查清单
 
 ### DSL 语法
+
 - [ ] 所有标记符已定义
 - [ ] 语法文档完整
 - [ ] 解析器实现
 - [ ] 验证工具
 
 ### 故事包
+
 - [ ] 目录结构规范
 - [ ] 元数据规范
 - [ ] 版本管理
 - [ ] 发布流程
 
 ### 资源管理
+
 - [ ] 优化规范制定
 - [ ] 加载器实现
 - [ ] 进度追踪
 - [ ] 缓存策略
 
 ### 多语言
+
 - [ ] 语言文件结构
 - [ ] 翻译工作流
 - [ ] 运行时切换

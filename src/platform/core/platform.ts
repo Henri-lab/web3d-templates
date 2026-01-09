@@ -59,7 +59,10 @@ export async function initializePlatform(): Promise<PlatformInstance> {
     globalEventBus.emit(PlatformEvents.PLATFORM_READY)
 
     console.log('[Platform] Initialized successfully')
-    console.log('[Platform] Registered modules:', moduleConfigs.map(m => m.id))
+    console.log(
+      '[Platform] Registered modules:',
+      moduleConfigs.map((m) => m.id),
+    )
 
     return platformInstance
   } catch (error) {

@@ -72,20 +72,13 @@ export function Modal({
             {/* 头部 */}
             {(title || showCloseButton) && (
               <div className="flex items-center justify-between p-6 border-b border-neutral-200">
-                {title && (
-                  <h2 className="text-xl font-semibold text-neutral-900">{title}</h2>
-                )}
+                {title && <h2 className="text-xl font-semibold text-neutral-900">{title}</h2>}
                 {showCloseButton && (
                   <button
                     onClick={onClose}
                     className="p-2 text-neutral-500 hover:text-neutral-700 hover:bg-neutral-100 rounded-full transition-colors"
                   >
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -103,9 +96,7 @@ export function Modal({
 
             {/* 底部 */}
             {footer && (
-              <div className="flex justify-end gap-3 p-6 border-t border-neutral-200">
-                {footer}
-              </div>
+              <div className="flex justify-end gap-3 p-6 border-t border-neutral-200">{footer}</div>
             )}
           </motion.div>
         </div>

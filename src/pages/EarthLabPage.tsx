@@ -159,7 +159,10 @@ function CesiumPlaceholder({ experiment }: { experiment: ExperimentItem | null }
         <div className="absolute inset-0 -m-8 rounded-full bg-blue-400/5 blur-2xl" />
 
         {/* 轨道环 */}
-        <div className="absolute inset-0 -m-16 border border-blue-500/20 rounded-full animate-spin" style={{ animationDuration: '20s' }}>
+        <div
+          className="absolute inset-0 -m-16 border border-blue-500/20 rounded-full animate-spin"
+          style={{ animationDuration: '20s' }}
+        >
           <div className="absolute top-0 left-1/2 w-2 h-2 bg-blue-400 rounded-full -translate-x-1/2 -translate-y-1/2" />
         </div>
       </div>
@@ -170,7 +173,9 @@ function CesiumPlaceholder({ experiment }: { experiment: ExperimentItem | null }
           <div className="flex items-center gap-3 mb-2">
             <span className="text-2xl">{CATEGORIES[experiment.category].icon}</span>
             <h3 className="text-lg font-bold text-white">{experiment.name}</h3>
-            <span className={`text-xs px-2 py-0.5 rounded border ${STATUS_STYLES[experiment.status]}`}>
+            <span
+              className={`text-xs px-2 py-0.5 rounded border ${STATUS_STYLES[experiment.status]}`}
+            >
               {STATUS_LABELS[experiment.status]}
             </span>
           </div>
@@ -242,9 +247,7 @@ export default function EarthLabPage() {
             <span>🌍</span>
             Cesium 地球实验室
           </h1>
-          <p className="text-neutral-400 text-sm mt-1">
-            地球可视化与地图渲染技术研究
-          </p>
+          <p className="text-neutral-400 text-sm mt-1">地球可视化与地图渲染技术研究</p>
         </div>
 
         {/* 分类选择 */}
@@ -253,7 +256,12 @@ export default function EarthLabPage() {
             实验分类
           </h2>
           <div className="grid grid-cols-2 gap-2">
-            {(Object.entries(CATEGORIES) as [keyof typeof CATEGORIES, typeof CATEGORIES[keyof typeof CATEGORIES]][]).map(([id, cat]) => (
+            {(
+              Object.entries(CATEGORIES) as [
+                keyof typeof CATEGORIES,
+                (typeof CATEGORIES)[keyof typeof CATEGORIES],
+              ][]
+            ).map(([id, cat]) => (
               <button
                 key={id}
                 onClick={() => setActiveCategory(id)}
@@ -290,13 +298,13 @@ export default function EarthLabPage() {
               >
                 <div className="flex items-center justify-between mb-1">
                   <span className="font-medium">{exp.name}</span>
-                  <span className={`text-xs px-2 py-0.5 rounded border ${STATUS_STYLES[exp.status]}`}>
+                  <span
+                    className={`text-xs px-2 py-0.5 rounded border ${STATUS_STYLES[exp.status]}`}
+                  >
                     {STATUS_LABELS[exp.status]}
                   </span>
                 </div>
-                <p className="text-xs text-neutral-400 line-clamp-2">
-                  {exp.description}
-                </p>
+                <p className="text-xs text-neutral-400 line-clamp-2">{exp.description}</p>
               </button>
             ))}
           </div>

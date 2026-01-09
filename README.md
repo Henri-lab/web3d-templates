@@ -14,11 +14,11 @@ tags: [history, 3d, react, threejs, gsap]
 
 > 沉浸式 3D 历史学习平台 - Markdown 工程文档
 
-| 属性 | 值 |
-|------|------|
-| 技术栈 | React + Vite + Three.js + GSAP |
-| 可选后端 | NestJS 全栈 |
-| 架构 | 六层解耦 + 插件化扩展 |
+| 属性     | 值                             |
+| -------- | ------------------------------ |
+| 技术栈   | React + Vite + Three.js + GSAP |
+| 可选后端 | NestJS 全栈                    |
+| 架构     | 六层解耦 + 插件化扩展          |
 
 ---
 
@@ -183,58 +183,58 @@ graph TD
 
 ### Layer 1: 基础设施层 (Infrastructure)
 
-| 文档 | 职责 | 状态 |
-|------|------|------|
-| `PROJECT-SCAFFOLD.md` | 项目初始化脚手架 | 待创建 |
-| `BUILD-CONFIG.md` | Vite 构建优化配置 | 待创建 |
-| `DEPLOYMENT.md` | Vercel/Docker 部署 | 待创建 |
-| `MONITORING.md` | 性能监控集成 | 待创建 |
+| 文档                  | 职责               | 状态   |
+| --------------------- | ------------------ | ------ |
+| `PROJECT-SCAFFOLD.md` | 项目初始化脚手架   | 待创建 |
+| `BUILD-CONFIG.md`     | Vite 构建优化配置  | 待创建 |
+| `DEPLOYMENT.md`       | Vercel/Docker 部署 | 待创建 |
+| `MONITORING.md`       | 性能监控集成       | 待创建 |
 
 ### Layer 2: 代码层 (Code)
 
-| 文档 | 职责 | 状态 |
-|------|------|------|
-| `README.md` | 代码层概述 | ✅ 已完成 |
-| `REACT-TEMPLATES.md` | React 组件模板 | 待创建 |
-| `THREEJS-COMPONENTS.md` | Three.js 组件封装 | 待创建 |
-| `STATE-MANAGEMENT.md` | Zustand 状态设计 | 待创建 |
-| `API-SPECIFICATION.md` | TypeScript 接口 | 待创建 |
+| 文档                    | 职责              | 状态      |
+| ----------------------- | ----------------- | --------- |
+| `README.md`             | 代码层概述        | ✅ 已完成 |
+| `REACT-TEMPLATES.md`    | React 组件模板    | 待创建    |
+| `THREEJS-COMPONENTS.md` | Three.js 组件封装 | 待创建    |
+| `STATE-MANAGEMENT.md`   | Zustand 状态设计  | 待创建    |
+| `API-SPECIFICATION.md`  | TypeScript 接口   | 待创建    |
 
 ### Layer 3: 内容层 (Content)
 
-| 文档 | 职责 | 状态 |
-|------|------|------|
-| `STORY-DSL.md` | 故事 DSL 语法 | 待创建 |
-| `STORY-PACKAGE.md` | 故事包规范 | 待创建 |
-| `ASSET-MANAGEMENT.md` | 资源管理系统 | 待创建 |
-| `LOCALIZATION.md` | 多语言支持 | 待创建 |
+| 文档                  | 职责          | 状态   |
+| --------------------- | ------------- | ------ |
+| `STORY-DSL.md`        | 故事 DSL 语法 | 待创建 |
+| `STORY-PACKAGE.md`    | 故事包规范    | 待创建 |
+| `ASSET-MANAGEMENT.md` | 资源管理系统  | 待创建 |
+| `LOCALIZATION.md`     | 多语言支持    | 待创建 |
 
 ### Layer 4: 业务逻辑层 (Business Logic)
 
-| 文档 | 职责 | 状态 |
-|------|------|------|
-| `STATE-MACHINE.md` | 页面状态机设计 | 待创建 |
-| `USER-FLOW.md` | 用户流程图 | 待创建 |
-| `PROGRESS-SYSTEM.md` | 学习进度系统 | 待创建 |
-| `ACHIEVEMENT-SYSTEM.md` | 成就徽章系统 | 待创建 |
+| 文档                    | 职责           | 状态   |
+| ----------------------- | -------------- | ------ |
+| `STATE-MACHINE.md`      | 页面状态机设计 | 待创建 |
+| `USER-FLOW.md`          | 用户流程图     | 待创建 |
+| `PROGRESS-SYSTEM.md`    | 学习进度系统   | 待创建 |
+| `ACHIEVEMENT-SYSTEM.md` | 成就徽章系统   | 待创建 |
 
 ### Layer 5: 动效层 (Animation)
 
-| 文档 | 职责 | 状态 |
-|------|------|------|
-| `GSAP-TEMPLATES.md` | GSAP 动画模板库 | 待创建 |
-| `THREEJS-EFFECTS.md` | Three.js 视觉特效 | 待创建 |
-| `TRANSITIONS.md` | 页面/场景转场 | 待创建 |
-| `MICRO-INTERACTIONS.md` | 微交互动画 | 待创建 |
+| 文档                    | 职责              | 状态   |
+| ----------------------- | ----------------- | ------ |
+| `GSAP-TEMPLATES.md`     | GSAP 动画模板库   | 待创建 |
+| `THREEJS-EFFECTS.md`    | Three.js 视觉特效 | 待创建 |
+| `TRANSITIONS.md`        | 页面/场景转场     | 待创建 |
+| `MICRO-INTERACTIONS.md` | 微交互动画        | 待创建 |
 
 ### Layer 6: UI/美术层 (UI Design)
 
-| 文档 | 职责 | 状态 |
-|------|------|------|
-| `FIGMA-WORKFLOW.md` | Figma 设计稿工作流 | 待创建 |
-| `DESIGN-TOKENS.md` | 设计 Token 系统 | 待创建 |
-| `COMPONENT-SPECS.md` | 组件视觉规范 | 待创建 |
-| `RESPONSIVE-RULES.md` | 响应式适配规则 | 待创建 |
+| 文档                  | 职责               | 状态   |
+| --------------------- | ------------------ | ------ |
+| `FIGMA-WORKFLOW.md`   | Figma 设计稿工作流 | 待创建 |
+| `DESIGN-TOKENS.md`    | 设计 Token 系统    | 待创建 |
+| `COMPONENT-SPECS.md`  | 组件视觉规范       | 待创建 |
+| `RESPONSIVE-RULES.md` | 响应式适配规则     | 待创建 |
 
 ---
 
@@ -242,24 +242,24 @@ graph TD
 
 ### 我想了解...
 
-| 需求 | 阅读文档 |
-|------|----------|
-| 如何创建历史故事 | [history-dsl/README.md](history-dsl/README.md) |
-| 代码组件模板 | [layers/02-code/README.md](layers/02-code/README.md) |
-| 动画效果实现 | [layers/05-animation/README.md](layers/05-animation/README.md) |
-| Figma 设计对接 | [layers/06-ui-design/README.md](layers/06-ui-design/README.md) |
-| 业务流程设计 | [layers/04-business/README.md](layers/04-business/README.md) |
-| 插件开发 | [plugins/README.md](plugins/README.md) |
+| 需求             | 阅读文档                                                       |
+| ---------------- | -------------------------------------------------------------- |
+| 如何创建历史故事 | [history-dsl/README.md](history-dsl/README.md)                 |
+| 代码组件模板     | [layers/02-code/README.md](layers/02-code/README.md)           |
+| 动画效果实现     | [layers/05-animation/README.md](layers/05-animation/README.md) |
+| Figma 设计对接   | [layers/06-ui-design/README.md](layers/06-ui-design/README.md) |
+| 业务流程设计     | [layers/04-business/README.md](layers/04-business/README.md)   |
+| 插件开发         | [plugins/README.md](plugins/README.md)                         |
 
 ### 我想开发...
 
-| 任务 | 参考文档 |
-|------|----------|
+| 任务         | 参考文档                           |
+| ------------ | ---------------------------------- |
 | 新的历史故事 | `history-dsl/syntax/DSL-SYNTAX.md` |
-| 新的 3D 组件 | `layers/02-code/README.md` |
-| 新的动画效果 | `layers/05-animation/README.md` |
-| 新的 UI 主题 | `layers/06-ui-design/README.md` |
-| 新的插件 | `plugins/README.md` |
+| 新的 3D 组件 | `layers/02-code/README.md`         |
+| 新的动画效果 | `layers/05-animation/README.md`    |
+| 新的 UI 主题 | `layers/06-ui-design/README.md`    |
+| 新的插件     | `plugins/README.md`                |
 
 ---
 

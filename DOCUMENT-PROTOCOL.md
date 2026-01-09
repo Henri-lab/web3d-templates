@@ -10,39 +10,39 @@
 
 ```yaml
 ---
-id: document-unique-id          # 文档唯一标识符
-title: 文档标题                  # 文档标题
-version: 1.0.0                  # 文档版本号
-status: draft|review|published  # 文档状态
-layer: 1-6|core|plugin          # 所属层级
-created: 2024-01-01             # 创建日期
-updated: 2024-01-15             # 最后更新日期
-author: Author Name             # 作者
-tags: [tag1, tag2]              # 标签
+id: document-unique-id # 文档唯一标识符
+title: 文档标题 # 文档标题
+version: 1.0.0 # 文档版本号
+status: draft|review|published # 文档状态
+layer: 1-6|core|plugin # 所属层级
+created: 2024-01-01 # 创建日期
+updated: 2024-01-15 # 最后更新日期
+author: Author Name # 作者
+tags: [tag1, tag2] # 标签
 ---
 ```
 
 ### 状态说明
 
-| 状态 | 说明 |
-|------|------|
-| `draft` | 草稿，正在编写中 |
-| `review` | 审核中，待确认 |
-| `published` | 已发布，正式使用 |
+| 状态         | 说明             |
+| ------------ | ---------------- |
+| `draft`      | 草稿，正在编写中 |
+| `review`     | 审核中，待确认   |
+| `published`  | 已发布，正式使用 |
 | `deprecated` | 已废弃，仅供参考 |
 
 ### 层级说明
 
-| 层级 | 说明 |
-|------|------|
-| `1` | 基础设施层 (Infrastructure) |
-| `2` | 代码层 (Code) |
-| `3` | 内容层 (Content) |
-| `4` | 业务逻辑层 (Business) |
-| `5` | 动效层 (Animation) |
-| `6` | UI/美术层 (UI Design) |
-| `core` | 核心文档 |
-| `plugin` | 插件系统 |
+| 层级     | 说明                        |
+| -------- | --------------------------- |
+| `1`      | 基础设施层 (Infrastructure) |
+| `2`      | 代码层 (Code)               |
+| `3`      | 内容层 (Content)            |
+| `4`      | 业务逻辑层 (Business)       |
+| `5`      | 动效层 (Animation)          |
+| `6`      | UI/美术层 (UI Design)       |
+| `core`   | 核心文档                    |
+| `plugin` | 插件系统                    |
 
 ---
 
@@ -85,8 +85,8 @@ export function Example() {
 
 ### 4. 表格规范
 
-| 列1 | 列2 | 列3 |
-|-----|-----|-----|
+| 列1  | 列2  | 列3  |
+| ---- | ---- | ---- |
 | 内容 | 内容 | 内容 |
 
 ### 5. 流程图规范
@@ -104,21 +104,21 @@ flowchart TD
 
 ### 文件命名
 
-| 类型 | 格式 | 示例 |
-|------|------|------|
-| 层级概述 | `README.md` | `layers/01-infrastructure/README.md` |
-| 功能文档 | `FEATURE-NAME.md` | `STATE-MACHINE.md` |
-| 子文档 | `feature-name.md` | `page-lifecycle.md` |
-| 模板文件 | `name.template.md` | `story.template.md` |
-| 预设文件 | `name.preset.md` | `entrance.preset.md` |
-| 主题文件 | `name.theme.md` | `ancient-china.theme.md` |
+| 类型     | 格式               | 示例                                 |
+| -------- | ------------------ | ------------------------------------ |
+| 层级概述 | `README.md`        | `layers/01-infrastructure/README.md` |
+| 功能文档 | `FEATURE-NAME.md`  | `STATE-MACHINE.md`                   |
+| 子文档   | `feature-name.md`  | `page-lifecycle.md`                  |
+| 模板文件 | `name.template.md` | `story.template.md`                  |
+| 预设文件 | `name.preset.md`   | `entrance.preset.md`                 |
+| 主题文件 | `name.theme.md`    | `ancient-china.theme.md`             |
 
 ### 目录命名
 
-| 类型 | 格式 | 示例 |
-|------|------|------|
+| 类型     | 格式       | 示例                 |
+| -------- | ---------- | -------------------- |
 | 层级目录 | `NN-name/` | `01-infrastructure/` |
-| 功能目录 | `name/` | `flowcharts/` |
+| 功能目录 | `name/`    | `flowcharts/`        |
 
 ---
 
@@ -128,10 +128,12 @@ flowchart TD
 
 ```markdown
 <!-- 相对路径 -->
+
 [链接文本](./OTHER-DOC.md)
 [链接文本](../other-layer/README.md)
 
 <!-- 锚点链接 -->
+
 [链接文本](#section-id)
 ```
 
@@ -163,9 +165,9 @@ flowchart TD
 
 ## 变更记录
 
-| 版本 | 日期 | 变更内容 |
-|------|------|----------|
-| 1.0.0 | 2024-01-01 | 初始版本 |
+| 版本  | 日期       | 变更内容     |
+| ----- | ---------- | ------------ |
+| 1.0.0 | 2024-01-01 | 初始版本     |
 | 1.1.0 | 2024-01-15 | 新增 XX 章节 |
 ```
 
@@ -177,10 +179,12 @@ flowchart TD
 ## ✅ 检查清单
 
 ### 分类一
+
 - [ ] 待完成项
 - [x] 已完成项
 
 ### 分类二
+
 - [ ] 待完成项
 ```
 

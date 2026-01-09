@@ -139,8 +139,7 @@ export default function WelcomePage() {
               </h1>
 
               <p className="text-lg text-neutral-400 mb-8 max-w-xl">
-                基于 WebGL 和微前端架构的现代化学习平台，
-                通过3D交互技术让历史学习变得生动有趣。
+                基于 WebGL 和微前端架构的现代化学习平台， 通过3D交互技术让历史学习变得生动有趣。
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -186,13 +185,17 @@ export default function WelcomePage() {
                   className={`w-full text-left p-6 rounded-2xl border ${module.borderColor} ${module.hoverBorder} ${module.bgColor} transition-all duration-300 hover:scale-[1.02] hover:shadow-xl group`}
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${module.color} flex items-center justify-center text-2xl shadow-lg`}>
+                    <div
+                      className={`w-14 h-14 rounded-xl bg-gradient-to-br ${module.color} flex items-center justify-center text-2xl shadow-lg`}
+                    >
                       {module.icon}
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-1">
                         <h3 className="text-xl font-semibold text-white">{module.title}</h3>
-                        <span className="text-neutral-600 group-hover:text-neutral-400 transition">→</span>
+                        <span className="text-neutral-600 group-hover:text-neutral-400 transition">
+                          →
+                        </span>
                       </div>
                       <p className="text-xs text-neutral-500 mb-2">{module.subtitle}</p>
                       <p className="text-sm text-neutral-400">{module.description}</p>
@@ -239,7 +242,9 @@ export default function WelcomePage() {
             </div>
             <div className="p-5 bg-neutral-900/50 rounded-xl border border-neutral-800">
               <div className="text-neutral-500 text-sm mb-1">事件日志</div>
-              <div className="text-2xl font-semibold text-white">{platform.eventBus.getEventLog().length}</div>
+              <div className="text-2xl font-semibold text-white">
+                {platform.eventBus.getEventLog().length}
+              </div>
             </div>
             <div className="p-5 bg-neutral-900/50 rounded-xl border border-neutral-800">
               <div className="text-neutral-500 text-sm mb-1">运行模式</div>
@@ -255,7 +260,15 @@ export default function WelcomePage() {
             <p className="text-neutral-500 text-sm">Powered by modern web technologies</p>
           </div>
           <div className="flex flex-wrap justify-center gap-4">
-            {['React 18', 'Vite', 'Three.js', 'Zustand', 'Event Bus', 'TypeScript', 'Tailwind CSS'].map((tech) => (
+            {[
+              'React 18',
+              'Vite',
+              'Three.js',
+              'Zustand',
+              'Event Bus',
+              'TypeScript',
+              'Tailwind CSS',
+            ].map((tech) => (
               <span
                 key={tech}
                 className="px-4 py-2 bg-neutral-900 border border-neutral-800 rounded-lg text-neutral-400 text-sm"

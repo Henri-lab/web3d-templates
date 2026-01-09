@@ -11,6 +11,7 @@
 ## 🎯 迁移目标
 
 ### 旧架构
+
 ```
 单体应用
 ├── 所有页面在一个项目中
@@ -20,6 +21,7 @@
 ```
 
 ### 新架构
+
 ```
 中台系统
 ├── 主应用（Shell）
@@ -438,6 +440,7 @@ npm run build
 **问题**: `Failed to load remote module`
 
 **解决方案**:
+
 1. 确保子模块已启动
 2. 检查端口是否正确
 3. 检查 CORS 配置
@@ -448,6 +451,7 @@ npm run build
 **问题**: `Shared module is not available`
 
 **解决方案**:
+
 1. 确保主应用和子模块使用相同版本的依赖
 2. 在 `vite.config.ts` 中配置 `singleton: true`
 3. 使用 `requiredVersion` 指定版本范围
@@ -457,6 +461,7 @@ npm run build
 **问题**: `Cannot find module 'shell/PlatformAPI'`
 
 **解决方案**:
+
 1. 添加类型声明文件
 
 ```typescript
@@ -475,6 +480,7 @@ declare module 'shell/SharedComponents' {
 **问题**: 发送事件后没有响应
 
 **解决方案**:
+
 1. 检查事件名称是否正确
 2. 确保监听器已注册
 3. 检查事件总线日志

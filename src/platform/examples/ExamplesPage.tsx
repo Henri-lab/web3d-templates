@@ -12,25 +12,19 @@ export default function ExamplesPage() {
   // 测试事件总线
   const handleTestEvent = () => {
     platform.eventBus.emit('test:event', { message: 'Hello from Examples!' })
-    setEventLog(prev => [...prev, `发送事件: test:event at ${new Date().toLocaleTimeString()}`])
+    setEventLog((prev) => [...prev, `发送事件: test:event at ${new Date().toLocaleTimeString()}`])
   }
 
   // 测试模块管理
   const handleListModules = () => {
     const modules = platform.modules
-    setEventLog(prev => [
-      ...prev,
-      `已注册模块: ${modules.map(m => m.id).join(', ')}`
-    ])
+    setEventLog((prev) => [...prev, `已注册模块: ${modules.map((m) => m.id).join(', ')}`])
   }
 
   // 测试状态机
   const handleCheckState = () => {
     const snapshot = platform.getSnapshot()
-    setEventLog(prev => [
-      ...prev,
-      `当前状态: ${JSON.stringify(snapshot.value)}`
-    ])
+    setEventLog((prev) => [...prev, `当前状态: ${JSON.stringify(snapshot.value)}`])
   }
 
   // 清空日志
@@ -54,9 +48,7 @@ export default function ExamplesPage() {
           {/* 事件总线 */}
           <div className="bg-neutral-800 rounded-lg p-6 border border-neutral-700">
             <h3 className="text-xl font-bold mb-3 text-blue-400">📡 事件总线</h3>
-            <p className="text-sm text-gray-400 mb-4">
-              模块间通过事件解耦通信
-            </p>
+            <p className="text-sm text-gray-400 mb-4">模块间通过事件解耦通信</p>
             <button
               onClick={handleTestEvent}
               className="w-full px-4 py-2 bg-blue-500 hover:bg-blue-600 rounded transition"
@@ -68,9 +60,7 @@ export default function ExamplesPage() {
           {/* 模块管理 */}
           <div className="bg-neutral-800 rounded-lg p-6 border border-neutral-700">
             <h3 className="text-xl font-bold mb-3 text-green-400">📦 模块管理</h3>
-            <p className="text-sm text-gray-400 mb-4">
-              查看已注册的模块
-            </p>
+            <p className="text-sm text-gray-400 mb-4">查看已注册的模块</p>
             <button
               onClick={handleListModules}
               className="w-full px-4 py-2 bg-green-500 hover:bg-green-600 rounded transition"
@@ -82,9 +72,7 @@ export default function ExamplesPage() {
           {/* 状态机 */}
           <div className="bg-neutral-800 rounded-lg p-6 border border-neutral-700">
             <h3 className="text-xl font-bold mb-3 text-purple-400">🎯 状态机</h3>
-            <p className="text-sm text-gray-400 mb-4">
-              Zustand 驱动的轻量状态管理
-            </p>
+            <p className="text-sm text-gray-400 mb-4">Zustand 驱动的轻量状态管理</p>
             <button
               onClick={handleCheckState}
               className="w-full px-4 py-2 bg-purple-500 hover:bg-purple-600 rounded transition"
@@ -112,9 +100,7 @@ export default function ExamplesPage() {
             </div>
             <div>
               <span className="text-gray-400">已注册模块:</span>
-              <span className="ml-2 text-white">
-                {platform.modules.length} 个
-              </span>
+              <span className="ml-2 text-white">{platform.modules.length} 个</span>
             </div>
           </div>
         </div>

@@ -21,10 +21,7 @@ function LoadingIndicator() {
       <div className="bg-black/80 text-white px-4 py-2 rounded-lg">
         <div className="text-sm mb-1">加载中...</div>
         <div className="w-32 h-2 bg-gray-700 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-blue-500 transition-all"
-            style={{ width: `${progress}%` }}
-          />
+          <div className="h-full bg-blue-500 transition-all" style={{ width: `${progress}%` }} />
         </div>
         <div className="text-xs text-gray-400 mt-1">{progress.toFixed(0)}%</div>
       </div>
@@ -46,16 +43,8 @@ function InstancedMeshDemo({ count = 100 }: { count?: number }) {
       const radius = 2 + Math.random() * 1
       const height = (Math.random() - 0.5) * 2
 
-      dummy.position.set(
-        Math.cos(angle) * radius,
-        height,
-        Math.sin(angle) * radius
-      )
-      dummy.rotation.set(
-        Math.random() * Math.PI,
-        Math.random() * Math.PI,
-        Math.random() * Math.PI
-      )
+      dummy.position.set(Math.cos(angle) * radius, height, Math.sin(angle) * radius)
+      dummy.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI)
       dummy.scale.setScalar(0.1 + Math.random() * 0.1)
       dummy.updateMatrix()
       meshRef.current.setMatrixAt(i, dummy.matrix)
@@ -73,11 +62,7 @@ function InstancedMeshDemo({ count = 100 }: { count?: number }) {
       const radius = 2 + Math.sin(time + i) * 0.3
       const height = Math.sin(time * 0.5 + i * 0.1) * 0.5
 
-      dummy.position.set(
-        Math.cos(angle) * radius,
-        height,
-        Math.sin(angle) * radius
-      )
+      dummy.position.set(Math.cos(angle) * radius, height, Math.sin(angle) * radius)
       dummy.rotation.x = time + i
       dummy.rotation.y = time * 0.5 + i
       dummy.updateMatrix()
@@ -192,9 +177,7 @@ export function ModelLoader() {
         <Html position={[0, 2.8, 0]} center>
           <div className="text-sm text-white bg-black/70 px-4 py-2 rounded-lg max-w-xs text-center">
             <div className="font-bold mb-1">高精度模型加载技术</div>
-            <div className="text-xs text-gray-300">
-              展示 LOD、实例化渲染、高质量材质等优化技术
-            </div>
+            <div className="text-xs text-gray-300">展示 LOD、实例化渲染、高质量材质等优化技术</div>
           </div>
         </Html>
       </group>

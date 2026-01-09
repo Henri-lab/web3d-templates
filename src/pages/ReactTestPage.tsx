@@ -5,7 +5,16 @@
  * 帮助理解 React 的核心概念和最佳实践
  */
 
-import { useState, useEffect, useRef, useMemo, useCallback, createContext, useContext, useReducer } from 'react'
+import {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+  createContext,
+  useContext,
+  useReducer,
+} from 'react'
 import { Link } from 'react-router-dom'
 
 // 暴露 React 内部 API 到全局，方便调试
@@ -13,7 +22,16 @@ if (typeof window !== 'undefined') {
   // @ts-ignore
   window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.__REACT_DEVTOOLS_GLOBAL_HOOK__ || {}
   // @ts-ignore
-  window.React = { useState, useEffect, useRef, useMemo, useCallback, createContext, useContext, useReducer }
+  window.React = {
+    useState,
+    useEffect,
+    useRef,
+    useMemo,
+    useCallback,
+    createContext,
+    useContext,
+    useReducer,
+  }
 }
 
 // 实验项目类型
@@ -27,24 +45,84 @@ interface Experiment {
 // 实验列表
 const EXPERIMENTS: Experiment[] = [
   // Hooks
-  { id: 'use-state', name: 'useState', description: '基础状态管理，对比 Vue 的 ref/reactive', category: 'hooks' },
-  { id: 'use-effect', name: 'useEffect', description: '副作用处理，对比 Vue 的 watch/watchEffect', category: 'hooks' },
-  { id: 'use-ref', name: 'useRef', description: 'DOM 引用和持久化值，对比 Vue 的 ref', category: 'hooks' },
-  { id: 'use-memo', name: 'useMemo', description: '计算属性缓存，对比 Vue 的 computed', category: 'hooks' },
-  { id: 'use-callback', name: 'useCallback', description: '函数缓存，避免不必要的重渲染', category: 'hooks' },
-  { id: 'react-debug', name: 'React 源码调试', description: '在浏览器 DevTools 中调试 React 源码', category: 'hooks' },
+  {
+    id: 'use-state',
+    name: 'useState',
+    description: '基础状态管理，对比 Vue 的 ref/reactive',
+    category: 'hooks',
+  },
+  {
+    id: 'use-effect',
+    name: 'useEffect',
+    description: '副作用处理，对比 Vue 的 watch/watchEffect',
+    category: 'hooks',
+  },
+  {
+    id: 'use-ref',
+    name: 'useRef',
+    description: 'DOM 引用和持久化值，对比 Vue 的 ref',
+    category: 'hooks',
+  },
+  {
+    id: 'use-memo',
+    name: 'useMemo',
+    description: '计算属性缓存，对比 Vue 的 computed',
+    category: 'hooks',
+  },
+  {
+    id: 'use-callback',
+    name: 'useCallback',
+    description: '函数缓存，避免不必要的重渲染',
+    category: 'hooks',
+  },
+  {
+    id: 'react-debug',
+    name: 'React 源码调试',
+    description: '在浏览器 DevTools 中调试 React 源码',
+    category: 'hooks',
+  },
 
   // 模式
-  { id: 'context', name: 'Context', description: '跨组件状态共享，对比 Vue 的 provide/inject', category: 'patterns' },
-  { id: 'render-props', name: 'Render Props', description: '组件逻辑复用模式', category: 'patterns' },
-  { id: 'compound', name: '复合组件', description: '组件组合模式，类似 Vue 的插槽', category: 'patterns' },
+  {
+    id: 'context',
+    name: 'Context',
+    description: '跨组件状态共享，对比 Vue 的 provide/inject',
+    category: 'patterns',
+  },
+  {
+    id: 'render-props',
+    name: 'Render Props',
+    description: '组件逻辑复用模式',
+    category: 'patterns',
+  },
+  {
+    id: 'compound',
+    name: '复合组件',
+    description: '组件组合模式，类似 Vue 的插槽',
+    category: 'patterns',
+  },
 
   // 状态管理
-  { id: 'use-reducer', name: 'useReducer', description: '复杂状态管理，类似 Vuex 的 mutations', category: 'state' },
-  { id: 'lifting-state', name: '状态提升', description: '父子组件通信，对比 Vue 的 emit', category: 'state' },
+  {
+    id: 'use-reducer',
+    name: 'useReducer',
+    description: '复杂状态管理，类似 Vuex 的 mutations',
+    category: 'state',
+  },
+  {
+    id: 'lifting-state',
+    name: '状态提升',
+    description: '父子组件通信，对比 Vue 的 emit',
+    category: 'state',
+  },
 
   // 性能
-  { id: 'memo', name: 'React.memo', description: '组件记忆化，避免不必要渲染', category: 'performance' },
+  {
+    id: 'memo',
+    name: 'React.memo',
+    description: '组件记忆化，避免不必要渲染',
+    category: 'performance',
+  },
   { id: 'virtual-list', name: '虚拟列表', description: '大数据列表优化', category: 'performance' },
 ]
 
@@ -76,14 +154,17 @@ function UseStateDemo() {
         <h4 className="font-medium mb-2">计数器</h4>
         <div className="flex items-center gap-4">
           <button
-            onClick={() => setCount(c => c - 1)}
+            onClick={() => setCount((c) => c - 1)}
             className="px-3 py-1 bg-red-600 rounded hover:bg-red-500"
           >
             -
           </button>
           <span className="text-2xl font-bold">{count}</span>
           <button
-            onClick={() => { debugger; setCount(c => c + 1) }}
+            onClick={() => {
+              debugger
+              setCount((c) => c + 1)
+            }}
             className="px-3 py-1 bg-green-600 rounded hover:bg-green-500"
           >
             +
@@ -102,10 +183,7 @@ function UseStateDemo() {
             placeholder="输入内容..."
             className="flex-1 px-3 py-1 bg-neutral-700 rounded"
           />
-          <button
-            onClick={addItem}
-            className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-500"
-          >
+          <button onClick={addItem} className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-500">
             添加
           </button>
         </div>
@@ -126,7 +204,9 @@ function UseStateDemo() {
 
       <div className="p-3 bg-blue-900/30 rounded text-sm">
         <p className="text-blue-400">💡 Vue 对比：</p>
-        <p className="text-neutral-400">useState 类似 Vue 3 的 ref()，但更新时需要调用 setter 函数</p>
+        <p className="text-neutral-400">
+          useState 类似 Vue 3 的 ref()，但更新时需要调用 setter 函数
+        </p>
       </div>
     </div>
   )
@@ -138,7 +218,7 @@ function UseEffectDemo() {
   const [logs, setLogs] = useState<string[]>([])
 
   const addLog = (msg: string) => {
-    setLogs(prev => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${msg}`])
+    setLogs((prev) => [...prev.slice(-4), `${new Date().toLocaleTimeString()}: ${msg}`])
   }
 
   // 组件挂载/卸载
@@ -159,7 +239,7 @@ function UseEffectDemo() {
       <div className="p-4 bg-neutral-800 rounded-lg">
         <h4 className="font-medium mb-2">触发 Effect</h4>
         <button
-          onClick={() => setCount(c => c + 1)}
+          onClick={() => setCount((c) => c + 1)}
           className="px-4 py-2 bg-blue-600 rounded hover:bg-blue-500"
         >
           增加计数 ({count})
@@ -170,14 +250,18 @@ function UseEffectDemo() {
         <h4 className="font-medium mb-2">Effect 日志</h4>
         <div className="space-y-1 font-mono text-sm">
           {logs.map((log, i) => (
-            <div key={i} className="text-neutral-400">{log}</div>
+            <div key={i} className="text-neutral-400">
+              {log}
+            </div>
           ))}
         </div>
       </div>
 
       <div className="p-3 bg-blue-900/30 rounded text-sm">
         <p className="text-blue-400">💡 Vue 对比：</p>
-        <p className="text-neutral-400">useEffect 类似 Vue 的 watch + onMounted + onUnmounted 的组合</p>
+        <p className="text-neutral-400">
+          useEffect 类似 Vue 的 watch + onMounted + onUnmounted 的组合
+        </p>
       </div>
     </div>
   )
@@ -206,10 +290,7 @@ function UseRefDemo() {
             placeholder="点击按钮聚焦..."
             className="flex-1 px-3 py-1 bg-neutral-700 rounded"
           />
-          <button
-            onClick={focusInput}
-            className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-500"
-          >
+          <button onClick={focusInput} className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-500">
             聚焦
           </button>
         </div>
@@ -228,7 +309,9 @@ function UseRefDemo() {
 
       <div className="p-3 bg-blue-900/30 rounded text-sm">
         <p className="text-blue-400">💡 Vue 对比：</p>
-        <p className="text-neutral-400">useRef 用于 DOM 引用时类似 Vue 的 ref，但也可存储不触发渲染的值</p>
+        <p className="text-neutral-400">
+          useRef 用于 DOM 引用时类似 Vue 的 ref，但也可存储不触发渲染的值
+        </p>
       </div>
     </div>
   )
@@ -257,14 +340,14 @@ function UseMemoDemo() {
           <div className="flex items-center gap-4">
             <span>计算因子:</span>
             <button
-              onClick={() => setCount(c => Math.max(0, c - 1))}
+              onClick={() => setCount((c) => Math.max(0, c - 1))}
               className="px-2 py-1 bg-neutral-700 rounded"
             >
               -
             </button>
             <span className="font-bold">{count}</span>
             <button
-              onClick={() => setCount(c => c + 1)}
+              onClick={() => setCount((c) => c + 1)}
               className="px-2 py-1 bg-neutral-700 rounded"
             >
               +
@@ -295,15 +378,18 @@ function UseMemoDemo() {
 }
 
 // 5. Context 实验
-const ThemeContext = createContext({ theme: 'dark', toggleTheme: () => { } })
+const ThemeContext = createContext({ theme: 'dark', toggleTheme: () => {} })
 
 function ContextDemo() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
 
-  const contextValue = useMemo(() => ({
-    theme,
-    toggleTheme: () => setTheme(t => t === 'dark' ? 'light' : 'dark'),
-  }), [theme])
+  const contextValue = useMemo(
+    () => ({
+      theme,
+      toggleTheme: () => setTheme((t) => (t === 'dark' ? 'light' : 'dark')),
+    }),
+    [theme],
+  )
 
   return (
     <ThemeContext.Provider value={contextValue}>
@@ -328,7 +414,9 @@ function ContextConsumer() {
   const { theme, toggleTheme } = useContext(ThemeContext)
 
   return (
-    <div className={`p-4 rounded-lg ${theme === 'dark' ? 'bg-neutral-800' : 'bg-neutral-200 text-black'}`}>
+    <div
+      className={`p-4 rounded-lg ${theme === 'dark' ? 'bg-neutral-800' : 'bg-neutral-200 text-black'}`}
+    >
       <h4 className="font-medium mb-2">Context Consumer</h4>
       <button
         onClick={toggleTheme}
@@ -358,13 +446,11 @@ function todoReducer(state: TodoState, action: TodoAction): TodoState {
       }
     case 'TOGGLE':
       return {
-        todos: state.todos.map(t =>
-          t.id === action.id ? { ...t, done: !t.done } : t
-        ),
+        todos: state.todos.map((t) => (t.id === action.id ? { ...t, done: !t.done } : t)),
       }
     case 'DELETE':
       return {
-        todos: state.todos.filter(t => t.id !== action.id),
+        todos: state.todos.filter((t) => t.id !== action.id),
       }
     default:
       return state
@@ -395,27 +481,19 @@ function UseReducerDemo() {
             placeholder="添加待办..."
             className="flex-1 px-3 py-1 bg-neutral-700 rounded"
           />
-          <button
-            onClick={addTodo}
-            className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-500"
-          >
+          <button onClick={addTodo} className="px-3 py-1 bg-blue-600 rounded hover:bg-blue-500">
             添加
           </button>
         </div>
         <ul className="space-y-1">
-          {state.todos.map(todo => (
-            <li
-              key={todo.id}
-              className="flex items-center gap-2 p-2 bg-neutral-700 rounded"
-            >
+          {state.todos.map((todo) => (
+            <li key={todo.id} className="flex items-center gap-2 p-2 bg-neutral-700 rounded">
               <input
                 type="checkbox"
                 checked={todo.done}
                 onChange={() => dispatch({ type: 'TOGGLE', id: todo.id })}
               />
-              <span className={todo.done ? 'line-through text-neutral-500' : ''}>
-                {todo.text}
-              </span>
+              <span className={todo.done ? 'line-through text-neutral-500' : ''}>{todo.text}</span>
               <button
                 onClick={() => dispatch({ type: 'DELETE', id: todo.id })}
                 className="ml-auto text-red-400 hover:text-red-300"
@@ -445,20 +523,20 @@ function ReactDebugDemo() {
 
   // 追踪渲染次数
   useEffect(() => {
-    setRenderCount(prev => prev + 1)
+    setRenderCount((prev) => prev + 1)
   })
 
   // 添加调试信息
   const addDebugInfo = (info: string) => {
-    setDebugInfo(prev => [...prev.slice(-12), `[${new Date().toLocaleTimeString()}] ${info}`])
+    setDebugInfo((prev) => [...prev.slice(-12), `[${new Date().toLocaleTimeString()}] ${info}`])
   }
 
   // 获取 Fiber 节点信息
   const inspectFiber = () => {
     if (componentRef.current) {
       // 通过 DOM 节点获取 Fiber 信息
-      const fiberKey = Object.keys(componentRef.current).find(key =>
-        key.startsWith('__reactFiber') || key.startsWith('__reactInternalInstance')
+      const fiberKey = Object.keys(componentRef.current).find(
+        (key) => key.startsWith('__reactFiber') || key.startsWith('__reactInternalInstance'),
       )
       if (fiberKey) {
         const fiber = (componentRef.current as any)[fiberKey]
@@ -480,7 +558,7 @@ function ReactDebugDemo() {
   const debugUseState = () => {
     console.log('=== useState 调试开始 ===')
     debugger // 断点1: 进入 useState 更新逻辑
-    setCount(c => {
+    setCount((c) => {
       console.log('当前值:', c, '→ 新值:', c + 1)
       addDebugInfo(`useState: ${c} → ${c + 1}`)
       return c + 1
@@ -492,9 +570,9 @@ function ReactDebugDemo() {
     console.log('=== 批量更新调试开始 ===')
     debugger // 断点2: 观察批量更新
     console.log('触发3次 setState，但只会渲染1次')
-    setCount(c => c + 1)
-    setCount(c => c + 1)
-    setCount(c => c + 1)
+    setCount((c) => c + 1)
+    setCount((c) => c + 1)
+    setCount((c) => c + 1)
     addDebugInfo('批量更新: 3次 setState → 1次渲染')
   }
 
@@ -513,7 +591,7 @@ function ReactDebugDemo() {
   const debugReconciliation = () => {
     console.log('=== Fiber 调和调试开始 ===')
     debugger // 断点3: 进入 Fiber 调和算法
-    setCount(c => c + 1)
+    setCount((c) => c + 1)
     addDebugInfo('触发 Fiber 调和过程')
   }
 
@@ -522,10 +600,10 @@ function ReactDebugDemo() {
     console.log('=== 优先级调度调试 ===')
     debugger // 断点4: 观察任务优先级
     // 同步更新
-    setCount(c => c + 1)
+    setCount((c) => c + 1)
     // 异步更新
     setTimeout(() => {
-      setCount(c => c + 1)
+      setCount((c) => c + 1)
     }, 0)
     addDebugInfo('同步 + 异步更新调度')
   }
@@ -634,7 +712,9 @@ function ReactDebugDemo() {
             <p className="text-neutral-500">等待调试操作...</p>
           ) : (
             debugInfo.map((info, i) => (
-              <div key={i} className="text-green-400">{info}</div>
+              <div key={i} className="text-green-400">
+                {info}
+              </div>
             ))
           )}
         </div>
@@ -653,22 +733,30 @@ function ReactDebugDemo() {
           <div className="p-3 bg-gradient-to-r from-blue-900/30 to-transparent rounded border-l-4 border-blue-500">
             <p className="font-bold text-blue-400 mb-1">第1阶段: Hooks 实现</p>
             <p className="text-neutral-400 text-xs mb-2">理解 useState、useEffect 的底层机制</p>
-            <p className="text-neutral-500 text-xs">关键文件: ReactFiberHooks.js → mountState / updateState</p>
+            <p className="text-neutral-500 text-xs">
+              关键文件: ReactFiberHooks.js → mountState / updateState
+            </p>
           </div>
           <div className="p-3 bg-gradient-to-r from-green-900/30 to-transparent rounded border-l-4 border-green-500">
             <p className="font-bold text-green-400 mb-1">第2阶段: Fiber 架构</p>
             <p className="text-neutral-400 text-xs mb-2">掌握 Fiber 节点结构和遍历算法</p>
-            <p className="text-neutral-500 text-xs">关键文件: ReactFiber.js → createFiber / beginWork / completeWork</p>
+            <p className="text-neutral-500 text-xs">
+              关键文件: ReactFiber.js → createFiber / beginWork / completeWork
+            </p>
           </div>
           <div className="p-3 bg-gradient-to-r from-purple-900/30 to-transparent rounded border-l-4 border-purple-500">
             <p className="font-bold text-purple-400 mb-1">第3阶段: 调度器</p>
             <p className="text-neutral-400 text-xs mb-2">学习优先级调度和时间切片</p>
-            <p className="text-neutral-500 text-xs">关键文件: Scheduler.js → scheduleCallback / workLoop</p>
+            <p className="text-neutral-500 text-xs">
+              关键文件: Scheduler.js → scheduleCallback / workLoop
+            </p>
           </div>
           <div className="p-3 bg-gradient-to-r from-yellow-900/30 to-transparent rounded border-l-4 border-yellow-500">
             <p className="font-bold text-yellow-400 mb-1">第4阶段: Diff 算法</p>
             <p className="text-neutral-400 text-xs mb-2">深入理解 reconcileChildren 的优化策略</p>
-            <p className="text-neutral-500 text-xs">关键文件: ReactChildFiber.js → reconcileChildFibers</p>
+            <p className="text-neutral-500 text-xs">
+              关键文件: ReactChildFiber.js → reconcileChildFibers
+            </p>
           </div>
         </div>
       </div>
@@ -771,7 +859,9 @@ function ReactDebugDemo() {
             <span className="text-blue-400 font-bold">1.</span>
             <div>
               <p className="font-medium text-white">双屏对照学习</p>
-              <p className="text-xs">左屏：GitHub 源码（const/let，易读）| 右屏：浏览器调试（运行时行为）</p>
+              <p className="text-xs">
+                左屏：GitHub 源码（const/let，易读）| 右屏：浏览器调试（运行时行为）
+              </p>
             </div>
           </div>
           <div className="flex items-start gap-2">
@@ -785,7 +875,9 @@ function ReactDebugDemo() {
             <span className="text-purple-400 font-bold">3.</span>
             <div>
               <p className="font-medium text-white">关注核心逻辑</p>
-              <p className="text-xs">不要纠结 var/let，重点理解算法：Fiber 遍历、Hook 链表、优先级调度</p>
+              <p className="text-xs">
+                不要纠结 var/let，重点理解算法：Fiber 遍历、Hook 链表、优先级调度
+              </p>
             </div>
           </div>
           <div className="flex items-start gap-2">
@@ -799,7 +891,9 @@ function ReactDebugDemo() {
             <span className="text-orange-400 font-bold">5.</span>
             <div>
               <p className="font-medium text-white">监视关键变量</p>
-              <p className="text-xs">Watch 面板添加：fiber.memoizedState、workInProgress、currentHook</p>
+              <p className="text-xs">
+                Watch 面板添加：fiber.memoizedState、workInProgress、currentHook
+              </p>
             </div>
           </div>
         </div>
@@ -846,15 +940,20 @@ function ReactDebugDemo() {
           <div className="p-3 bg-black/30 rounded">
             <p className="font-bold text-green-400 mb-2">快速设置（3 步）</p>
             <ol className="space-y-1 text-xs text-neutral-300 list-decimal list-inside">
-              <li>运行设置脚本: <code className="text-blue-400">./setup-react-source.sh</code></li>
+              <li>
+                运行设置脚本: <code className="text-blue-400">./setup-react-source.sh</code>
+              </li>
               <li>按照提示配置 vite.config.ts</li>
-              <li>重启开发服务器: <code className="text-blue-400">npm run dev</code></li>
+              <li>
+                重启开发服务器: <code className="text-blue-400">npm run dev</code>
+              </li>
             </ol>
           </div>
           <div className="p-3 bg-black/30 rounded">
             <p className="font-bold text-blue-400 mb-2">详细文档</p>
             <p className="text-xs text-neutral-300">
-              查看 <code className="text-green-400">REACT_SOURCE_DEBUG.md</code> 了解完整的设置步骤和 3 种调试方案
+              查看 <code className="text-green-400">REACT_SOURCE_DEBUG.md</code>{' '}
+              了解完整的设置步骤和 3 种调试方案
             </p>
           </div>
           <div className="p-3 bg-black/30 rounded">
@@ -870,10 +969,18 @@ function ReactDebugDemo() {
       <div className="p-3 bg-gradient-to-r from-orange-900/30 to-red-900/30 rounded text-sm border border-orange-500/30">
         <p className="font-bold text-orange-400 mb-2">⚡ 快捷键参考</p>
         <div className="grid grid-cols-2 gap-2 text-xs">
-          <p><kbd className="px-2 py-1 bg-black/40 rounded">F8</kbd> 继续执行</p>
-          <p><kbd className="px-2 py-1 bg-black/40 rounded">F10</kbd> 单步跳过</p>
-          <p><kbd className="px-2 py-1 bg-black/40 rounded">F11</kbd> 单步进入</p>
-          <p><kbd className="px-2 py-1 bg-black/40 rounded">Shift+F11</kbd> 跳出函数</p>
+          <p>
+            <kbd className="px-2 py-1 bg-black/40 rounded">F8</kbd> 继续执行
+          </p>
+          <p>
+            <kbd className="px-2 py-1 bg-black/40 rounded">F10</kbd> 单步跳过
+          </p>
+          <p>
+            <kbd className="px-2 py-1 bg-black/40 rounded">F11</kbd> 单步进入
+          </p>
+          <p>
+            <kbd className="px-2 py-1 bg-black/40 rounded">Shift+F11</kbd> 跳出函数
+          </p>
         </div>
       </div>
     </div>
@@ -896,7 +1003,7 @@ const EXPERIMENT_COMPONENTS: Record<string, React.ComponentType> = {
   'use-effect': UseEffectDemo,
   'use-ref': UseRefDemo,
   'use-memo': UseMemoDemo,
-  'context': ContextDemo,
+  context: ContextDemo,
   'use-reducer': UseReducerDemo,
   'react-debug': ReactDebugDemo,
 }
@@ -914,7 +1021,8 @@ export default function ReactTestPage() {
   }, [activeCategory])
 
   const ExperimentComponent = activeExperiment
-    ? EXPERIMENT_COMPONENTS[activeExperiment.id] || (() => <PlaceholderDemo name={activeExperiment.name} />)
+    ? EXPERIMENT_COMPONENTS[activeExperiment.id] ||
+      (() => <PlaceholderDemo name={activeExperiment.name} />)
     : () => null
 
   return (
@@ -933,9 +1041,7 @@ export default function ReactTestPage() {
             <span>⚛️</span>
             React 技术实验室
           </h1>
-          <p className="text-neutral-400 text-sm mt-1">
-            Vue 转 React 技术适应指南
-          </p>
+          <p className="text-neutral-400 text-sm mt-1">Vue 转 React 技术适应指南</p>
         </div>
 
         {/* 分类选择 */}
@@ -944,14 +1050,20 @@ export default function ReactTestPage() {
             实验分类
           </h2>
           <div className="grid grid-cols-2 gap-2">
-            {(Object.entries(CATEGORIES) as [keyof typeof CATEGORIES, typeof CATEGORIES[keyof typeof CATEGORIES]][]).map(([id, cat]) => (
+            {(
+              Object.entries(CATEGORIES) as [
+                keyof typeof CATEGORIES,
+                (typeof CATEGORIES)[keyof typeof CATEGORIES],
+              ][]
+            ).map(([id, cat]) => (
               <button
                 key={id}
                 onClick={() => setActiveCategory(id)}
-                className={`p-2 rounded-lg text-left transition-all ${activeCategory === id
-                  ? 'bg-blue-600/20 border border-blue-500/50 text-blue-400'
-                  : 'bg-neutral-800/50 border border-transparent hover:bg-neutral-800 text-neutral-300'
-                  }`}
+                className={`p-2 rounded-lg text-left transition-all ${
+                  activeCategory === id
+                    ? 'bg-blue-600/20 border border-blue-500/50 text-blue-400'
+                    : 'bg-neutral-800/50 border border-transparent hover:bg-neutral-800 text-neutral-300'
+                }`}
               >
                 <div className="flex items-center gap-2">
                   <span className="text-lg">{cat.icon}</span>
@@ -972,15 +1084,14 @@ export default function ReactTestPage() {
               <button
                 key={exp.id}
                 onClick={() => setActiveExperiment(exp)}
-                className={`w-full text-left p-3 rounded-lg transition-all ${activeExperiment?.id === exp.id
-                  ? 'bg-neutral-800 border border-neutral-700'
-                  : 'hover:bg-neutral-800/50 border border-transparent'
-                  }`}
+                className={`w-full text-left p-3 rounded-lg transition-all ${
+                  activeExperiment?.id === exp.id
+                    ? 'bg-neutral-800 border border-neutral-700'
+                    : 'hover:bg-neutral-800/50 border border-transparent'
+                }`}
               >
                 <div className="font-medium mb-1">{exp.name}</div>
-                <p className="text-xs text-neutral-400 line-clamp-2">
-                  {exp.description}
-                </p>
+                <p className="text-xs text-neutral-400 line-clamp-2">{exp.description}</p>
               </button>
             ))}
           </div>

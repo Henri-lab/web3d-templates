@@ -26,9 +26,7 @@ const cardVariants = cva('rounded-xl overflow-hidden transition-all duration-300
   },
 })
 
-interface CardProps
-  extends HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof cardVariants> {}
+interface CardProps extends HTMLAttributes<HTMLDivElement>, VariantProps<typeof cardVariants> {}
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
   ({ className, variant, interactive, padding, ...props }, ref) => {
@@ -39,7 +37,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         {...props}
       />
     )
-  }
+  },
 )
 
 Card.displayName = 'Card'
@@ -47,21 +45,16 @@ Card.displayName = 'Card'
 export const CardHeader = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn('space-y-1.5', className)} {...props} />
-  )
+  ),
 )
 
 CardHeader.displayName = 'CardHeader'
 
-export const CardTitle = forwardRef<
-  HTMLHeadingElement,
-  HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-  <h3
-    ref={ref}
-    className={cn('text-xl font-semibold text-neutral-900', className)}
-    {...props}
-  />
-))
+export const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingElement>>(
+  ({ className, ...props }, ref) => (
+    <h3 ref={ref} className={cn('text-xl font-semibold text-neutral-900', className)} {...props} />
+  ),
+)
 
 CardTitle.displayName = 'CardTitle'
 
@@ -75,9 +68,7 @@ export const CardDescription = forwardRef<
 CardDescription.displayName = 'CardDescription'
 
 export const CardContent = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('', className)} {...props} />
-  )
+  ({ className, ...props }, ref) => <div ref={ref} className={cn('', className)} {...props} />,
 )
 
 CardContent.displayName = 'CardContent'
@@ -85,7 +76,7 @@ CardContent.displayName = 'CardContent'
 export const CardFooter = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   ({ className, ...props }, ref) => (
     <div ref={ref} className={cn('flex items-center pt-4', className)} {...props} />
-  )
+  ),
 )
 
 CardFooter.displayName = 'CardFooter'

@@ -203,8 +203,10 @@ export class Tokenizer {
     if (value === 'false') return false
 
     // 移除引号
-    if ((value.startsWith('"') && value.endsWith('"')) ||
-        (value.startsWith("'") && value.endsWith("'"))) {
+    if (
+      (value.startsWith('"') && value.endsWith('"')) ||
+      (value.startsWith("'") && value.endsWith("'"))
+    ) {
       return value.slice(1, -1)
     }
 
@@ -297,8 +299,11 @@ export class Tokenizer {
 
     let content = ''
     while (!this.isAtEnd()) {
-      if (this.peek() === '-' && this.state.column === 1 &&
-          this.state.source.slice(this.state.position, this.state.position + 3) === '---') {
+      if (
+        this.peek() === '-' &&
+        this.state.column === 1 &&
+        this.state.source.slice(this.state.position, this.state.position + 3) === '---'
+      ) {
         this.advance()
         this.advance()
         this.advance()
@@ -329,7 +334,10 @@ export class Tokenizer {
   }
 
   private match(expected: string): boolean {
-    return this.state.source.slice(this.state.position, this.state.position + expected.length) === expected
+    return (
+      this.state.source.slice(this.state.position, this.state.position + expected.length) ===
+      expected
+    )
   }
 
   private peek(): string {

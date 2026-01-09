@@ -4,7 +4,12 @@ export { GLTFModel } from './scene/GLTFModel'
 
 // 特效组件
 export { Particles, FallingParticles } from './effects/Particles'
-export { PostProcessing, DramaticLighting, SoftFocus, CinematicStyle } from './effects/PostProcessing'
+export {
+  PostProcessing,
+  DramaticLighting,
+  SoftFocus,
+  CinematicStyle,
+} from './effects/PostProcessing'
 
 // UI 组件
 export {

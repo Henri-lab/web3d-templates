@@ -1,0 +1,12 @@
+# 忽略不需要格式化的目录 / 文件
+node_modules
+dist
+build
+.git
+.turbo
+.idea
+.vscode
+
+# 打包产物
+coverage
+

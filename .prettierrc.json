@@ -1,0 +1,10 @@
+{
+  "//": "Prettier 统一格式化配置：尽量贴近当前项目风格（单引号、无分号等）",
+  "singleQuote": true,
+  "semi": false,
+  "trailingComma": "all",
+  "printWidth": 100,
+  "tabWidth": 2,
+  "jsxSingleQuote": false,
+  "arrowParens": "always"
+}

@@ -88,6 +88,6 @@ export const useSceneStore = create<SceneStore>()(
         return scene?.getObjectByName(name)
       },
     }),
-    { name: 'scene-store' }
-  )
+    { name: 'scene-store' },
+  ),
 )

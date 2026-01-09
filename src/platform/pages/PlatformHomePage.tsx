@@ -78,54 +78,55 @@ export default function PlatformHomePage() {
               const firstPath = firstRoute?.path || '/'
 
               return (
-              <Link
-                key={module.id}
-                to={firstPath}
-                className="group relative overflow-hidden rounded-2xl bg-neutral-800 border border-neutral-700 hover:border-neutral-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
-              >
-                {/* 渐变背景 */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${moduleColors[module.id] || 'from-gray-500 to-gray-600'} opacity-10 group-hover:opacity-20 transition-opacity`} />
+                <Link
+                  key={module.id}
+                  to={firstPath}
+                  className="group relative overflow-hidden rounded-2xl bg-neutral-800 border border-neutral-700 hover:border-neutral-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                >
+                  {/* 渐变背景 */}
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${moduleColors[module.id] || 'from-gray-500 to-gray-600'} opacity-10 group-hover:opacity-20 transition-opacity`}
+                  />
 
-                <div className="relative p-6">
-                  {/* 图标 */}
-                  <div className="text-5xl mb-4">
-                    {moduleIcons[module.id] || '📁'}
+                  <div className="relative p-6">
+                    {/* 图标 */}
+                    <div className="text-5xl mb-4">{moduleIcons[module.id] || '📁'}</div>
+
+                    {/* 标题 */}
+                    <h4 className="text-xl font-bold mb-2">{module.config.name}</h4>
+
+                    {/* 描述 */}
+                    <p className="text-sm text-gray-400 mb-4">
+                      {module.config.description || `${module.config.name}模块`}
+                    </p>
+
+                    {/* 状态标签 */}
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`px-2 py-1 rounded text-xs ${
+                          module.config.type === 'local'
+                            ? 'bg-green-500/20 text-green-400'
+                            : 'bg-blue-500/20 text-blue-400'
+                        }`}
+                      >
+                        {module.config.type === 'local' ? '本地模块' : '远程模块'}
+                      </span>
+                      <span className="px-2 py-1 bg-neutral-700 rounded text-xs text-gray-400">
+                        v{module.config.version}
+                      </span>
+                    </div>
+
+                    {/* 路由 */}
+                    <div className="mt-4 text-xs text-gray-500">路由: {firstPath}</div>
                   </div>
 
-                  {/* 标题 */}
-                  <h4 className="text-xl font-bold mb-2">{module.config.name}</h4>
-
-                  {/* 描述 */}
-                  <p className="text-sm text-gray-400 mb-4">
-                    {module.config.description || `${module.config.name}模块`}
-                  </p>
-
-                  {/* 状态标签 */}
-                  <div className="flex items-center gap-2">
-                    <span className={`px-2 py-1 rounded text-xs ${
-                      module.config.type === 'local'
-                        ? 'bg-green-500/20 text-green-400'
-                        : 'bg-blue-500/20 text-blue-400'
-                    }`}>
-                      {module.config.type === 'local' ? '本地模块' : '远程模块'}
-                    </span>
-                    <span className="px-2 py-1 bg-neutral-700 rounded text-xs text-gray-400">
-                      v{module.config.version}
-                    </span>
+                  {/* 箭头 */}
+                  <div className="absolute bottom-4 right-4 text-2xl opacity-0 group-hover:opacity-100 transition-opacity">
+                    →
                   </div>
-
-                  {/* 路由 */}
-                  <div className="mt-4 text-xs text-gray-500">
-                    路由: {firstPath}
-                  </div>
-                </div>
-
-                {/* 箭头 */}
-                <div className="absolute bottom-4 right-4 text-2xl opacity-0 group-hover:opacity-100 transition-opacity">
-                  →
-                </div>
-              </Link>
-            )})}
+                </Link>
+              )
+            })}
           </div>
         </section>
 
@@ -267,11 +268,15 @@ export default function PlatformHomePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div>
               <h4 className="font-bold text-blue-400 mb-2">配置驱动</h4>
-              <p className="text-sm text-gray-400">所有模块通过配置文件注册，无需修改代码即可添加新模块</p>
+              <p className="text-sm text-gray-400">
+                所有模块通过配置文件注册，无需修改代码即可添加新模块
+              </p>
             </div>
             <div>
               <h4 className="font-bold text-purple-400 mb-2">状态管理</h4>
-              <p className="text-sm text-gray-400">使用 Zustand 实现轻量状态管理，结构简单、易于调试</p>
+              <p className="text-sm text-gray-400">
+                使用 Zustand 实现轻量状态管理，结构简单、易于调试
+              </p>
             </div>
             <div>
               <h4 className="font-bold text-green-400 mb-2">事件解耦</h4>
@@ -279,7 +284,9 @@ export default function PlatformHomePage() {
             </div>
             <div>
               <h4 className="font-bold text-amber-400 mb-2">本地模块</h4>
-              <p className="text-sm text-gray-400">模块以本地页面形式接入，避免远程加载带来的复杂度和不稳定性</p>
+              <p className="text-sm text-gray-400">
+                模块以本地页面形式接入，避免远程加载带来的复杂度和不稳定性
+              </p>
             </div>
           </div>
         </section>

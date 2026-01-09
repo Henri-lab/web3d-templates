@@ -14,7 +14,13 @@ const sampleTimeline: TimelineEvent[] = [
   { id: '3', year: '公元前225年', title: '灭魏', description: '水淹大梁灭魏', type: 'major' },
   { id: '4', year: '公元前223年', title: '灭楚', description: '王翦率军灭楚', type: 'major' },
   { id: '5', year: '公元前222年', title: '灭燕', description: '攻占燕都蓟城', type: 'major' },
-  { id: '6', year: '公元前221年', title: '灭齐', description: '最后灭齐，统一六国', type: 'milestone' },
+  {
+    id: '6',
+    year: '公元前221年',
+    title: '灭齐',
+    description: '最后灭齐，统一六国',
+    type: 'milestone',
+  },
 ]
 
 function DemoScene() {
@@ -89,7 +95,12 @@ export default function StoryPlayerPage() {
           <div className="flex items-center justify-between">
             <Button variant="glass" size="sm" onClick={handleBack}>
               <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
               返回
             </Button>
@@ -173,7 +184,12 @@ export default function StoryPlayerPage() {
               onClick={() => handleTimelineChange(currentTimelineIndex - 1)}
             >
               <svg className="w-4 h-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
               上一阶段
             </Button>
@@ -189,7 +205,12 @@ export default function StoryPlayerPage() {
             >
               下一阶段
               <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
               </svg>
             </Button>
           </div>

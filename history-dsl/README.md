@@ -47,19 +47,19 @@ updated: 2024-01-05
 
 定义了 11 种核心标记符号：
 
-| 标记 | 用途 | 示例 |
-|------|------|------|
-| `#story` | 故事模块 | 整个历史事件 |
-| `#scene` | 场景定义 | 咸阳宫、战场 |
-| `#timeline` | 时间轴 | 统一六国进程 |
-| `#character` | 历史人物 | 秦始皇、李斯 |
-| `#location` | 地点/建筑 | 长城、宫殿 |
-| `#artifact` | 文物/物品 | 兵马俑、秦简 |
-| `#narration` | 旁白/解说 | 开场白、总结 |
-| `#interaction` | 交互点 | 点击、拖拽 |
-| `#transition` | 转场效果 | 场景切换 |
-| `#media` | 多媒体 | 图片、视频、音频 |
-| `#quiz` | 知识测验 | 选择题、问答 |
+| 标记           | 用途      | 示例             |
+| -------------- | --------- | ---------------- |
+| `#story`       | 故事模块  | 整个历史事件     |
+| `#scene`       | 场景定义  | 咸阳宫、战场     |
+| `#timeline`    | 时间轴    | 统一六国进程     |
+| `#character`   | 历史人物  | 秦始皇、李斯     |
+| `#location`    | 地点/建筑 | 长城、宫殿       |
+| `#artifact`    | 文物/物品 | 兵马俑、秦简     |
+| `#narration`   | 旁白/解说 | 开场白、总结     |
+| `#interaction` | 交互点    | 点击、拖拽       |
+| `#transition`  | 转场效果  | 场景切换         |
+| `#media`       | 多媒体    | 图片、视频、音频 |
+| `#quiz`        | 知识测验  | 选择题、问答     |
 
 ### 2. 内容组织规范 (syntax/CONTENT-ORGANIZATION.md)
 
@@ -101,6 +101,7 @@ Three.js 3D Scene
 ### 4. 完整示例 (examples/01-qin-unification.story.md)
 
 秦始皇统一六国的完整实现：
+
 - 6 个历史事件时间轴
 - 2 个主要历史人物
 - 3 个重要文物
@@ -135,6 +136,7 @@ touch story.md
 描述唐玄宗开元年间的盛世景象...
 
 ## 学习目标
+
 - 了解开元盛世的历史背景
 - 理解唐朝繁荣的原因
 
@@ -158,6 +160,7 @@ touch story.md
 @position: [0, 0, 0]
 
 ## 基本信息
+
 ...
 ```
 
@@ -179,12 +182,14 @@ const scene = await loadStory('./story.md')
 ### 1. 故事设计原则
 
 **DO ✅**
+
 - 明确学习目标
 - 时间轴清晰
 - 交互有意义
 - 测验检验理解
 
 **DON'T ❌**
+
 - 不要堆砌信息
 - 不要过度动画
 - 不要忽略历史准确性
@@ -205,13 +210,16 @@ story.md          ← 5000行，难以维护
 
 ```markdown
 # ✅ 优化后的模型
-@model: /models/emperor-draco.glb  # 2MB
+
+@model: /models/emperor-draco.glb # 2MB
 
 # ❌ 未优化的模型
-@model: /models/emperor-raw.glb    # 50MB
+
+@model: /models/emperor-raw.glb # 50MB
 ```
 
 **资源优化清单**：
+
 - [ ] 3D 模型使用 Draco 压缩
 - [ ] 音频使用 MP3 格式，128kbps
 - [ ] 图片使用 WebP 格式
@@ -224,14 +232,18 @@ story.md          ← 5000行，难以维护
 @id: qin-unification
 
 ## 预加载资源（优先）
+
 @preload:
-  - /models/palace.glb
-  - /audio/intro.mp3
+
+- /models/palace.glb
+- /audio/intro.mp3
 
 ## 延迟加载资源（后台）
+
 @lazy-load:
-  - /models/great-wall.glb
-  - /models/warriors.glb
+
+- /models/great-wall.glb
+- /models/warriors.glb
 ```
 
 ---
@@ -294,6 +306,7 @@ vim my-stories/new-story/story.md
 ```
 
 功能：
+
 - 语法高亮
 - 实时验证
 - 智能补全

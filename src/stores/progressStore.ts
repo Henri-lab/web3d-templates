@@ -220,8 +220,8 @@ export const useProgressStore = create<ProgressStore>()(
             storiesInProgress: new Map(persisted.progress?.storiesInProgress || []),
           },
         }),
-      }
+      },
     ),
-    { name: 'progress-store' }
-  )
+    { name: 'progress-store' },
+  ),
 )

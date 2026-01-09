@@ -139,20 +139,11 @@ export function GlowingCrystal({
       {/* 内部发光核心 */}
       <mesh scale={0.3}>
         <icosahedronGeometry args={[size, 0]} />
-        <meshBasicMaterial
-          color={glowColor}
-          transparent
-          opacity={0.8}
-        />
+        <meshBasicMaterial color={glowColor} transparent opacity={0.8} />
       </mesh>
 
       {/* 点光源 - 照亮周围环境 */}
-      <pointLight
-        color={glowColor}
-        intensity={glowIntensity * 2}
-        distance={5}
-        decay={2}
-      />
+      <pointLight color={glowColor} intensity={glowIntensity * 2} distance={5} decay={2} />
     </group>
   )
 }

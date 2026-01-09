@@ -52,7 +52,8 @@ export const scrollPresets = {
   // 水平滚动
   horizontalScroll: (container: AnimationTarget, options: ScrollOptions = {}) => {
     if (!container) return null
-    const containerEl = typeof container === 'string' ? document.querySelector(container) : container
+    const containerEl =
+      typeof container === 'string' ? document.querySelector(container) : container
     if (!containerEl) return null
 
     const sections = gsap.utils.toArray(`${container} > *`)
@@ -149,7 +150,7 @@ export const scrollPresets = {
           ...scrollTriggerOpts,
         },
         ...rest,
-      }
+      },
     )
   },
 

@@ -8,6 +8,7 @@
 ## 📖 核心理念
 
 **内容与代码分离**：
+
 - 历史学家/内容创作者 → 编写 Markdown
 - 系统自动解析 → 生成 3D 场景
 - 无需编程知识 → 专注内容创作
@@ -19,17 +20,17 @@
 ### 1. 基础标记符号
 
 ```markdown
-#story              故事模块（最顶层）
-#scene              场景定义
-#timeline           时间轴事件
-#character          历史人物
-#location           地点/建筑
-#artifact           文物/物品
-#narration          旁白/解说
-#interaction        交互点
-#transition         转场效果
-#media              多媒体资源
-#quiz               知识测验
+#story 故事模块（最顶层）
+#scene 场景定义
+#timeline 时间轴事件
+#character 历史人物
+#location 地点/建筑
+#artifact 文物/物品
+#narration 旁白/解说
+#interaction 交互点
+#transition 转场效果
+#media 多媒体资源
+#quiz 知识测验
 ```
 
 ---
@@ -53,17 +54,20 @@
 学生将跟随时间轴，体验从战国到统一的历史进程。
 
 ## 学习目标
+
 - 了解秦国统一战略
 - 理解中央集权制度
 - 认识文字货币统一的意义
 
 ## 知识点
+
 - 商鞅变法
 - 远交近攻策略
 - 郡县制
 ```
 
 **属性说明**：
+
 - `@id`: 唯一标识符（URL 友好）
 - `@era`: 历史年代
 - `@duration`: 预计学习时长
@@ -84,29 +88,33 @@
 @lighting: dramatic
 @mood: solemn
 @camera:
-  position: [0, 2, 8]
-  target: [0, 1, 0]
-  fov: 50
+position: [0, 2, 8]
+target: [0, 1, 0]
+fov: 50
 
 ## 环境描述
+
 金碧辉煌的咸阳宫大殿，正中是秦始皇的龙椅。
 大殿两侧站立着文武百官。
 
 ## 3D资源
+
 - model: /models/palace.glb
 - skybox: /textures/palace-env.hdr
 - music: /audio/ancient-palace.mp3
 - ambient: /audio/palace-atmosphere.mp3
 
 ## 初始动画
+
 - camera:
-    from: [0, 10, 15]
-    to: [0, 2, 8]
-    duration: 3s
-    ease: power2.inOut
+  from: [0, 10, 15]
+  to: [0, 2, 8]
+  duration: 3s
+  ease: power2.inOut
 ```
 
 **环境预设**：
+
 - `palace-interior` - 宫殿内景
 - `battlefield` - 战场
 - `street` - 街道
@@ -114,6 +122,7 @@
 - `museum` - 博物馆展厅
 
 **灯光预设**：
+
 - `dramatic` - 戏剧性（高对比度）
 - `soft` - 柔和
 - `bright` - 明亮
@@ -132,6 +141,7 @@
 @interactive: true
 
 ## 公元前230年 - 灭韩
+
 @year: -230
 @icon: sword
 @color: #e74c3c
@@ -139,18 +149,22 @@
 秦国首先攻灭韩国，拉开统一战争序幕。
 
 ### 关键人物
+
 - 秦王政（后来的秦始皇）
 - 韩国君主韩王安
 
 ### 地点
+
 - 韩国都城新郑
 
 ### 结果
+
 韩国灭亡，秦国设置颍川郡。
 
 ---
 
 ## 公元前228年 - 灭赵
+
 @year: -228
 @icon: shield
 @color: #3498db
@@ -158,21 +172,26 @@
 秦军攻破邯郸，赵国灭亡。
 
 ### 战役
+
 - 长平之战（前期重要铺垫）
 - 邯郸之战
 
 ---
 
 ## 公元前225年 - 灭魏
+
 ...
 
 ## 公元前223年 - 灭楚
+
 ...
 
 ## 公元前222年 - 灭燕
+
 ...
 
 ## 公元前221年 - 灭齐
+
 @year: -221
 @icon: crown
 @color: #f39c12
@@ -181,10 +200,12 @@
 最后攻灭齐国，完成统一大业。
 
 ### 意义
+
 六国归一，建立中国历史上第一个统一的中央集权国家。
 ```
 
 **属性说明**：
+
 - `@style`: 时间轴样式（vertical/horizontal/spiral）
 - `@interactive`: 是否可交互
 - `@year`: 年份（负数表示公元前）
@@ -208,20 +229,25 @@
 @animation: idle
 
 ## 基本信息
+
 - **出生**: 公元前259年
 - **在位**: 公元前246年 - 公元前210年
 - **成就**: 统一六国，建立中央集权制度
 
 ## 人物形象
+
 身穿黑色龙袍，头戴冕冠，威严肃穆。
 
 ## 语音旁白
+
 > 朕为始皇帝，后世以计数，二世三世至于万世，传之无穷。
-@voice: /audio/qin-speech-01.mp3
-@speaker: male-authoritative
+> @voice: /audio/qin-speech-01.mp3
+> @speaker: male-authoritative
 
 ## 交互对话
+
 ### 对话选项
+
 1. 询问统一动机
    → 六国纷争，民不聊生。唯有统一，方能天下太平。
    @voice: /audio/qin-answer-01.mp3
@@ -236,6 +262,7 @@
 ```
 
 **角色类型**：
+
 - `emperor` - 皇帝
 - `general` - 将军
 - `scholar` - 学者
@@ -258,30 +285,37 @@
 @scale: 10
 
 ## 历史背景
+
 秦始皇连接并扩建了战国时期各国的北方长城，
 形成了西起临洮、东至辽东的万里长城。
 
 ## 建造信息
+
 - **时间**: 公元前221年开始
 - **长度**: 约5000公里（秦长城）
 - **用途**: 防御北方匈奴
 
 ## 展示模式
+
 @mode: progressive-reveal
 
 ### 阶段1 - 战国长城
+
 @year: -300
 显示各国分散的防御工事
 
 ### 阶段2 - 连接修建
+
 @year: -215
 展示秦朝连接工程
 
 ### 阶段3 - 完整形态
+
 @year: -210
 展示完整的秦长城
 
 ## 交互热点
+
 - [0, 5, -45] 烽火台
   → 点击了解烽火台的作用
   @info: 烽火台用于传递军情...
@@ -305,29 +339,36 @@
 @rarity: common
 
 ## 文物信息
+
 秦代使用的竹简，用于书写法律文书。
 
 ## 详细描述
+
 竹简是将竹片削薄，用绳串连而成。
 这是秦朝统一文字前常用的书写载体。
 
 ## 3D展示
+
 @rotation-speed: 0.5
 @highlight-on-hover: true
 @scale-on-select: 1.2
 
 ## 知识卡片
+
 ### 制作工艺
+
 1. 选竹 - 选择3年生的竹子
 2. 削片 - 削成薄片
 3. 烤干 - 去除水分
 4. 编连 - 用绳串起
 
 ### 历史价值
+
 记录了秦代法律、行政文书，
 是研究秦朝制度的重要实物资料。
 
 ## 相关文物
+
 - 秦律竹简
 - 睡虎地秦简
 - 里耶秦简
@@ -369,6 +410,7 @@
 ```
 
 **触发器类型**：
+
 - `scene-enter` - 进入场景
 - `timeline-complete` - 时间轴完成
 - `object-click` - 点击对象
@@ -389,11 +431,14 @@
 @icon: hand
 
 ## 触发条件
+
 @require:
-  - timeline-progress: 50%
-  - collected-items: [seal, sword]
+
+- timeline-progress: 50%
+- collected-items: [seal, sword]
 
 ## 动作序列
+
 1. 播放开箱动画
    @animation: chest-open
    @duration: 2s
@@ -410,12 +455,14 @@
    @achievement: "考古学家"
 
 ## 反馈文本
+
 你发现了一份珍贵的秦代诏书！
 
 这份诏书记录了秦始皇统一度量衡的命令。
 ```
 
 **交互类型**：
+
 - `click` - 点击
 - `hover` - 悬停
 - `drag` - 拖拽
@@ -436,12 +483,14 @@
 @duration: 3s
 
 ## 效果
+
 - fade-out: 1s
 - particle-effect: time-portal
 - camera-spin: 360deg
 - fade-in: 1s
 
 ## 旁白
+
 @voice: /audio/time-travel.mp3
 让我们穿越时空，回到公元前221年...
 
@@ -456,6 +505,7 @@
 ```
 
 **转场类型**：
+
 - `fade` - 淡入淡出
 - `slide` - 滑动
 - `time-travel` - 时空穿越
@@ -509,18 +559,22 @@
 @points: 50
 
 ## 问题
+
 秦国统一六国的正确顺序是？
 
 ## 选项
+
 A. 韩、赵、魏、楚、燕、齐
 B. 赵、韩、魏、楚、齐、燕
 C. 韩、魏、赵、楚、燕、齐
 D. 魏、赵、韩、楚、燕、齐
 
 ## 答案
+
 @correct: A
 
 ## 解析
+
 秦国统一六国的顺序是：
 韩(前230) → 赵(前228) → 魏(前225) →
 楚(前223) → 燕(前222) → 齐(前221)
@@ -532,15 +586,18 @@ D. 魏、赵、韩、楚、燕、齐
 @trigger: artifact-collection
 
 ## 问题
+
 请将以下文物拖拽到对应的朝代
 
 ## 物品
+
 - 青铜剑 → 秦朝
 - 竹简 → 秦朝
 - 瓷器 → 宋朝
 - 纸张 → 汉朝
 
 ## 正确答案
+
 @correct: [秦朝: [青铜剑, 竹简]]
 ```
 

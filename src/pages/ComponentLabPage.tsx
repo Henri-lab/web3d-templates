@@ -268,7 +268,18 @@ export default function ComponentLabPage() {
   const [activeComponentId, setActiveComponentId] = useState<string | null>(null)
   const [showStats, setShowStats] = useState(true)
   const [showGrid, setShowGrid] = useState(true)
-  const [envPreset, setEnvPreset] = useState<'sunset' | 'dawn' | 'night' | 'warehouse' | 'forest' | 'apartment' | 'studio' | 'city' | 'park' | 'lobby'>('sunset')
+  const [envPreset, setEnvPreset] = useState<
+    | 'sunset'
+    | 'dawn'
+    | 'night'
+    | 'warehouse'
+    | 'forest'
+    | 'apartment'
+    | 'studio'
+    | 'city'
+    | 'park'
+    | 'lobby'
+  >('sunset')
 
   // 获取当前分类的组件
   const categoryComponents = COMPONENT_REGISTRY.filter((c) => c.category === activeCategory)
@@ -299,9 +310,7 @@ export default function ComponentLabPage() {
             ← 返回首页
           </Link>
           <h1 className="text-xl font-bold">Three.js 组件实验室</h1>
-          <p className="text-neutral-400 text-sm mt-1">
-            独立组件的测试与开发环境
-          </p>
+          <p className="text-neutral-400 text-sm mt-1">独立组件的测试与开发环境</p>
         </div>
 
         {/* 分类选择 */}
@@ -353,9 +362,7 @@ export default function ComponentLabPage() {
                     {STATUS_LABELS[comp.status]}
                   </span>
                 </div>
-                <p className="text-xs text-neutral-400 line-clamp-2 mb-2">
-                  {comp.description}
-                </p>
+                <p className="text-xs text-neutral-400 line-clamp-2 mb-2">{comp.description}</p>
                 <div className="flex flex-wrap gap-1">
                   {comp.tags.slice(0, 3).map((tag) => (
                     <span
@@ -459,18 +466,12 @@ export default function ComponentLabPage() {
                 {STATUS_LABELS[activeComponent.status]}
               </span>
             </div>
-            <p className="text-sm text-neutral-400">
-              {activeComponent.description}
-            </p>
+            <p className="text-sm text-neutral-400">{activeComponent.description}</p>
           </div>
         )}
 
         {/* Three.js Canvas */}
-        <Canvas
-          shadows
-          camera={{ position: [5, 5, 5], fov: 50 }}
-          className="w-full h-full"
-        >
+        <Canvas shadows camera={{ position: [5, 5, 5], fov: 50 }} className="w-full h-full">
           {/* 性能统计 */}
           {showStats && <Stats />}
 

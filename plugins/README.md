@@ -112,28 +112,28 @@ stateDiagram-v2
  * 插件元数据
  */
 interface PluginMeta {
-  id: string                    // 唯一标识符
-  name: string                  // 插件名称
-  version: string               // 版本号
-  description: string           // 描述
+  id: string // 唯一标识符
+  name: string // 插件名称
+  version: string // 版本号
+  description: string // 描述
   author: {
     name: string
     email?: string
     url?: string
   }
-  license: string               // 许可证
-  homepage?: string             // 主页
-  repository?: string           // 仓库地址
-  keywords: string[]            // 关键词
-  dependencies?: Record<string, string>  // 依赖
-  peerDependencies?: Record<string, string>  // 对等依赖
+  license: string // 许可证
+  homepage?: string // 主页
+  repository?: string // 仓库地址
+  keywords: string[] // 关键词
+  dependencies?: Record<string, string> // 依赖
+  peerDependencies?: Record<string, string> // 对等依赖
 }
 
 /**
  * 插件配置
  */
 interface PluginConfig {
-  enabled: boolean              // 是否启用
+  enabled: boolean // 是否启用
   settings: Record<string, any> // 自定义设置
 }
 
@@ -343,7 +343,7 @@ class PluginManager {
    * 获取已安装插件列表
    */
   getPlugins(): PluginInfo[] {
-    return Array.from(this.plugins.values()).map(instance => ({
+    return Array.from(this.plugins.values()).map((instance) => ({
       ...instance.definition.meta,
       state: instance.state,
       enabled: instance.config.enabled,
@@ -734,12 +734,14 @@ export default MyPlugin
 ## ✅ 插件系统检查清单
 
 ### 核心架构
+
 - [ ] 插件管理器实现
 - [ ] 生命周期管理
 - [ ] 依赖检查
 - [ ] 版本控制
 
 ### API 设计
+
 - [ ] Scene API
 - [ ] Story API
 - [ ] UI API
@@ -748,6 +750,7 @@ export default MyPlugin
 - [ ] Storage API
 
 ### 官方插件
+
 - [ ] VR 支持插件
 - [ ] AI 语音合成插件
 - [ ] 测验引擎插件
@@ -755,6 +758,7 @@ export default MyPlugin
 - [ ] 数据分析插件
 
 ### 开发者体验
+
 - [ ] 开发文档
 - [ ] 插件模板
 - [ ] CLI 工具

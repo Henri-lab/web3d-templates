@@ -168,9 +168,10 @@ export const entrancePresets = {
     if (!target) return null
 
     const text = target.textContent || ''
-    target.innerHTML = text.split('').map(char =>
-      `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`
-    ).join('')
+    target.innerHTML = text
+      .split('')
+      .map((char) => `<span class="char">${char === ' ' ? '&nbsp;' : char}</span>`)
+      .join('')
 
     return gsap.from(target.querySelectorAll('.char'), {
       opacity: 0,
@@ -294,9 +295,7 @@ export const scrollPresets = {
 
   // 时间轴滚动联动
   timelineScrub: (container: HTMLElement | string, items: HTMLElement[] | string) => {
-    const elements = typeof items === 'string'
-      ? gsap.utils.toArray(items)
-      : items
+    const elements = typeof items === 'string' ? gsap.utils.toArray(items) : items
 
     return gsap.to(elements, {
       scrollTrigger: {
@@ -587,86 +586,95 @@ export function useCameraAnimation() {
   const targetRef = useRef(new THREE.Vector3())
   const isAnimatingRef = useRef(false)
 
-  const animateTo = useCallback((config: CameraAnimationConfig) => {
-    const {
-      position,
-      target,
-      duration = 1.5,
-      ease = 'power2.inOut',
-      onComplete,
-    } = config
+  const animateTo = useCallback(
+    (config: CameraAnimationConfig) => {
+      const { position, target, duration = 1.5, ease = 'power2.inOut', onComplete } = config
 
-    isAnimatingRef.current = true
+      isAnimatingRef.current = true
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        isAnimatingRef.current = false
-        onComplete?.()
-      },
-    })
-
-    if (position) {
-      tl.to(camera.position, {
-        x: position[0],
-        y: position[1],
-        z: position[2],
-        duration,
-        ease,
-      }, 0)
-    }
-
-    if (target) {
-      tl.to(targetRef.current, {
-        x: target[0],
-        y: target[1],
-        z: target[2],
-        duration,
-        ease,
-        onUpdate: () => {
-          camera.lookAt(targetRef.current)
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isAnimatingRef.current = false
+          onComplete?.()
         },
-      }, 0)
-    }
+      })
 
-    return tl
-  }, [camera])
+      if (position) {
+        tl.to(
+          camera.position,
+          {
+            x: position[0],
+            y: position[1],
+            z: position[2],
+            duration,
+            ease,
+          },
+          0,
+        )
+      }
 
-  const shake = useCallback((intensity = 0.1, duration = 0.5) => {
-    const originalPos = camera.position.clone()
+      if (target) {
+        tl.to(
+          targetRef.current,
+          {
+            x: target[0],
+            y: target[1],
+            z: target[2],
+            duration,
+            ease,
+            onUpdate: () => {
+              camera.lookAt(targetRef.current)
+            },
+          },
+          0,
+        )
+      }
 
-    return gsap.to(camera.position, {
-      x: `+=${Math.random() * intensity - intensity / 2}`,
-      y: `+=${Math.random() * intensity - intensity / 2}`,
-      duration: 0.05,
-      repeat: duration / 0.05,
-      yoyo: true,
-      ease: 'none',
-      onComplete: () => {
-        camera.position.copy(originalPos)
-      },
-    })
-  }, [camera])
+      return tl
+    },
+    [camera],
+  )
 
-  const orbit = useCallback((
-    center: [number, number, number],
-    radius: number,
-    duration = 10,
-    loops = -1
-  ) => {
-    let angle = 0
+  const shake = useCallback(
+    (intensity = 0.1, duration = 0.5) => {
+      const originalPos = camera.position.clone()
 
-    return gsap.to({}, {
-      duration,
-      repeat: loops,
-      ease: 'none',
-      onUpdate: function() {
-        angle = this.progress() * Math.PI * 2
-        camera.position.x = center[0] + Math.cos(angle) * radius
-        camera.position.z = center[2] + Math.sin(angle) * radius
-        camera.lookAt(center[0], center[1], center[2])
-      },
-    })
-  }, [camera])
+      return gsap.to(camera.position, {
+        x: `+=${Math.random() * intensity - intensity / 2}`,
+        y: `+=${Math.random() * intensity - intensity / 2}`,
+        duration: 0.05,
+        repeat: duration / 0.05,
+        yoyo: true,
+        ease: 'none',
+        onComplete: () => {
+          camera.position.copy(originalPos)
+        },
+      })
+    },
+    [camera],
+  )
+
+  const orbit = useCallback(
+    (center: [number, number, number], radius: number, duration = 10, loops = -1) => {
+      let angle = 0
+
+      return gsap.to(
+        {},
+        {
+          duration,
+          repeat: loops,
+          ease: 'none',
+          onUpdate: function () {
+            angle = this.progress() * Math.PI * 2
+            camera.position.x = center[0] + Math.cos(angle) * radius
+            camera.position.z = center[2] + Math.sin(angle) * radius
+            camera.lookAt(center[0], center[1], center[2])
+          },
+        },
+      )
+    },
+    [camera],
+  )
 
   return { animateTo, shake, orbit, isAnimating: isAnimatingRef.current }
 }
@@ -686,9 +694,10 @@ export const pageTransitions = {
   // 淡入淡出
   fade: {
     enter: (element: HTMLElement) => {
-      return gsap.fromTo(element,
+      return gsap.fromTo(
+        element,
         { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: 'power2.inOut' }
+        { opacity: 1, duration: 0.5, ease: 'power2.inOut' },
       )
     },
     exit: (element: HTMLElement) => {
@@ -700,9 +709,10 @@ export const pageTransitions = {
   slide: {
     enter: (element: HTMLElement, direction: 'left' | 'right' = 'right') => {
       const x = direction === 'right' ? '100%' : '-100%'
-      return gsap.fromTo(element,
+      return gsap.fromTo(
+        element,
         { x, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' }
+        { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
       )
     },
     exit: (element: HTMLElement, direction: 'left' | 'right' = 'left') => {
@@ -714,9 +724,10 @@ export const pageTransitions = {
   // 缩放转场
   zoom: {
     enter: (element: HTMLElement) => {
-      return gsap.fromTo(element,
+      return gsap.fromTo(
+        element,
         { scale: 1.2, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6, ease: 'power2.out' }
+        { scale: 1, opacity: 1, duration: 0.6, ease: 'power2.out' },
       )
     },
     exit: (element: HTMLElement) => {
@@ -828,19 +839,22 @@ export const sceneTransitions = {
     startAngle: number,
     endAngle: number,
     radius: number,
-    duration = 2
+    duration = 2,
   ) => {
-    return gsap.to({ angle: startAngle }, {
-      angle: endAngle,
-      duration,
-      ease: 'power2.inOut',
-      onUpdate: function() {
-        const angle = this.targets()[0].angle
-        camera.position.x = center.x + Math.cos(angle) * radius
-        camera.position.z = center.z + Math.sin(angle) * radius
-        camera.lookAt(center)
+    return gsap.to(
+      { angle: startAngle },
+      {
+        angle: endAngle,
+        duration,
+        ease: 'power2.inOut',
+        onUpdate: function () {
+          const angle = this.targets()[0].angle
+          camera.position.x = center.x + Math.cos(angle) * radius
+          camera.position.z = center.z + Math.sin(angle) * radius
+          camera.lookAt(center)
+        },
       },
-    })
+    )
   },
 
   // 场景淡入淡出
@@ -864,7 +878,7 @@ export const sceneTransitions = {
 
   // 物体飞入效果
   objectFlyIn: (objects: THREE.Object3D[], origin: THREE.Vector3, stagger = 0.1) => {
-    const targets = objects.map(obj => ({
+    const targets = objects.map((obj) => ({
       obj,
       targetPos: obj.position.clone(),
     }))
@@ -877,7 +891,7 @@ export const sceneTransitions = {
       duration: 1,
       stagger,
       ease: 'back.out(1.7)',
-      onUpdate: function() {
+      onUpdate: function () {
         targets.forEach(({ obj, targetPos }, i) => {
           const progress = this.progress()
           obj.position.lerpVectors(origin, targetPos, progress)
@@ -1093,24 +1107,28 @@ export function LoadingSpinner({
 ## ✅ 动效层检查清单
 
 ### GSAP 动画
+
 - [ ] 入场动画预设完整
 - [ ] 滚动触发动画配置
 - [ ] 悬停效果实现
 - [ ] 自定义缓动函数
 
 ### Three.js 特效
+
 - [ ] 粒子系统
 - [ ] 后处理效果
 - [ ] 相机动画
 - [ ] 物体动画
 
 ### 转场系统
+
 - [ ] 页面转场效果
 - [ ] 3D 场景转场
 - [ ] 转场时序控制
 - [ ] 转场中断处理
 
 ### 微交互
+
 - [ ] 按钮交互效果
 - [ ] 加载动画
 - [ ] 反馈动画
