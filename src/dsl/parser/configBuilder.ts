@@ -1,5 +1,7 @@
-import { StoryNode, SceneNode, CharacterNode, ArtifactNode, TimelineEventNode, QuizNode } from './parser'
-import type { Story, Scene, Character, Artifact, TimelineEvent, Quiz, QuizQuestion, Narration } from '@/types'
+import type { StoryNode, SceneNode, CharacterNode, ArtifactNode, QuizNode } from './index'
+import type { Story, Scene, Character, Artifact, TimelineEvent, Quiz } from '@/types'
+
+type InteractionActionType = NonNullable<Scene['interactions']>[number]['action']['type']
 
 export class ConfigBuilder {
   private storyNode: StoryNode
@@ -19,10 +21,10 @@ export class ConfigBuilder {
       thumbnail: (this.storyNode.attributes.thumbnail as string) || '/images/default-thumbnail.jpg',
       description: (this.storyNode.attributes.description as string) || '',
       tags: (this.storyNode.attributes.tags as string[]) || [],
-      scenes: this.storyNode.scenes.map((s) => this.buildScene(s)),
+      scenes: this.storyNode.scenes.map((s: SceneNode) => this.buildScene(s)),
       timeline: this.buildTimeline(),
-      characters: this.storyNode.characters.map((c) => this.buildCharacter(c)),
-      artifacts: this.storyNode.artifacts.map((a) => this.buildArtifact(a)),
+      characters: this.storyNode.characters.map((c: CharacterNode) => this.buildCharacter(c)),
+      artifacts: this.storyNode.artifacts.map((a: ArtifactNode) => this.buildArtifact(a)),
       quiz: this.storyNode.quiz ? this.buildQuiz(this.storyNode.quiz) : undefined,
       preloadAssets: this.storyNode.attributes.preload as string[],
       lazyLoadAssets: this.storyNode.attributes['lazy-load'] as string[],
@@ -53,10 +55,10 @@ export class ConfigBuilder {
         type: (i.attributes.type as 'click' | 'hover' | 'drag' | 'proximity') || 'click',
         targetId: i.attributes.target as string,
         action: {
-          type: (i.attributes.action as string) || 'showInfo',
-          payload: i.attributes.payload as Record<string, unknown>,
+          type: ((i.attributes.action as string) || 'showInfo') as InteractionActionType,
+          payload: (i.attributes.payload as Record<string, unknown>) || {},
         },
-        feedback: i.attributes.feedback as string,
+        feedback: (i.attributes.feedback as string) || '',
       })),
       music: node.attributes.music as string,
       ambientSound: node.attributes.ambient as string,
@@ -124,10 +126,10 @@ export class ConfigBuilder {
   }
 
   // 辅助方法
-  private extractDescription(content: Array<{ type: string; value: unknown }>): string {
+  private extractDescription(content: Array<{ type: string; value?: unknown }>): string {
     return content
       .filter((c) => c.type === 'text')
-      .map((c) => c.value)
+      .map((c) => c.value ?? '')
       .join('\n')
   }
 

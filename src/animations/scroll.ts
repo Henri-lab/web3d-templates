@@ -1,9 +1,10 @@
-import { gsap, ScrollTrigger } from './gsap.config'
+import { gsap } from './gsap.config'
 
 type AnimationTarget = HTMLElement | string | null
 
 interface ScrollOptions {
-  scrollTrigger?: ScrollTrigger.Vars
+  // 这里用 any 简化 ScrollTrigger 配置类型，避免引入额外类型依赖
+  scrollTrigger?: any
   [key: string]: unknown
 }
 

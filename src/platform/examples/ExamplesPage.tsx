@@ -2,7 +2,7 @@
  * 平台功能演示页面 - 简化版
  */
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { usePlatform } from '../PlatformProvider'
 
 export default function ExamplesPage() {
@@ -17,7 +17,7 @@ export default function ExamplesPage() {
 
   // 测试模块管理
   const handleListModules = () => {
-    const modules = platform.moduleRegistry.getAll()
+    const modules = platform.modules
     setEventLog(prev => [
       ...prev,
       `已注册模块: ${modules.map(m => m.id).join(', ')}`
@@ -26,7 +26,7 @@ export default function ExamplesPage() {
 
   // 测试状态机
   const handleCheckState = () => {
-    const snapshot = platform.stateService.getSnapshot()
+    const snapshot = platform.getSnapshot()
     setEventLog(prev => [
       ...prev,
       `当前状态: ${JSON.stringify(snapshot.value)}`
@@ -83,7 +83,7 @@ export default function ExamplesPage() {
           <div className="bg-neutral-800 rounded-lg p-6 border border-neutral-700">
             <h3 className="text-xl font-bold mb-3 text-purple-400">🎯 状态机</h3>
             <p className="text-sm text-gray-400 mb-4">
-              XState驱动的状态管理
+              Zustand 驱动的轻量状态管理
             </p>
             <button
               onClick={handleCheckState}
@@ -113,7 +113,7 @@ export default function ExamplesPage() {
             <div>
               <span className="text-gray-400">已注册模块:</span>
               <span className="ml-2 text-white">
-                {platform.moduleRegistry.getAll().length} 个
+                {platform.modules.length} 个
               </span>
             </div>
           </div>

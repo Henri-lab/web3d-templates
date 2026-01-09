@@ -1,8 +1,8 @@
 import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Button, StoryCard } from '@/components/ui'
-import { useAppStore, useProgressStore } from '@/stores'
+import { StoryCard } from '@/components/ui'
+import { useProgressStore } from '@/stores/progressStore'
 import type { Story } from '@/types'
 
 // 示例故事数据

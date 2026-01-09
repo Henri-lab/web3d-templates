@@ -2,7 +2,9 @@
 
 ## 📋 概述
 
-本指南将帮助你将现有的单体应用迁移到新的中台架构。
+本指南基于最初的 **XState + Module Federation 微前端方案** 编写。
+当前示例项目已经提供了一个更稳健的实现：**配置驱动 + Zustand + 本地模块**。
+如果你只打算使用当前仓库的内置中台（不拆分为独立部署的远程模块），可以将本指南视为历史/进阶参考。当前实际运行架构以 `src/platform/core/platform.ts` 和 `src/platform/config/platform.config.ts` 为准。
 
 ---
 

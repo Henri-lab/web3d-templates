@@ -1,5 +1,4 @@
 import { Token, TokenType, tokenize } from '../tokenizer'
-import type { Story, Scene, Character, Artifact, TimelineEvent, Quiz, QuizQuestion, Narration } from '@/types'
 
 // AST 节点类型
 export interface ASTNode {
@@ -18,7 +17,7 @@ export interface StoryNode extends ASTNode {
   scenes: SceneNode[]
   characters: CharacterNode[]
   artifacts: ArtifactNode[]
-  timeline: TimelineNode[]
+  timeline: TimelineEventNode[]
   quiz?: QuizNode
 }
 
@@ -88,7 +87,6 @@ export interface QuizQuestionNode extends ASTNode {
 export class Parser {
   private tokens: Token[]
   private position: number = 0
-  private currentStory: StoryNode | null = null
 
   constructor(tokens: Token[]) {
     this.tokens = tokens
@@ -120,8 +118,6 @@ export class Parser {
       artifacts: [],
       timeline: [],
     }
-
-    this.currentStory = storyNode
 
     // 收集属性
     while (this.check('ATTRIBUTE')) {
@@ -304,7 +300,7 @@ export class Parser {
   }
 
   private parseNarration(): NarrationNode {
-    const narrationToken = this.advance()
+    this.advance() // 跳过 #narration 标记
     const narrationNode: NarrationNode = {
       type: 'narration',
       text: '',

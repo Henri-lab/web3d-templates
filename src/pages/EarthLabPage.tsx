@@ -8,7 +8,7 @@
  * 如需使用 Cesium Ion 的高级功能（如地形、3D Tiles），需要注册获取免费 token
  */
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 // Cesium 实验项目类型

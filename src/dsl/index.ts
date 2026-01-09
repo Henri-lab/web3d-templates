@@ -1,5 +1,5 @@
 import { tokenize } from './tokenizer'
-import { parse, StoryNode } from './parser'
+import { parse } from './parser'
 import { buildConfig } from './parser/configBuilder'
 import type { Story } from '@/types'
 

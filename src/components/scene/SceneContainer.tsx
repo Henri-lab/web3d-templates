@@ -2,7 +2,7 @@ import { Suspense, useRef, useEffect } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import { OrbitControls, Preload, AdaptiveDpr, AdaptiveEvents } from '@react-three/drei'
 import * as THREE from 'three'
-import { useSceneStore, useSettingsStore } from '@/stores'
+import { useSceneStore } from '@/stores'
 
 interface SceneContainerProps {
   children: React.ReactNode
@@ -50,7 +50,6 @@ export function SceneContainer({
   onCreated,
 }: SceneContainerProps) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const settings = useSettingsStore((s) => s.settings)
   const quality = useSceneStore((s) => s.quality)
 
   const qualityConfig = {

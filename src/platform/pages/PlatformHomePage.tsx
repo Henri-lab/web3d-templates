@@ -2,7 +2,6 @@
  * 中台首页 - 模块入口展示
  */
 
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { usePlatform } from '../PlatformProvider'
 
@@ -24,8 +23,8 @@ const moduleColors: Record<string, string> = {
 
 export default function PlatformHomePage() {
   const platform = usePlatform()
-  const modules = platform.moduleRegistry.getAll()
-  const snapshot = platform.stateService.getSnapshot()
+  const modules = platform.modules
+  const snapshot = platform.getSnapshot()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white">
@@ -60,9 +59,10 @@ export default function PlatformHomePage() {
             欢迎使用中台系统
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            这是一个基于 <span className="text-blue-400">Vite Module Federation</span> +
-            <span className="text-purple-400"> XState</span> 的微前端中台架构。
-            每个模块都可以独立开发、独立部署。
+            这是一个基于<span className="text-blue-400"> 配置驱动</span>、
+            <span className="text-purple-400"> Zustand 状态管理</span> 和
+            <span className="text-emerald-400"> 事件总线</span>的本地模块中台架构。
+            所有功能模块都在同一应用内以配置方式挂载，简单可靠。
           </p>
         </section>
 
@@ -163,10 +163,10 @@ export default function PlatformHomePage() {
 
         {/* 平台信息 */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* 状态机 */}
+          {/* 平台状态 */}
           <div className="bg-neutral-800 rounded-xl p-6 border border-neutral-700">
             <h4 className="text-lg font-bold mb-4 flex items-center gap-2">
-              <span>🎯</span> 状态机
+              <span>🎯</span> 平台状态
             </h4>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
@@ -238,16 +238,16 @@ export default function PlatformHomePage() {
               <p className="text-sm text-gray-400">所有模块通过配置文件注册，无需修改代码即可添加新模块</p>
             </div>
             <div>
-              <h4 className="font-bold text-purple-400 mb-2">状态机管理</h4>
-              <p className="text-sm text-gray-400">使用XState实现可视化状态管理，状态转换可预测</p>
+              <h4 className="font-bold text-purple-400 mb-2">状态管理</h4>
+              <p className="text-sm text-gray-400">使用 Zustand 实现轻量状态管理，结构简单、易于调试</p>
             </div>
             <div>
               <h4 className="font-bold text-green-400 mb-2">事件解耦</h4>
               <p className="text-sm text-gray-400">模块间通过事件总线通信，零依赖，灵活扩展</p>
             </div>
             <div>
-              <h4 className="font-bold text-amber-400 mb-2">独立部署</h4>
-              <p className="text-sm text-gray-400">每个模块可以独立开发、独立部署、独立版本管理</p>
+              <h4 className="font-bold text-amber-400 mb-2">本地模块</h4>
+              <p className="text-sm text-gray-400">模块以本地页面形式接入，避免远程加载带来的复杂度和不稳定性</p>
             </div>
           </div>
         </section>
@@ -255,7 +255,7 @@ export default function PlatformHomePage() {
 
       {/* 底部 */}
       <footer className="border-t border-neutral-700 mt-16 py-8 text-center text-gray-500 text-sm">
-        <p>History3D Learning Platform · 中台系统 · Powered by Vite + XState + Module Federation</p>
+        <p>History3D Learning Platform · 中台系统 · Powered by Vite + Zustand + Local Modules</p>
       </footer>
     </div>
   )

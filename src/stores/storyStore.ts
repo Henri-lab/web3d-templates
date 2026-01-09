@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
-import type { Story, Scene, Character, Artifact, TimelineEvent } from '@/types'
+import type { Story, Scene, Character, Artifact } from '@/types'
 
 interface StoryStore {
   // 当前故事

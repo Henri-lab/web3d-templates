@@ -10,7 +10,7 @@
 
 import { useRef, useState, Suspense } from 'react'
 import { useFrame } from '@react-three/fiber'
-import { useGLTF, Html, useProgress, Center } from '@react-three/drei'
+import { Html, useProgress } from '@react-three/drei'
 import * as THREE from 'three'
 
 // 加载进度显示组件
@@ -29,30 +29,6 @@ function LoadingIndicator() {
         <div className="text-xs text-gray-400 mt-1">{progress.toFixed(0)}%</div>
       </div>
     </Html>
-  )
-}
-
-// 示例模型组件 - 使用 drei 内置的简单模型
-function DemoModel({ position }: { position: [number, number, number] }) {
-  const meshRef = useRef<THREE.Mesh>(null)
-
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.3
-    }
-  })
-
-  return (
-    <mesh ref={meshRef} position={position} castShadow receiveShadow>
-      <torusKnotGeometry args={[0.6, 0.2, 128, 32]} />
-      <meshPhysicalMaterial
-        color="#4a90d9"
-        metalness={0.9}
-        roughness={0.1}
-        clearcoat={1}
-        clearcoatRoughness={0.1}
-      />
-    </mesh>
   )
 }
 

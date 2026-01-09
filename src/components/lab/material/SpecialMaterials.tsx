@@ -8,7 +8,7 @@
  * - 扫描线效果
  */
 
-import { useRef, useMemo } from 'react'
+import { useRef } from 'react'
 import { useFrame, extend } from '@react-three/fiber'
 import * as THREE from 'three'
 

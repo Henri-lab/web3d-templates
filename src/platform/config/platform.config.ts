@@ -1,14 +1,14 @@
 /**
- * 中台平台配置文件
+ * 中台平台配置文件 - 稳健版本
  *
  * 设计原则：
  * 1. 配置优先 - 所有模块通过配置注册
  * 2. 类型安全 - 完整的TypeScript类型定义
- * 3. 可扩展 - 支持动态添加模块
+ * 3. 简单可靠 - 移除复杂的远程加载
  * 4. 声明式 - 描述"是什么"而非"怎么做"
  */
 
-import type { PlatformConfig, ModuleConfig, ModuleLifecycle } from './types'
+import type { PlatformConfig, ModuleConfig } from './types'
 
 /**
  * 平台全局配置
@@ -16,26 +16,15 @@ import type { PlatformConfig, ModuleConfig, ModuleLifecycle } from './types'
 export const platformConfig: PlatformConfig = {
   // 平台基本信息
   name: 'History3D Learning Platform',
-  version: '2.0.0',
-  mode: 'development', // 'development' | 'production'
+  version: '2.1.0-stable',
+  mode: 'development',
 
   // 主应用配置
   shell: {
     port: 5173,
     basePath: '/',
     title: '历史3D学习平台',
-
-    // 共享依赖配置
-    shared: {
-      react: { singleton: true, requiredVersion: '^18.2.0' },
-      'react-dom': { singleton: true, requiredVersion: '^18.2.0' },
-      'react-router-dom': { singleton: true, requiredVersion: '^6.21.0' },
-      three: { singleton: true, requiredVersion: '^0.160.0' },
-      '@react-three/fiber': { singleton: true, requiredVersion: '^8.15.0' },
-      '@react-three/drei': { singleton: true, requiredVersion: '^9.92.0' },
-      zustand: { singleton: true, requiredVersion: '^4.4.0' },
-      gsap: { singleton: true, requiredVersion: '^3.12.0' },
-    },
+    shared: {},
   },
 
   // 模块注册表
@@ -43,15 +32,15 @@ export const platformConfig: PlatformConfig = {
 
   // 路由配置
   routing: {
-    mode: 'browser', // 'browser' | 'hash'
+    mode: 'browser',
     basename: '/',
     fallback: '/404',
   },
 
-  // 状态机配置
+  // 状态配置（简化版，使用Zustand）
   stateMachine: {
-    initialState: 'loading',
-    persistState: true,
+    initialState: 'ready',
+    persistState: false,
     devTools: true,
   },
 
@@ -64,8 +53,8 @@ export const platformConfig: PlatformConfig = {
   // 性能配置
   performance: {
     lazyLoad: true,
-    preload: [], // 暂时不预加载远程模块（子模块还未创建）
-    cacheStrategy: 'memory', // 'memory' | 'localStorage'
+    preload: [],
+    cacheStrategy: 'memory',
   },
 
   // 开发工具
@@ -77,205 +66,24 @@ export const platformConfig: PlatformConfig = {
 }
 
 /**
- * 模块配置注册
+ * 模块配置注册 - 稳健版本
  *
- * 每个模块都是独立的微前端应用，可以：
- * - 独立开发和部署
- * - 通过事件总线通信
- * - 共享平台能力
+ * 所有模块都是本地模块，简单可靠
  */
 export const moduleConfigs: ModuleConfig[] = [
-  // 故事模块
-  {
-    id: 'story',
-    name: '历史故事',
-    version: '1.0.0',
-
-    // 模块类型
-    type: 'remote', // 'local' | 'remote' | 'iframe'
-
-    // 远程入口（Module Federation）
-    entry: 'http://localhost:5174/remoteEntry.js',
-
-    // 路由配置
-    routes: [
-      {
-        path: '/stories',
-        component: 'StorySelectionPage',
-        meta: {
-          title: '选择故事',
-          requiresAuth: false,
-        },
-      },
-      {
-        path: '/story/:storyId',
-        component: 'StoryPlayerPage',
-        meta: {
-          title: '故事播放',
-          requiresAuth: false,
-        },
-      },
-    ],
-
-    // 导航菜单
-    menu: {
-      title: '历史故事',
-      icon: 'book',
-      order: 1,
-      visible: true,
-    },
-
-    // 模块能力声明
-    capabilities: {
-      // 提供的能力
-      provides: [
-        'story.play',
-        'story.pause',
-        'story.getProgress',
-      ],
-      // 依赖的能力
-      requires: [
-        'platform.eventBus',
-        'platform.stateManager',
-      ],
-    },
-
-    // 生命周期钩子
-    lifecycle: {
-      beforeLoad: async () => {
-        console.log('[Story Module] Before load')
-      },
-      onLoad: async () => {
-        console.log('[Story Module] Loaded')
-      },
-      onMount: async () => {
-        console.log('[Story Module] Mounted')
-      },
-      onUnmount: async () => {
-        console.log('[Story Module] Unmounted')
-      },
-      onError: async (error) => {
-        console.error('[Story Module] Error:', error)
-      },
-    },
-
-    // 模块配置
-    config: {
-      maxStories: 100,
-      autoSave: true,
-      enableAnalytics: true,
-    },
-
-    // 状态配置
-    state: {
-      namespace: 'story',
-      persist: true,
-    },
-  },
-
-  // 实验室模块
-  {
-    id: 'lab',
-    name: '组件实验室',
-    version: '1.0.0',
-    type: 'remote',
-    entry: 'http://localhost:5175/remoteEntry.js',
-
-    routes: [
-      {
-        path: '/lab',
-        component: 'ComponentLabPage',
-        meta: {
-          title: '组件实验室',
-          requiresAuth: false,
-        },
-      },
-    ],
-
-    menu: {
-      title: '实验室',
-      icon: 'flask',
-      order: 2,
-      visible: true,
-    },
-
-    capabilities: {
-      provides: ['lab.showcase', 'lab.export'],
-      requires: ['platform.eventBus'],
-    },
-
-    lifecycle: {},
-
-    config: {
-      enableLeva: true,
-      showCode: true,
-    },
-
-    state: {
-      namespace: 'lab',
-      persist: false,
-    },
-  },
-
-  // 地球模块
-  {
-    id: 'earth',
-    name: '地球可视化',
-    version: '1.0.0',
-    type: 'remote',
-    entry: 'http://localhost:5176/remoteEntry.js',
-
-    routes: [
-      {
-        path: '/earth',
-        component: 'EarthLabPage',
-        meta: {
-          title: '地球实验室',
-          requiresAuth: false,
-        },
-      },
-    ],
-
-    menu: {
-      title: '地球',
-      icon: 'globe',
-      order: 3,
-      visible: true,
-    },
-
-    capabilities: {
-      provides: ['earth.visualize', 'earth.getData'],
-      requires: ['platform.eventBus'],
-    },
-
-    lifecycle: {},
-
-    config: {
-      enableCesium: false,
-      useThreeJS: true,
-    },
-
-    state: {
-      namespace: 'earth',
-      persist: false,
-    },
-  },
-
-  // 欢迎页模块（本地模块示例）
+  // 首页模块
   {
     id: 'welcome',
-    name: '欢迎页',
+    name: '首页',
+    description: '平台首页，模块导航入口',
     version: '1.0.0',
-    type: 'local', // 本地模块，不需要远程加载
+    type: 'local',
 
     routes: [
       {
         path: '/',
         component: 'WelcomePage',
-        meta: {
-          title: '欢迎',
-          requiresAuth: false,
-        },
+        meta: { title: '首页' },
       },
     ],
 
@@ -288,17 +96,154 @@ export const moduleConfigs: ModuleConfig[] = [
 
     capabilities: {
       provides: [],
+      requires: [],
+    },
+
+    lifecycle: {},
+    config: {},
+    state: { namespace: 'welcome', persist: false },
+  },
+
+  // 故事模块
+  {
+    id: 'story',
+    name: '历史故事',
+    description: '沉浸式3D历史故事学习',
+    version: '1.0.0',
+    type: 'local',
+
+    routes: [
+      {
+        path: '/stories',
+        component: 'StorySelectionPage',
+        meta: { title: '选择故事' },
+      },
+      {
+        path: '/story/:storyId',
+        component: 'StoryPlayerPage',
+        meta: { title: '故事播放' },
+      },
+    ],
+
+    menu: {
+      title: '历史故事',
+      icon: 'book',
+      order: 1,
+      visible: true,
+    },
+
+    capabilities: {
+      provides: ['story.play', 'story.pause'],
       requires: ['platform.eventBus'],
     },
 
     lifecycle: {},
+    config: { maxStories: 100 },
+    state: { namespace: 'story', persist: true },
+  },
 
-    config: {},
+  // 实验室模块
+  {
+    id: 'lab',
+    name: '组件实验室',
+    description: 'Three.js组件展示与实验',
+    version: '1.0.0',
+    type: 'local',
 
-    state: {
-      namespace: 'welcome',
-      persist: false,
+    routes: [
+      {
+        path: '/lab',
+        component: 'ComponentLabPage',
+        meta: { title: '组件实验室' },
+      },
+    ],
+
+    menu: {
+      title: '实验室',
+      icon: 'flask',
+      order: 2,
+      visible: true,
     },
+
+    capabilities: {
+      provides: ['lab.showcase'],
+      requires: ['platform.eventBus'],
+    },
+
+    lifecycle: {},
+    config: { enableLeva: true },
+    state: { namespace: 'lab', persist: false },
+  },
+
+  // 地球模块
+  {
+    id: 'earth',
+    name: '地球可视化',
+    description: '全球数据可视化展示',
+    version: '1.0.0',
+    type: 'local',
+
+    routes: [
+      {
+        path: '/earth',
+        component: 'EarthLabPage',
+        meta: { title: '地球可视化' },
+      },
+    ],
+
+    menu: {
+      title: '地球',
+      icon: 'globe',
+      order: 3,
+      visible: true,
+    },
+
+    capabilities: {
+      provides: ['earth.visualize'],
+      requires: ['platform.eventBus'],
+    },
+
+    lifecycle: {},
+    config: { useThreeJS: true },
+    state: { namespace: 'earth', persist: false },
+  },
+
+  // 平台管理模块
+  {
+    id: 'platform',
+    name: '平台管理',
+    description: '平台配置与状态管理',
+    version: '1.0.0',
+    type: 'local',
+
+    routes: [
+      {
+        path: '/platform',
+        component: 'PlatformHomePage',
+        meta: { title: '平台管理' },
+      },
+      {
+        path: '/platform-examples',
+        component: 'ExamplesPage',
+        meta: { title: 'API演示' },
+      },
+    ],
+
+    menu: {
+      title: '平台管理',
+      icon: 'settings',
+      order: 99,
+      visible: true,
+    },
+
+    capabilities: {
+      provides: ['platform.config', 'platform.status'],
+      requires: [],
+    },
+
+    lifecycle: {},
+    config: {},
+    state: { namespace: 'platform', persist: false },
   },
 ]
 
@@ -310,28 +255,6 @@ platformConfig.modules = moduleConfigs
  */
 export function getModuleConfig(moduleId: string): ModuleConfig | undefined {
   return moduleConfigs.find(m => m.id === moduleId)
-}
-
-/**
- * 获取所有远程模块
- */
-export function getRemoteModules(): ModuleConfig[] {
-  return moduleConfigs.filter(m => m.type === 'remote')
-}
-
-/**
- * 获取所有本地模块
- */
-export function getLocalModules(): ModuleConfig[] {
-  return moduleConfigs.filter(m => m.type === 'local')
-}
-
-/**
- * 获取模块路由
- */
-export function getModuleRoutes(moduleId: string) {
-  const module = getModuleConfig(moduleId)
-  return module?.routes || []
 }
 
 /**
@@ -353,6 +276,7 @@ export function getNavigationMenu() {
       title: m.menu.title,
       icon: m.menu.icon,
       path: m.routes[0]?.path || '/',
+      description: m.description,
     }))
 }
 

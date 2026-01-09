@@ -1,5 +1,3 @@
-import { useRef, useMemo } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
 import {
   EffectComposer,
   Bloom,
@@ -39,39 +37,50 @@ export function PostProcessing({
   focusDistance = 0,
   focalLength = 0.02,
   bokehScale = 2,
-}: PostProcessingProps) {
+}: PostProcessingProps): JSX.Element {
   const quality = useSceneStore((s) => s.quality)
 
   // 低质量模式下禁用后处理
-  if (quality === 'low') return null
+  if (quality === 'low') {
+    // 低质量模式下不渲染任何后处理
+    return <></>
+  }
 
   return (
     <EffectComposer>
-      {bloom && (
-        <Bloom
-          intensity={bloomIntensity}
-          luminanceThreshold={bloomThreshold}
-          luminanceSmoothing={0.9}
-          blendFunction={BlendFunction.ADD}
-        />
-      )}
+      {bloom &&
+        ((
+          <Bloom
+            intensity={bloomIntensity}
+            luminanceThreshold={bloomThreshold}
+            luminanceSmoothing={0.9}
+            blendFunction={BlendFunction.ADD}
+          />
+        ) as any)}
 
-      {vignette && <Vignette offset={vignetteOffset} darkness={vignetteDarkness} />}
+      {vignette &&
+        ((
+          <Vignette offset={vignetteOffset} darkness={vignetteDarkness} />
+        ) as any)}
 
-      {chromaticAberration && (
-        <ChromaticAberration
-          offset={new THREE.Vector2(chromaticOffset, chromaticOffset)}
-          blendFunction={BlendFunction.NORMAL}
-        />
-      )}
+      {chromaticAberration &&
+        ((
+          <ChromaticAberration
+            offset={new THREE.Vector2(chromaticOffset, chromaticOffset)}
+            blendFunction={BlendFunction.NORMAL}
+            radialModulation={false}
+            modulationOffset={0}
+          />
+        ) as any)}
 
-      {depthOfField && (
-        <DepthOfField
-          focusDistance={focusDistance}
-          focalLength={focalLength}
-          bokehScale={bokehScale}
-        />
-      )}
+      {depthOfField &&
+        ((
+          <DepthOfField
+            focusDistance={focusDistance}
+            focalLength={focalLength}
+            bokehScale={bokehScale}
+          />
+        ) as any)}
     </EffectComposer>
   )
 }

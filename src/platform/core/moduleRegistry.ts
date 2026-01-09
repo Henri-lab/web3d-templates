@@ -8,12 +8,10 @@
  * 4. 错误隔离 - 模块错误不影响其他模块
  */
 
-import React from 'react'
 import type {
   ModuleConfig,
   ModuleInstance,
   ModuleStatus,
-  PlatformAPI,
 } from '../config/types'
 import { globalEventBus, PlatformEvents } from './eventBus'
 
@@ -22,11 +20,8 @@ import { globalEventBus, PlatformEvents } from './eventBus'
  */
 export class ModuleRegistry {
   private modules: Map<string, ModuleInstance> = new Map()
-  private platformAPI: PlatformAPI
-
-  constructor(platformAPI: PlatformAPI) {
-    this.platformAPI = platformAPI
-  }
+  // 稳健版中暂不依赖 PlatformAPI（保留简单的本地模块注册与加载）
+  constructor() {}
 
   /**
    * 注册模块
@@ -91,20 +86,8 @@ export class ModuleRegistry {
         await instance.config.lifecycle.beforeLoad()
       }
 
-      // 根据模块类型加载
-      switch (instance.config.type) {
-        case 'local':
-          await this.loadLocalModule(instance)
-          break
-        case 'remote':
-          await this.loadRemoteModule(instance)
-          break
-        case 'iframe':
-          await this.loadIframeModule(instance)
-          break
-        default:
-          throw new Error(`Unknown module type: ${instance.config.type}`)
-      }
+      // 稳健版仅支持本地模块加载
+      await this.loadLocalModule(instance)
 
       // 执行 onLoad 钩子
       if (instance.config.lifecycle.onLoad) {
@@ -245,65 +228,13 @@ export class ModuleRegistry {
     }
   }
 
-  /**
-   * 加载远程模块（Module Federation）
-   */
-  private async loadRemoteModule(instance: ModuleInstance): Promise<void> {
-    if (!instance.config.entry) {
-      throw new Error(`Remote module ${instance.id} missing entry URL`)
-    }
-
-    try {
-      // 动态加载远程模块
-      // @ts-ignore - Module Federation 运行时注入
-      const container = window[instance.id]
-
-      if (!container) {
-        throw new Error(`Remote container ${instance.id} not found`)
-      }
-
-      // 初始化容器
-      await container.init(__webpack_share_scopes__.default)
-
-      // 获取模块
-      const factory = await container.get(instance.config.routes[0]?.component)
-      const module = factory()
-
-      instance.component = module.default || module[instance.config.routes[0]?.component]
-    } catch (error) {
-      console.error(`Failed to load remote module ${instance.id}:`, error)
-      throw error
-    }
-  }
-
-  /**
-   * 加载 iframe 模块
-   */
-  private async loadIframeModule(instance: ModuleInstance): Promise<void> {
-    if (!instance.config.iframeUrl) {
-      throw new Error(`Iframe module ${instance.id} missing iframe URL`)
-    }
-
-    // iframe 模块不需要预加载组件
-    // 组件会在渲染时创建 iframe
-    instance.component = () => {
-      return React.createElement('iframe', {
-        src: instance.config.iframeUrl,
-        style: {
-          width: '100%',
-          height: '100%',
-          border: 'none',
-        },
-      })
-    }
-  }
 }
 
 /**
  * 创建全局模块注册中心
  */
-export function createModuleRegistry(platformAPI: PlatformAPI): ModuleRegistry {
-  return new ModuleRegistry(platformAPI)
+export function createModuleRegistry(): ModuleRegistry {
+  return new ModuleRegistry()
 }
 
 export default ModuleRegistry

@@ -8,8 +8,8 @@
  * - 运动模糊
  */
 
-import { useRef, useMemo } from 'react'
-import { useFrame, useThree } from '@react-three/fiber'
+import { useRef } from 'react'
+import { useFrame } from '@react-three/fiber'
 import { Html, MeshReflectorMaterial, Float, Sparkles } from '@react-three/drei'
 import * as THREE from 'three'
 

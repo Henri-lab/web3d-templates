@@ -2,11 +2,9 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { Suspense, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SceneContainer } from '@/components/scene/SceneContainer'
-import { GLTFModel } from '@/components/scene/GLTFModel'
 import { Particles } from '@/components/effects/Particles'
 import { PostProcessing } from '@/components/effects/PostProcessing'
-import { Button, Timeline, CompactTimeline, LoadingSpinner } from '@/components/ui'
-import { useStoryStore, useAppStore } from '@/stores'
+import { Button, CompactTimeline } from '@/components/ui'
 import type { TimelineEvent } from '@/types'
 
 // 示例时间轴数据
@@ -54,7 +52,7 @@ function DemoScene() {
 }
 
 export default function StoryPlayerPage() {
-  const { storyId } = useParams()
+  useParams() // 当前示例场景未使用路由参数，先调用以保持接口稳定
   const navigate = useNavigate()
   const [currentTimelineIndex, setCurrentTimelineIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)

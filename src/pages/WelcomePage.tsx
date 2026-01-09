@@ -63,7 +63,7 @@ const quickLinks = [
 export default function WelcomePage() {
   const navigate = useNavigate()
   const platform = usePlatform()
-  const snapshot = platform.stateService.getSnapshot()
+  const snapshot = platform.getSnapshot()
 
   return (
     <div className="min-h-screen bg-neutral-950">
@@ -235,7 +235,7 @@ export default function WelcomePage() {
             </div>
             <div className="p-5 bg-neutral-900/50 rounded-xl border border-neutral-800">
               <div className="text-neutral-500 text-sm mb-1">注册模块</div>
-              <div className="text-2xl font-semibold text-white">{platform.moduleRegistry.getAll().length}</div>
+              <div className="text-2xl font-semibold text-white">{platform.modules.length}</div>
             </div>
             <div className="p-5 bg-neutral-900/50 rounded-xl border border-neutral-800">
               <div className="text-neutral-500 text-sm mb-1">事件日志</div>
@@ -255,7 +255,7 @@ export default function WelcomePage() {
             <p className="text-neutral-500 text-sm">Powered by modern web technologies</p>
           </div>
           <div className="flex flex-wrap justify-center gap-4">
-            {['React 18', 'Vite', 'Three.js', 'XState', 'Module Federation', 'TypeScript', 'Tailwind CSS'].map((tech) => (
+            {['React 18', 'Vite', 'Three.js', 'Zustand', 'Event Bus', 'TypeScript', 'Tailwind CSS'].map((tech) => (
               <span
                 key={tech}
                 className="px-4 py-2 bg-neutral-900 border border-neutral-800 rounded-lg text-neutral-400 text-sm"

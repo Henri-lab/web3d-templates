@@ -41,7 +41,6 @@ export function GLTFModel({
   const [hovered, setHovered] = useState(false)
   const [loading, setLoading] = useState(true)
 
-  const selectObject = useStoryStore((s) => s.selectObject)
   const setHoveredObject = useStoryStore((s) => s.setHoveredObject)
 
   // 克隆场景以避免共享引用问题
@@ -90,7 +89,7 @@ export function GLTFModel({
     }
   }, [hovered, scale, interactable])
 
-  const handlePointerOver = (e: THREE.Event) => {
+  const handlePointerOver = (e: any) => {
     if (!interactable) return
     e.stopPropagation()
     setHovered(true)
@@ -99,7 +98,7 @@ export function GLTFModel({
     document.body.style.cursor = 'pointer'
   }
 
-  const handlePointerOut = (e: THREE.Event) => {
+  const handlePointerOut = (e: any) => {
     if (!interactable) return
     e.stopPropagation()
     setHovered(false)
@@ -108,7 +107,7 @@ export function GLTFModel({
     document.body.style.cursor = 'default'
   }
 
-  const handleClick = (e: THREE.Event) => {
+  const handleClick = (e: any) => {
     if (!interactable) return
     e.stopPropagation()
     onClick?.()

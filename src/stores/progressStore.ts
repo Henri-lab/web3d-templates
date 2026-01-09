@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { devtools, persist } from 'zustand/middleware'
-import type { UserProgress, StoryProgress, QuizResult, Achievement } from '@/types'
+import type { UserProgress, StoryProgress, QuizResult } from '@/types'
 
 interface ProgressStore {
   // 用户进度

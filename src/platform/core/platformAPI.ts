@@ -12,14 +12,13 @@ import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { globalEventBus } from './eventBus'
 import type { PlatformAPI, PlatformEvent, EventHandler } from '../config/types'
-import type { PlatformService } from './stateMachine'
 import type { ModuleRegistry } from './moduleRegistry'
 
 /**
  * 创建平台API
  */
 export function createPlatformAPI(
-  stateService: PlatformService,
+  getContext: () => Record<string, any>,
   moduleRegistry: ModuleRegistry
 ): PlatformAPI {
   return {
@@ -45,7 +44,7 @@ export function createPlatformAPI(
     // 状态管理
     stateManager: {
       getState: (namespace: string) => {
-        const context = stateService.getSnapshot().context
+        const context = getContext()
         return (context as any)[namespace]
       },
 
@@ -163,7 +162,7 @@ export function createPlatformAPI(
  */
 export function usePlatformAPI(): PlatformAPI {
   const navigate = useNavigate()
-  const location = useLocation()
+  useLocation() // 调用以保持与路由的订阅关系（无需显式使用返回值）
 
   // 从全局上下文获取平台API
   const platformAPI = (window as any).__PLATFORM_API__
