@@ -25,6 +25,7 @@ export default function PlatformHomePage() {
   const platform = usePlatform()
   const modules = platform.modules
   const snapshot = platform.getSnapshot()
+  const eventLog = platform.eventBus.getEventLog().slice(-20).reverse()
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900 text-white">
@@ -72,10 +73,14 @@ export default function PlatformHomePage() {
             <span>📦</span> 功能模块
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {modules.map((module) => (
+            {modules.map((module) => {
+              const firstRoute = module.config.routes?.[0]
+              const firstPath = firstRoute?.path || '/'
+
+              return (
               <Link
                 key={module.id}
-                to={module.config.routes[0]?.path || '/'}
+                to={firstPath}
                 className="group relative overflow-hidden rounded-2xl bg-neutral-800 border border-neutral-700 hover:border-neutral-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl"
               >
                 {/* 渐变背景 */}
@@ -111,7 +116,7 @@ export default function PlatformHomePage() {
 
                   {/* 路由 */}
                   <div className="mt-4 text-xs text-gray-500">
-                    路由: {module.config.routes[0]?.path || '/'}
+                    路由: {firstPath}
                   </div>
                 </div>
 
@@ -120,7 +125,7 @@ export default function PlatformHomePage() {
                   →
                 </div>
               </Link>
-            ))}
+            )})}
           </div>
         </section>
 
@@ -205,6 +210,33 @@ export default function PlatformHomePage() {
             >
               发送测试事件
             </button>
+
+            {/* 简易事件查看器 */}
+            <div className="mt-4 border-t border-neutral-700 pt-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="text-xs text-gray-400">最近事件（最多 20 条）</span>
+                <button
+                  onClick={() => platform.eventBus.clearEventLog()}
+                  className="text-xs text-red-400 hover:text-red-300"
+                >
+                  清空
+                </button>
+              </div>
+              <div className="bg-neutral-900 rounded p-2 max-h-40 overflow-y-auto text-xs font-mono space-y-1">
+                {eventLog.length === 0 ? (
+                  <div className="text-gray-500">暂无事件</div>
+                ) : (
+                  eventLog.map((event, index) => (
+                    <div key={index} className="text-gray-300">
+                      <span className="text-gray-500">
+                        {new Date(event.timestamp).toLocaleTimeString()} ·
+                      </span>{' '}
+                      <span className="text-blue-300">{event.type}</span>
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
           </div>
 
           {/* 配置信息 */}
