@@ -1,0 +1,50 @@
+moduleMDs/
+├── README.md                                    # 文档导航总入口
+│
+├── 00-platform-overview/                        # 平台总览
+│   ├── ARCHITECTURE.md                          # 架构设计
+│   ├── QUICK-START.md                           # 快速开始
+│   └── TECH-STACK.md                            # 技术栈说明
+│
+├── 01-platform-core/                            # 平台核心系统
+│   ├── README.md                                # 核心系统概述
+│   ├── platform-initialization.md               # 平台初始化
+│   ├── state-management.md                      # 状态管理
+│   └── event-bus.md                             # 事件总线
+│
+├── 02-module-development/                       # 模块开发指南
+│   └── README.md                                # 开发指南
+│
+├── 03-api-reference/                            # API 参考文档
+│   └── README.md                                # API 总览
+│
+├── 04-event-system/                             # 事件系统
+│   └── README.md                                # 事件系统详解
+│
+├── 05-deployment/                               # 部署文档
+│   ├── README.md                                # 部署指南
+│   └── troubleshooting.md                       # 故障排查
+│
+├── 06-examples/                                 # 代码示例
+│   └── README.md                                # 示例总览
+│
+└── modules/                                     # 各模块详细文档
+    ├── module-welcome/                          # 首页模块
+    │   └── README.md
+    ├── module-culture-history/                  # 历史故事模块
+    │   ├── README.md
+    │   ├── layers/                              # 分层架构
+    │   ├── history-dsl/                         # DSL 系统
+    │   ├── plugins/                             # 插件系统
+    │   └── public/                              # 公共资源
+    ├── module-lab-three/                        # Three.js 实验室
+    │   └── README.md
+    ├── module-earth-history/                    # 地球可视化
+    │   └── README.md
+    └── module-platform-management/              # 平台管理
+        └── README.md
+
+统计信息:
+- 总目录数: 41
+- 总文档数: 33
+- 文档大小: 464KB
