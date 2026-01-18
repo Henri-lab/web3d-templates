@@ -1,0 +1,20 @@
+# Foundry 编译输出
+/out/
+/cache/
+
+# 部署信息
+/deployments/
+
+# 环境变量
+.env
+.env.local
+
+# 依赖
+/lib/
+
+# 广播记录
+/broadcast/
+
+# 覆盖率
+/coverage/
+lcov.info
