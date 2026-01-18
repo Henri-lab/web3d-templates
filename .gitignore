@@ -1,4 +1,57 @@
-node_modules
-react-source
-dist
-package-lock.json
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output
+
+# Production
+dist/
+build/
+out/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Contracts
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+contracts/lib/
+
+# Go
+indexer/bin/
+indexer/tmp/
+
+# Database
+*.db
+*.sqlite
+
+# Misc
+.cache/
+.temp/
