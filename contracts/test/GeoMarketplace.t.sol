@@ -137,7 +137,7 @@ contract GeoMarketplaceTest is Test {
         assertEq(owner.balance, ownerBalanceBefore + platformFee + royalty);
 
         // Check listing status
-        (,,,,,, GeoMarketplace.ListingStatus status) = marketplace.listings(listingId);
+        (,,,,,,, GeoMarketplace.ListingStatus status) = marketplace.listings(listingId);
         assertEq(uint8(status), uint8(GeoMarketplace.ListingStatus.Sold));
     }
 
@@ -193,7 +193,7 @@ contract GeoMarketplaceTest is Test {
         vm.prank(seller);
         marketplace.cancelListing(listingId);
 
-        (,,,,,, GeoMarketplace.ListingStatus status) = marketplace.listings(listingId);
+        (,,,,,,, GeoMarketplace.ListingStatus status) = marketplace.listings(listingId);
         assertEq(uint8(status), uint8(GeoMarketplace.ListingStatus.Cancelled));
     }
 
