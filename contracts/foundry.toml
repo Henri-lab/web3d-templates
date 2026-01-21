@@ -6,6 +6,7 @@ out = "out"
 solc = "0.8.24"
 src = "src"
 via_ir = true
+fs_permissions = [{ access = "read-write", path = "./deployments" }]
 
 remappings = [
   "forge-std/=lib/forge-std/src/",
