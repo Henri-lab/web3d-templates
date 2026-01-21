@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/token/common/ERC2981.sol";
-import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/utils/Pausable.sol";
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import {ERC721Enumerable} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import {ERC2981} from "@openzeppelin/contracts/token/common/ERC2981.sol";
+import {AccessControl} from "@openzeppelin/contracts/access/AccessControl.sol";
+import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
 /**
  * @title GeoAsset
@@ -193,13 +193,13 @@ contract GeoAsset is
         AssetType[] calldata assetTypes,
         int256[] calldata latitudes,
         int256[] calldata longitudes,
-        string[] calldata metadataURIs
+        string[] calldata metadataUris
     ) external onlyRole(MINTER_ROLE) whenNotPaused nonReentrant returns (uint256[] memory) {
         uint256 length = assetTypes.length;
         require(
             length == latitudes.length &&
             length == longitudes.length &&
-            length == metadataURIs.length,
+            length == metadataUris.length,
             "Array length mismatch"
         );
 
@@ -214,7 +214,7 @@ contract GeoAsset is
             tokenIds[i] = tokenId;
 
             _safeMint(to, tokenId);
-            _setTokenURI(tokenId, metadataURIs[i]);
+            _setTokenURI(tokenId, metadataUris[i]);
 
             _geoData[tokenId] = GeoData({
                 assetType: assetTypes[i],
@@ -230,7 +230,7 @@ contract GeoAsset is
                 assetTypes[i],
                 latitudes[i],
                 longitudes[i],
-                metadataURIs[i]
+                metadataUris[i]
             );
         }
 
@@ -350,7 +350,9 @@ contract GeoAsset is
         int256 latitude,
         int256 longitude
     ) internal pure returns (bool) {
+        // forge-lint: disable-next-line(unsafe-typecast)
         int256 maxLat = 90 * int256(COORDINATE_PRECISION);
+        // forge-lint: disable-next-line(unsafe-typecast)
         int256 maxLon = 180 * int256(COORDINATE_PRECISION);
 
         return latitude >= -maxLat &&

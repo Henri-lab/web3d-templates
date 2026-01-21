@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
-import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/utils/Pausable.sol";
-import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
-import "@openzeppelin/contracts/interfaces/IERC2981.sol";
+import {IERC721} from "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {SafeERC20} from "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
+import {AccessControl} from "@openzeppelin/contracts/access/AccessControl.sol";
+import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
+import {ReentrancyGuard} from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
+import {IERC2981} from "@openzeppelin/contracts/interfaces/IERC2981.sol";
 
 /**
  * @title GeoMarketplace
@@ -65,6 +65,7 @@ contract GeoMarketplace is AccessControl, Pausable, ReentrancyGuard {
     address public feeReceiver;
 
     /// @notice 支持的 NFT 合约
+    // forge-lint: disable-next-line(mixed-case-variable)
     mapping(address => bool) public supportedNFTs;
 
     /// @notice 支持的支付代币 (address(0) = ETH 始终支持)
@@ -372,6 +373,7 @@ contract GeoMarketplace is AccessControl, Pausable, ReentrancyGuard {
     /**
      * @notice 设置支持的 NFT 合约
      */
+    // forge-lint: disable-next-line(mixed-case-function)
     function setSupportedNFT(
         address nftContract,
         bool supported

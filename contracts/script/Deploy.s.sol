@@ -1,10 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "forge-std/Script.sol";
-import "../src/GeoAsset.sol";
-import "../src/GeoMarketplace.sol";
-import "../src/GeoRegistry.sol";
+import {Script} from "forge-std/Script.sol";
+import {console2 as console} from "forge-std/console2.sol";
+import {GeoAsset} from "../src/GeoAsset.sol";
+import {GeoMarketplace} from "../src/GeoMarketplace.sol";
+import {GeoRegistry} from "../src/GeoRegistry.sol";
 
 /**
  * @title DeployGeoProtocol
@@ -103,6 +104,7 @@ contract DeployGeoProtocol is Script {
             ".json"
         ));
 
+        // forge-lint: disable-next-line(unsafe-cheatcode)
         vm.writeFile(filename, json);
         console.log("Deployment info written to:", filename);
     }

@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "forge-std/Test.sol";
-import "../src/GeoAsset.sol";
-import "../src/GeoMarketplace.sol";
+import {Test} from "forge-std/Test.sol";
+import {GeoAsset} from "../src/GeoAsset.sol";
+import {GeoMarketplace} from "../src/GeoMarketplace.sol";
 
 contract GeoMarketplaceTest is Test {
     GeoAsset public geoAsset;
@@ -77,12 +77,12 @@ contract GeoMarketplaceTest is Test {
     function testCreateListingUnsupportedNFT() public {
         // Deploy unsupported NFT
         vm.prank(owner);
-        GeoAsset unsupportedNFT = new GeoAsset("Unsupported", "UNS", owner, owner, 0);
+        GeoAsset unsupportedNft = new GeoAsset("Unsupported", "UNS", owner, owner, 0);
 
         vm.prank(seller);
         vm.expectRevert();
         marketplace.createListing(
-            address(unsupportedNFT),
+            address(unsupportedNft),
             0,
             1 ether,
             address(0),
@@ -291,6 +291,7 @@ contract GeoMarketplaceTest is Test {
             uint256 newTokenId = geoAsset.mint(
                 seller,
                 GeoAsset.AssetType.Mineral,
+                // forge-lint: disable-next-line(unsafe-typecast)
                 39904200 + int256(i * 1000000),
                 116407400,
                 "ipfs://QmTest"

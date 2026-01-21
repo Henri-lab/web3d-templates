@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-import "@openzeppelin/contracts/access/AccessControl.sol";
-import "@openzeppelin/contracts/utils/Pausable.sol";
+import {AccessControl} from "@openzeppelin/contracts/access/AccessControl.sol";
+import {Pausable} from "@openzeppelin/contracts/utils/Pausable.sol";
 
 /**
  * @title GeoRegistry
@@ -318,6 +318,7 @@ contract GeoRegistry is AccessControl, Pausable {
         address nftContract,
         uint256 tokenId
     ) internal pure returns (bytes32) {
+        // forge-lint: disable-next-line(unsafe-typecast)
         return bytes32((uint256(uint160(nftContract)) << 96) | uint96(tokenId));
     }
 
