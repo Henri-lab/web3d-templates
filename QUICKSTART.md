@@ -42,6 +42,9 @@ npm run setup
 # 或者分别安装
 npm install                          # 前端
 cd contracts && forge install        # 合约
+
+forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts
+
 cd indexer && go mod download        # 后端
 ```
 
@@ -87,7 +90,7 @@ MARKETPLACE_ADDRESS=0x...     # 部署后填入
 ```bash
 # 创建 contracts/.env
 cd contracts
-cat > .env << EOF
+cat >| .env << EOF
 PRIVATE_KEY=0x...                    # 部署者私钥
 BASE_SEPOLIA_RPC_URL=https://sepolia.base.org
 BASESCAN_API_KEY=your_api_key       # 用于验证合约
